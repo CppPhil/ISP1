@@ -14,3 +14,6 @@ add_executable(${PROJECT_NAME}
                "${HEADERS}"
                "${SOURCES}")
 
+# Include path for the include subdirectory
+include_directories(${CMAKE_BINARY_DIR}/../include)
+

@@ -1,4 +1,4 @@
-#include "../include/h2.hpp"
+#include <h2.hpp>
 #include <cstdio>
 
 void f2()

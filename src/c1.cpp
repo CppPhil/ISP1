@@ -1,4 +1,4 @@
-#include "../include/h1.hpp"
+#include <h1.hpp>
 #include <cstdio>
 
 void f1()
