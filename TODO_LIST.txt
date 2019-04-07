@@ -1,0 +1,10 @@
+Implement some sort of search tree
+with nodes
+and the nodes holding some sort of data or something
+
+implement the A* algorithm somehow
+using a generic search algorithm thingie as the base or something
+
+put in some example stuff that actually works
+akin to the map of cities in romania used in the text book
+
