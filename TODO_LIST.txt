@@ -8,3 +8,5 @@ using a generic search algorithm thingie as the base or something
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
 
+consider enabling compiler optmiziations if shit gets slow or something
+
