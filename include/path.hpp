@@ -1,16 +1,14 @@
 #ifndef INCG_ISP1_PATH_HPP
 #define INCG_ISP1_PATH_HPP
-#include <node.hpp> // isp1::Node
-#include <vector> // std::vector
-#include <utility> // std::move
-#include <iterator> // std::begin
+#include <iterator>                      // std::begin
+#include <node.hpp>                      // isp1::Node
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::reverse
+#include <utility>                       // std::move
+#include <vector>                        // std::vector
 
-namespace isp1
-{
-template <typename NodeData>
-class Path
-{
+namespace isp1 {
+template<typename NodeData>
+class Path {
 public:
     using this_type = Path;
     using node_type = Node<NodeData>;
@@ -20,10 +18,7 @@ public:
     {
     }
 
-    node_type& first() noexcept
-    {
-        return *m_nodePath.front();
-    }
+    node_type& first() noexcept { return *m_nodePath.front(); }
 
     const node_type& first() const noexcept
     {
