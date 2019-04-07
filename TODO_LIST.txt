@@ -1,4 +1,4 @@
-formatting script
+formatting script -- done
 
 Implement some sort of search tree
 with nodes
@@ -31,6 +31,13 @@ using a generic search algorithm thingie as the base or something
 
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
+
+README.md
+-> add instructions as to how to clone the repo (--recursive)
+-> add instructions as to how to build
+-> GNU/Linux only!
+-> Prerequisites: git, CMake, g++-8, doxygen, clang-format etc. and how to install them
+-> descriptions for the files / directories
 
 add nodiscard
 
