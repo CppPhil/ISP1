@@ -1,6 +1,30 @@
+formatting script
+
 Implement some sort of search tree
 with nodes
 and the nodes holding some sort of data or something
+Node {
+    parent
+    children
+    NodeData {
+        id
+        real distance to parent
+        heuristic distance to goal
+    }
+}
+
+path type
++ first
++ prepend(Node)
++ reverse
+
+SearchTree type
++ ctor()
++ ctor(NodeData)
++ rootNode
++ isEmpty
+
+A*-node data type
 
 implement the A* algorithm somehow
 using a generic search algorithm thingie as the base or something
@@ -8,5 +32,8 @@ using a generic search algorithm thingie as the base or something
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
 
+add nodiscard
+
 consider enabling compiler optmiziations if shit gets slow or something
 
+add documentation

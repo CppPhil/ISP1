@@ -31,3 +31,5 @@ add_executable(${PROJECT_NAME}
 # Include path for the include subdirectory
 include_directories(${CMAKE_BINARY_DIR}/../include)
 
+# Include path for philslib
+include_directories(${CMAKE_BINARY_DIR}/../deps/libraries/philslib/include)
