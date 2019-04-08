@@ -1,5 +1,7 @@
 formatting script -- done
 
+get rid off the worthless templates, it's all A* anyway.
+
 Implement some sort of search tree
 with nodes
 and the nodes holding some sort of data or something
@@ -7,7 +9,7 @@ Node {
     parent
     children
     NodeData {
-        id
+        id (RomanianCity)
         real distance to parent
         heuristic distance to goal
     }
