@@ -91,5 +91,14 @@ README.md
 add nodiscard
 
 consider enabling compiler optmiziations if shit gets slow or something
+-> debug mode (with debugging symbols)
+-> release mode (with optimizations)
+
+add tests
 
 add documentation
+
+
+
+
+
