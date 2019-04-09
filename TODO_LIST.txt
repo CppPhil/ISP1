@@ -2,6 +2,15 @@ formatting script -- done
 
 downgrade to g++-7
 
+OpenList & ClosedList stuff 4 the realz ????????????????????????????????????????
+OpenList beginnt mit allen Start-Nodes sortiert nach ihrem f-Wert (g + h).
+Immer das Vorderste aus der OpenList herausnehmen.
+Diese Node dann expandieren.
+Die expandierte Node dann hinten an die ClosedList anfuegen.
+Die children dann in die OpenList einsortieren sortiert nach ihrem f-Wert (g + h).
+Am Ende sollte dann der "Pfad" in der ClosedList sein.
+- Notizen aus Vorlesung beachten.
+
 get rid off the worthless templates, it's all A* anyway.
 
 Implement some sort of search tree
