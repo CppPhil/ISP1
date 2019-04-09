@@ -1,5 +1,7 @@
 formatting script -- done
 
+downgrade to g++-7
+
 get rid off the worthless templates, it's all A* anyway.
 
 Implement some sort of search tree
@@ -94,11 +96,13 @@ consider enabling compiler optmiziations if shit gets slow or something
 -> debug mode (with debugging symbols)
 -> release mode (with optimizations)
 
+try the shit on laptop
+
 add tests
 
 add documentation
 
+migrate to windows
 
-
-
+migrate to Java
 
