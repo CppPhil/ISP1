@@ -1,6 +1,3 @@
-formatting script -- done
-
-downgrade to g++-7
 
 graph library:
 https://github.com/Terae/Graph
@@ -107,7 +104,7 @@ README.md
 -> add instructions as to how to clone the repo (--recursive)
 -> add instructions as to how to build
 -> GNU/Linux only!
--> Prerequisites: git, CMake, g++-8, doxygen, clang-format etc. and how to install them
+-> Prerequisites: git, CMake, g++-7, doxygen, clang-format etc. and how to install them
 -> descriptions for the files / directories
 
 add nodiscard

@@ -1,8 +1,6 @@
-#include <h1.hpp>
-#include <h2.hpp>
+#include <iostream>
 
 int main()
 {
-    f1();
-    f2();
+    std::cout << "Hello world!\n";
 }

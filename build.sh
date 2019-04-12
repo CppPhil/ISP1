@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # The C compiler to use
-readonly C_COMPILER="gcc-8"
+readonly C_COMPILER="gcc-7"
 
 # The C++ compiler to use
-readonly CXX_COMPILER="g++-8"
+readonly CXX_COMPILER="g++-7"
 
 # Directory containing this bash script.
 readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
