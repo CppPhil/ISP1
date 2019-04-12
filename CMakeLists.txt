@@ -32,4 +32,8 @@ add_executable(${PROJECT_NAME}
 include_directories(${CMAKE_BINARY_DIR}/../include)
 
 # Include path for philslib
-include_directories(${CMAKE_BINARY_DIR}/../deps/libraries/philslib/include)
+include_directories(${CMAKE_BINARY_DIR}/../deps/philslib/include)
+
+# Include path for Graph library
+include_directories(${CMAKE_BINARY_DIR}/../deps/Graph/single_include)
+
