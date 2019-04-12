@@ -19,86 +19,17 @@ http://mat.uab.cat/~alseda/MasterOpt/AStar-Algorithm.pdf
 https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
-get rid off the worthless templates, it's all A* anyway.
-
-Implement some sort of search tree
-with nodes
-and the nodes holding some sort of data or something
-Node {
-    parent
-    children
-    NodeData {
-        id (RomanianCity)
-        real distance to parent
-        heuristic distance to goal
-    }
-}
-
-path type
-+ first
-+ prepend(Node)
-+ reverse
-
-SearchTree type
-+ ctor()
-+ ctor(NodeData)
-+ rootNode
-+ isEmpty
-
-A*-node data type
-
-implement the A* algorithm somehow
-using a generic search algorithm thingie as the base or something
-
-Allgemeiner Suchalgorithums: Pseudocode
-procedure search;
-    paths:= [[start1],[start2],..,[startn]];
-    success:= false;
-    repeat
-        p:= first(paths);
-        success:= goal(first(p));
-        if not success then begin
-            children:= expand(first(p)));
-            newpaths:= generate_new_paths(children,p);
-            paths:= insert(newpaths,rest(paths));
-        end;
-    until success;
-    return reverse(p);
-end.
-
-generate_new_paths take the children which are the result of the last node
-expansion as well as the current path.
-It results in an array of arrays which contain the [childN] ++ p arrays,
-that is if there were 3 children, child1, child2, child3,
-the resulting array will look like [[child1 | p], [child2 | p], [child3 | p]].
-
-insert shall create a new array of arrays by discarding the first one (p), which
-is the one that was just handled and inserting the arrays contained in
-new paths instead.
-each of these arrays (paths) is inserted in sequence in such a way that
-the paths array remains sorted in an A* manner.
-That is the subarrays of the paths array are sorted in the paths array
-in such a way that the subarray (path) which has the lowest f value (f(path) = 
-sum of all of the g-values of the nodes in the path + h value of the first node
-in the path (the paths are - by default - inverted, which explains the reverse(p)
-call in the code))
-always comes first in the paths array and the paths are stored in the paths
-array consecutively so that they always remain in an ascending sorting like that.
-The insertion point for a new path can be found using the std::lower_bound
-algorithm which returns an iterator (assumming success) to the first element
-in the range for which that value isn't "less than", that is it is "greater than
-or equal" to the one supplied to the algorithm for comparison.
-A custom comparator shall be used with the std::lower_bound algorithm
-which compares two paths according to their f-values in an operator< style.
-A dead end won't generate any children and therefore won't generate any new 
-paths so the p just handled is just replaced with nothing in the paths array.
-p is reversed at the end as the individual paths are built up inverted,
-that is the children gathered from node expansion are prepended to paths.
-Therefore the path that reaches the goal shall be reversed so that it becomes
-a path from the start node to the goal node, rather than the other way around.
+shit seems to sort heuristics in descending rather than ascending order or something WTF?
+implement own astar algorithm.
 
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
+
+try to make shit work with permissable but non-monotonic heuristic.
+
+import graph from file.
+export graph to .dot file and try to display it with graphviz
+export path to .dot file and try to display it with graphviz maybe perhaps
 
 README.md
 -> add instructions as to how to clone the repo (--recursive)
