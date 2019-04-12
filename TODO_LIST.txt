@@ -106,6 +106,8 @@ README.md
 -> GNU/Linux only!
 -> Prerequisites: git, CMake, g++-7, doxygen, clang-format etc. and how to install them
 -> descriptions for the files / directories
+-> how to generate documentation
+-> where to find documentation of the dependencies
 
 add nodiscard
 
