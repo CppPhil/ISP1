@@ -20,6 +20,8 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
 shit seems to sort heuristics in descending rather than ascending order or something WTF?
+priority_queue actually puts the greater ones to the front (top()), using the operator< by default, therefore the order is implicitly reversed so that the greater heuristic values actually go to the back and the small ones end up at the front...........
+
 implement own astar algorithm.
 
 put in some example stuff that actually works
