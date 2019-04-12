@@ -59,30 +59,44 @@ graph_undirected<std::string, int, int>::search_path aStar(
 
     const cost_type nul_cost{cost_type()};
 
+    // closed list of the {name, node}s already handled.
     std::list<const_iterator> expanded;
+
+    // open list containing paths
+    // a path consists of {{name, node}, gCost}
     std::priority_queue<search_path, std::vector<search_path>, path_comparator>
         frontier((path_comparator(heuristic)));
 
     {
         search_path p;
-        p.push_back({start, nul_cost});
-        frontier.push(std::move(p));
+        p.push_back(
+            {start,
+             nul_cost}); // Add start node with 0 g to a newly created path
+        frontier.push(std::move(p)); // Add the path
     }
 
     while (!frontier.empty()) {
+        // Grab the highest priority (lowest f cost) path
         search_path p{frontier.top()};
-        frontier.pop();
+        frontier.pop(); // Remove it from the open list
 
+        // look in the closed list for the {name, node} of the path's last
+        // element
         /// expanded does not contain path's last state
         if (std::find(expanded.cbegin(), expanded.cend(), back(p).first)
-            == expanded.end()) {
+            == expanded.end()) { // It ain't in the closed list -> do shit.
+
+            // Grab the {name, node}
             const_iterator last{back(p).first};
+
+            // Put it in the closed list.
             expanded.push_back(last);
 
             if (isGoal(last)) { return p; }
 
             std::vector<node::edge> legalActions{graph.get_edges(last)};
 
+            // Iterate over the edges.
             for (std::vector<node::edge>::const_iterator it{
                      legalActions.cbegin()};
                  it != legalActions.cend();
@@ -93,8 +107,13 @@ graph_undirected<std::string, int, int>::search_path aStar(
                     throw std::logic_error{"Negative costs are not allowed!"};
                 }
 
+                // Create a new path by copying the current one
                 search_path newPath{p};
+
+                // app the target with its g cost to the new path
                 newPath.push_back({it->target(), it->cost()});
+
+                // add the path to the open list
                 frontier.push(newPath);
             }
         }

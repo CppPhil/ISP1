@@ -29,6 +29,7 @@ do it like Neitzke
 implement custom search_path thingie
 get rid off crappy priority_queue 
     -> use std::vector with std::lower_bound
+get rid off iterator-edness
 
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
