@@ -23,6 +23,12 @@ shit seems to sort heuristics in descending rather than ascending order or somet
 priority_queue actually puts the greater ones to the front (top()), using the operator< by default, therefore the order is implicitly reversed so that the greater heuristic values actually go to the back and the small ones end up at the front...........
 
 implement own astar algorithm.
+simplify astar shit dramatically
+implement custom astar
+do it like Neitzke
+implement custom search_path thingie
+get rid off crappy priority_queue 
+    -> use std::vector with std::lower_bound
 
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book

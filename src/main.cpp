@@ -1,3 +1,4 @@
+#include <astar.hpp>
 #include <graph.hpp>
 #include <iomanip>
 #include <iostream>
@@ -70,8 +71,14 @@ int main()
         return heuristicCost;
     };
 
-    Map::search_path aStarPath{
-        romaniaMap.astar(startCity, goalCity, heuristicCallable)};
+    Map::search_path aStarPath{isp1::aStar(
+        romaniaMap,
+        romaniaMap.find(startCity),
+        [&goalCity](Map::const_iterator it) {
+            const std::string& cityNameKey{it->first};
+            return cityNameKey == goalCity;
+        },
+        heuristicCallable)};
 
     std::cout << "\nCalculation of the shortest path from '" << startCity
               << "' to '" << goalCity << "':\n"
