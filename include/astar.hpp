@@ -1,25 +1,14 @@
 #ifndef INCG_ISP1_ASTAR_HPP
 #define INCG_ISP1_ASTAR_HPP
-#include <ciso646>
-#include <functional>
-#include <graph.hpp>
-#include <iterator>
-#include <path.hpp>
-#include <pl/algo/ranged_algorithms.hpp>
-#include <string>
-#include <vector>
+#include <ciso646>                       // not
+#include <graph.hpp>                     // graph_undirected
+#include <iterator>                      // std::begin, std::end
+#include <path.hpp>                      // isp1::Path
+#include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
+#include <utility>                       // std::move
+#include <vector>                        // std::vector
 
 namespace isp1 {
-#if 0
-graph_undirected<std::string, int, int>::search_path aStar(
-    const graph_undirected<std::string, int, int>&          graph,
-    graph_undirected<std::string, int, int>::const_iterator start,
-    std::function<bool(graph_undirected<std::string, int, int>::const_iterator)>
-                                                                  isGoal,
-    std::function<graph_undirected<std::string, int, int>::cost_type(
-        graph_undirected<std::string, int, int>::const_iterator)> heuristic);
-#endif
-
 template<typename NodeIdentifier>
 std::vector<IdentifierWithCost<NodeIdentifier>> expand(
     NodeIdentifier                                     nodeToExpand,
