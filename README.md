@@ -32,7 +32,7 @@ Alternatively you can build and run the application at once using
 from the project's root directory.  
 
 ## Dependencies
-The projects dependencies are managed through git submodules.  
+The project's dependencies are managed through git submodules.  
 Their files are placed in the `deps` subdirectory.  
 
 ### "clang-format" dependency
@@ -52,7 +52,7 @@ Documentation: `https://nlohmann.github.io/json/`
 Repository: `https://github.com/CppPhil/philslib/`  
 Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root directory to generate the HTML documentation for this library.  
 
-## Overview
+## Overview of the files / directories
 `build`: Automatically generated directory containing the build artifacts generated, including the executable.  
 `buildAndRun.sh`: Shell script to build and then run the application.  
 `build.sh`: Shell script to build the application.  
