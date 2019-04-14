@@ -39,17 +39,17 @@ Their files are placed in the `deps` subdirectory.
 Contains clang-format stuff, nothing to worry about.  
 
 ### "Graph" dependency
-Repository: `https://github.com/Terae/Graph/`  
-Documentation: `https://terae.github.io/graph/`  
+Repository: <https://github.com/Terae/Graph/>  
+Documentation: <https://terae.github.io/graph/>  
 The documentation is subpar, you will have to consult the source files yourself if the documentation proves insufficient / incomplete.  
 
 ### "nlohmann_json" dependency
 The Graph library depends on this JSON library...  
-Repository: `https://github.com/nlohmann/json`  
-Documentation: `https://nlohmann.github.io/json/`  
+Repository: <https://github.com/nlohmann/json>  
+Documentation: <https://nlohmann.github.io/json/>  
 
 ### "philslib" dependency
-Repository: `https://github.com/CppPhil/philslib/`  
+Repository: <https://github.com/CppPhil/philslib/>  
 Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root directory to generate the HTML documentation for this library.  
 
 ## Overview of the files / directories
@@ -70,28 +70,28 @@ Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root di
 `UNLICENSE.md`: The license of this project.  
 
 ##  C++
-`https://en.cppreference.com/w/cpp/header` C++ standard library documentation by header files.  
-`https://isocpp.org/faq` C++ FAQ  
-`http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines` C++ Core Guidelines  
-`http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4713.pdf` C++17 standard working draft  
-`https://wandbox.org/` online compiler  
-`https://gcc.godbolt.org/` Compiler Explorer - Interactive Online Disassembler  
-`http://quick-bench.com/` Online C++ Microbenchmarking  
+<https://en.cppreference.com/w/cpp/header> C++ standard library documentation by header files.  
+<https://isocpp.org/faq> C++ FAQ  
+<http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines> C++ Core Guidelines  
+<http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4713.pdf> C++17 standard working draft  
+<https://wandbox.org/> online compiler  
+<https://gcc.godbolt.org/> Compiler Explorer - Interactive Online Disassembler  
+<http://quick-bench.com/> Online C++ Microbenchmarking  
 
 ## Git
-`https://gist.github.com/hofmannsven/6814451` Git Cheatsheet  
+<https://gist.github.com/hofmannsven/6814451> Git Cheatsheet  
 
 ## CMake
-`https://cmake.org/` home page  
-`https://cmake.org/documentation/` documentation  
+<https://cmake.org/> home page  
+<https://cmake.org/documentation/> documentation  
 
 ## Bash scripting
-`https://devhints.io/bash` Bash scripting cheatsheet  
+<https://devhints.io/bash> Bash scripting cheatsheet  
 
 ## Markdown
-`https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf` Markdown cheatsheet  
+<https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf> Markdown cheatsheet  
 
 ### Recommended markdown editor
-To edit this file I use `Remarkable` which can be obtained from `https://remarkableapp.github.io/index.html`  
-GitHub uses its own variant of markdown, called `GitHub Flavored Markdown`, see: `https://github.github.com/gfm/`  
+To edit this file I use `Remarkable` which can be obtained from <https://remarkableapp.github.io/index.html>  
+GitHub uses its own variant of markdown, called `GitHub Flavored Markdown`, see: <https://github.github.com/gfm/>  
 Therefore it is imperative to double check if GitHub renders the markdown within this file as you'd expect it.  
