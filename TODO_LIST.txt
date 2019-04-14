@@ -42,6 +42,12 @@ add tests
 add documentation
 
 simplify dramatically
+    -> remove include guards for #pragma once
+    -> remove namespaces
+    -> remove move semantics
+    -> remove references / pointers where possible
+    -> remove noexcept
+    -> anything else that could be deemed 'difficult'
 
 migrate to windows
 

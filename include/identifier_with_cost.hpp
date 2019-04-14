@@ -1,6 +1,7 @@
 #ifndef INCG_ISP1_IDENTIFIER_WITH_COST_HPP
 #define INCG_ISP1_IDENTIFIER_WITH_COST_HPP
-#include <utility> // std::move
+#include <cost.hpp> // isp1::Cost
+#include <utility>  // std::move
 
 namespace isp1 {
 template<typename NodeIdentifier>
