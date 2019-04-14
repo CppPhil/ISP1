@@ -1,8 +1,7 @@
 #pragma once
-#include <cost.hpp> // isp1::Cost
+#include <cost.hpp> // Cost
 #include <utility>  // std::move
 
-namespace isp1 {
 template<typename NodeIdentifier>
 class IdentifierWithCost {
 public:
@@ -19,4 +18,3 @@ private:
     NodeIdentifier m_nodeIdentifier;
     Cost           m_g;
 };
-} // namespace isp1

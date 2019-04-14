@@ -1,14 +1,13 @@
 #pragma once
-#include <cost.hpp>                 // isp1::Cost
+#include <cost.hpp>                 // Cost
 #include <cstddef>                  // std::size_t
-#include <identifier_with_cost.hpp> // isp1::IdentifierWithCost
+#include <identifier_with_cost.hpp> // IdentifierWithCost
 #include <initializer_list>         // std::initializer_list
 #include <iterator>                 // std::begin, std::end
 #include <stdexcept>                // std::out_of_range
 #include <utility>                  // std::move
 #include <vector>                   // std::vector
 
-namespace isp1 {
 template<typename NodeIdentifier>
 class Path {
 public:
@@ -112,4 +111,3 @@ public:
 private:
     std::vector<IdentifierWithCost<NodeIdentifier>> m_vector;
 };
-} // namespace isp1

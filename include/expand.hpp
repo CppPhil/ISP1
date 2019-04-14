@@ -1,9 +1,8 @@
 #pragma once
-#include <identifier_with_cost.hpp> // isp1::IdentifierWithCost
-#include <undirected_graph.hpp>     // isp1::UndirectedGraph
+#include <identifier_with_cost.hpp> // IdentifierWithCost
+#include <undirected_graph.hpp>     // UndirectedGraph
 #include <vector>                   // std::vector
 
-namespace isp1 {
 template<typename NodeIdentifier>
 std::vector<IdentifierWithCost<NodeIdentifier>> expand(
     NodeIdentifier                         nodeToExpand,
@@ -25,4 +24,3 @@ std::vector<IdentifierWithCost<NodeIdentifier>> expand(
 
     return result;
 }
-} // namespace isp1

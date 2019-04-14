@@ -1,10 +1,9 @@
 #pragma once
-#include <contains.hpp>           // isp1::contains
-#include <expand.hpp>             // isp1::expand
-#include <generate_new_paths.hpp> // isp1::generateNewPaths
-#include <insert.hpp>             // isp1::insert
+#include <contains.hpp>           // contains
+#include <expand.hpp>             // expand
+#include <generate_new_paths.hpp> // generateNewPaths
+#include <insert.hpp>             // insert
 
-namespace isp1 {
 template<typename NodeIdentifier, typename IsGoal, typename Heuristic>
 Path<NodeIdentifier> aStar(
     const UndirectedGraph<NodeIdentifier>& graph,
@@ -44,4 +43,3 @@ Path<NodeIdentifier> aStar(
 
     return SearchPath{};
 }
-} // namespace isp1

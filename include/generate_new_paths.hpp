@@ -1,8 +1,7 @@
 #pragma once
-#include <path.hpp> // isp1::Path
+#include <path.hpp> // Path
 #include <vector>   // std::vector
 
-namespace isp1 {
 template<typename NodeIdentifier>
 std::vector<Path<NodeIdentifier>> generateNewPaths(
     const Path<NodeIdentifier>&                            oldPath,
@@ -18,4 +17,3 @@ std::vector<Path<NodeIdentifier>> generateNewPaths(
 
     return result;
 }
-} // namespace isp1

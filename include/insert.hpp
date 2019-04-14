@@ -1,9 +1,8 @@
 #pragma once
-#include <path.hpp>                      // isp1::Path
+#include <path.hpp>                      // Path
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::lower_bound
 #include <vector>                        // std::vector
 
-namespace isp1 {
 template<typename Heuristic, typename NodeIdentifier>
 void insert(
     Heuristic                          heuristic,
@@ -23,4 +22,3 @@ void insert(
 
     openList.insert(insertionPoint, std::move(pathToInsert));
 }
-} // namespace isp1
