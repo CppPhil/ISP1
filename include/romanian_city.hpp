@@ -1,6 +1,7 @@
 #pragma once
-#include <iosfwd>             // std::ostream
-#include <pl/string_view.hpp> // pl::string_view
+#include <namespaces.hpp>
+#include <ostream> // ostream
+#include <string>  // string
 
 #define ROMANIAN_CITY_X_MACRO \
     X(Arad)                   \
@@ -30,22 +31,6 @@ enum class RomanianCity {
 #undef X
 };
 
-constexpr pl::string_view toString(RomanianCity city)
-{
-    using namespace pl::literals::string_view_literals;
+string toString(RomanianCity city);
 
-    pl::string_view result{};
-
-    switch (city) {
-#define X(CityName) \
-    case RomanianCity::CityName: result = #CityName; break;
-        ROMANIAN_CITY_X_MACRO
-#undef X
-    }
-
-    if (result == "RimnicuVilcea"_sv) { return "Rimnicu Vilcea"; }
-
-    return result;
-}
-
-std::ostream& operator<<(std::ostream& os, RomanianCity city);
+ostream& operator<<(ostream& os, RomanianCity city);
