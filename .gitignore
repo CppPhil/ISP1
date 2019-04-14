@@ -119,3 +119,5 @@ _deps
 ### build directory
 build
 
+### docs directory
+docs

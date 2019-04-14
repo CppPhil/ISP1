@@ -11,9 +11,10 @@ Currently only GNU/Linux operating systems are supported!
 * g++-7
 * doxygen
 * clang-format
+* graphviz
 
 To install the prerequisites run:  
-`sudo apt-get install git cmake gcc-7 doxygen clang-format -y`  
+`sudo apt-get install git cmake gcc-7 doxygen clang-format graphviz -y`  
 
 ## Cloning the repository
 Use  
