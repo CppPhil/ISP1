@@ -1,3 +1,4 @@
+#if 0
 #include <algorithm>
 #include <astar.hpp>
 #include <iterator>
@@ -124,3 +125,4 @@ graph_undirected<std::string, int, int>::search_path aStar(
     return empty;
 }
 } // namespace isp1
+#endif

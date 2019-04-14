@@ -13,7 +13,7 @@
 
 int main()
 {
-    using Map = graph_undirected<std::string, int, int>;
+    using Map = graph_undirected<std::string, int, std::uint64_t>;
     Map romaniaMap;
     romaniaMap("Oradea", "Zerind")          = 71;
     romaniaMap("Zerind", "Arad")            = 75;
@@ -56,6 +56,47 @@ int main()
     const std::string startCity{"Arad"};
     const std::string goalCity{"Bucharest"};
 
+    const auto heuristic = [&straightLineToBucharestMap, goalCity](const std::string& nodeIdentifier) {
+        const auto iter = straightLineToBucharestMap.find(nodeIdentifier);
+
+        if (iter == std::end(straightLineToBucharestMap)) {
+            return std::numeric_limits<std::uint64_t>::max();
+        }
+
+        const std::uint64_t heuristicCost = iter->second;
+        return heuristicCost;
+    };
+
+    isp1::Path<std::string> aStarPath = isp1::aStar(romaniaMap, startCity, [&goalCity](const std::string& nodeIdentifier) {
+        return nodeIdentifier == goalCity;
+    },
+        heuristic    
+    );
+
+    std::cout << "\nCalculation of the shortest path from '" << startCity
+              << "' to '" << goalCity << "':\n"
+              << "A* total cost: " << aStarPath.g() << "\n\n";
+
+    int step{1};
+    int curAStarCumulativeGCost{0};
+    for (const isp1::IdentifierWithCost<std::string>& e : aStarPath) 
+    {
+        std::cout << std::left << std::setw(13)
+                  << ("Step " + std::to_string(step)) << " |" << std::right;
+
+        const std::string& cityNameKey{e.nodeIdentifier};
+        const auto         gCost = e.g;
+
+        curAStarCumulativeGCost += gCost;
+
+        std::cout << std::setw(21)
+                  << (cityNameKey + " ("
+                      + std::to_string(curAStarCumulativeGCost) + ")")
+                  << '\n';
+        ++step;
+    }
+
+#if 0
     const auto heuristicCallable
         = [&straightLineToBucharestMap, goalCity](
               const graph_undirected<std::string, int, int>::const_iterator& it)
@@ -104,4 +145,5 @@ int main()
                       + std::to_string(curAStarCumulativeGCost) + ")")
                   << '\n';
     }
+#endif
 }
