@@ -25,32 +25,29 @@ public:
     {
     }
 
-    iterator begin() noexcept { return m_vector.begin(); }
+    iterator begin() { return m_vector.begin(); }
 
-    const_iterator begin() const noexcept { return m_vector.begin(); }
+    const_iterator begin() const { return m_vector.begin(); }
 
-    const_iterator cbegin() const noexcept { return m_vector.cbegin(); }
+    const_iterator cbegin() const { return m_vector.cbegin(); }
 
-    iterator end() noexcept { return m_vector.end(); }
+    iterator end() { return m_vector.end(); }
 
-    const_iterator end() const noexcept { return m_vector.end(); }
+    const_iterator end() const { return m_vector.end(); }
 
-    const_iterator cend() const noexcept { return m_vector.cend(); }
+    const_iterator cend() const { return m_vector.cend(); }
 
-    reverse_iterator rbegin() noexcept { return m_vector.rbegin(); }
+    reverse_iterator rbegin() { return m_vector.rbegin(); }
 
-    const_reverse_iterator rbegin() const noexcept { return m_vector.rbegin(); }
+    const_reverse_iterator rbegin() const { return m_vector.rbegin(); }
 
-    const_reverse_iterator crbegin() const noexcept
-    {
-        return m_vector.crbegin();
-    }
+    const_reverse_iterator crbegin() const { return m_vector.crbegin(); }
 
-    reverse_iterator rend() noexcept { return m_vector.rend(); }
+    reverse_iterator rend() { return m_vector.rend(); }
 
-    const_reverse_iterator rend() const noexcept { return m_vector.rend(); }
+    const_reverse_iterator rend() const { return m_vector.rend(); }
 
-    const_reverse_iterator crend() const noexcept { return m_vector.crend(); }
+    const_reverse_iterator crend() const { return m_vector.crend(); }
 
     void append(NodeIdentifier nodeIdentifier, Cost g)
     {
@@ -62,9 +59,9 @@ public:
         m_vector.push_back(identifierWithCost);
     }
 
-    size_t size() const noexcept { return m_vector.size(); }
+    size_t size() const { return m_vector.size(); }
 
-    bool isEmpty() const noexcept { return m_vector.empty(); }
+    bool isEmpty() const { return m_vector.empty(); }
 
     IdentifierWithCost<NodeIdentifier>& front()
     {
@@ -94,7 +91,7 @@ public:
         return const_cast<this_type*>(this)->back();
     }
 
-    Cost g() const noexcept
+    Cost g() const
     {
         Cost cost{};
 

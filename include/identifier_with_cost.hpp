@@ -11,7 +11,7 @@ public:
 
     NodeIdentifier nodeIdentifier() const { return m_nodeIdentifier; }
 
-    Cost g() const noexcept { return m_g; }
+    Cost g() const { return m_g; }
 
 private:
     NodeIdentifier m_nodeIdentifier;
