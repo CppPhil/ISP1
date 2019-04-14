@@ -1,4 +1,4 @@
-#include <astar.hpp>
+#include <a_star.hpp>
 #include <iomanip>
 #include <iostream>
 #include <limits>
