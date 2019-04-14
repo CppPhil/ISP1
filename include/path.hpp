@@ -10,13 +10,13 @@
 template<typename NodeIdentifier>
 class Path {
 public:
-    using this_type        = Path;
-    using container_type   = vector<IdentifierWithCost<NodeIdentifier>>;
-    using iterator         = typename container_type::iterator;
-    using const_iterator   = typename container_type::const_iterator;
-    using reverse_iterator = typename container_type::reverse_iterator;
-    using const_reverse_iterator =
-        typename container_type::const_reverse_iterator;
+    typedef Path                                       this_type;
+    typedef vector<IdentifierWithCost<NodeIdentifier>> container_type;
+    typedef typename container_type::iterator          iterator;
+    typedef typename container_type::const_iterator    const_iterator;
+    typedef typename container_type::reverse_iterator  reverse_iterator;
+    typedef
+        typename container_type::const_reverse_iterator const_reverse_iterator;
 
     Path() = default;
 
@@ -66,7 +66,7 @@ public:
     IdentifierWithCost<NodeIdentifier>& front()
     {
         if (isEmpty()) {
-            throw out_of_range{"front may not be called on an empty path."};
+            throw out_of_range("front may not be called on an empty path.");
         }
 
         return m_vector.front();
@@ -80,7 +80,7 @@ public:
     IdentifierWithCost<NodeIdentifier>& back()
     {
         if (isEmpty()) {
-            throw out_of_range{"back may not be called on an empty path."};
+            throw out_of_range("back may not be called on an empty path.");
         }
 
         return m_vector.back();
@@ -93,7 +93,7 @@ public:
 
     Cost g() const
     {
-        Cost cost{};
+        Cost cost = Cost();
 
         for (const IdentifierWithCost<NodeIdentifier>& identifierWithCost :
              m_vector) {

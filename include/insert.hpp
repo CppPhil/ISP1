@@ -10,14 +10,16 @@ void insert(
     vector<Path<NodeIdentifier>>& openList,
     Path<NodeIdentifier>          pathToInsert)
 {
-    typename vector<Path<NodeIdentifier>>::iterator insertionPoint{lower_bound(
-        openList,
-        pathToInsert,
-        [&heuristic](
-            const Path<NodeIdentifier>& lhs, const Path<NodeIdentifier>& rhs) {
-            return (lhs.g() + heuristic(lhs.back().nodeIdentifier()))
-                   < (rhs.g() + heuristic(rhs.back().nodeIdentifier()));
-        })};
+    typename vector<Path<NodeIdentifier>>::iterator insertionPoint
+        = lower_bound(
+            openList,
+            pathToInsert,
+            [&heuristic](
+                const Path<NodeIdentifier>& lhs,
+                const Path<NodeIdentifier>& rhs) {
+                return (lhs.g() + heuristic(lhs.back().nodeIdentifier()))
+                       < (rhs.g() + heuristic(rhs.back().nodeIdentifier()));
+            });
 
     openList.insert(insertionPoint, pathToInsert);
 }

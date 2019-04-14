@@ -5,7 +5,7 @@ template<typename NodeIdentifier>
 class IdentifierWithCost {
 public:
     IdentifierWithCost(NodeIdentifier nodeIdentifier, Cost g)
-        : m_nodeIdentifier{nodeIdentifier}, m_g{g}
+        : m_nodeIdentifier(nodeIdentifier), m_g(g)
     {
     }
 

@@ -12,34 +12,33 @@ Path<NodeIdentifier> aStar(
     IsGoal                                 isGoal,
     Heuristic                              heuristic)
 {
-    using SearchPath = Path<NodeIdentifier>;
+    vector<NodeIdentifier> closedList;
 
-    vector<NodeIdentifier> closedList{};
-
-    vector<SearchPath> openList{
-        SearchPath{IdentifierWithCost<NodeIdentifier>{start, Cost{}}}};
+    vector<Path<NodeIdentifier>> openList({Path<NodeIdentifier>(
+        {IdentifierWithCost<NodeIdentifier>(start, Cost())})});
 
     while (not openList.empty()) {
-        SearchPath p{openList.front()};
+        Path<NodeIdentifier> currentPath = openList.front();
         openList.erase(openList.begin());
 
-        if (not contains(closedList, p.back().nodeIdentifier())) {
-            NodeIdentifier last{p.back().nodeIdentifier()};
+        if (not contains(closedList, currentPath.back().nodeIdentifier())) {
+            NodeIdentifier lastNodeOfPath = currentPath.back().nodeIdentifier();
 
-            closedList.push_back(last);
+            closedList.push_back(lastNodeOfPath);
 
-            if (isGoal(last)) { return p; }
+            if (isGoal(lastNodeOfPath)) { return currentPath; }
 
-            const vector<IdentifierWithCost<NodeIdentifier>> children{
-                expand(last, graph)};
+            const vector<IdentifierWithCost<NodeIdentifier>> children
+                = expand(lastNodeOfPath, graph);
 
-            const vector<SearchPath> newPaths{generateNewPaths(p, children)};
+            const vector<Path<NodeIdentifier>> newPaths
+                = generateNewPaths(currentPath, children);
 
-            for (const SearchPath& path : newPaths) {
+            for (const Path<NodeIdentifier>& path : newPaths) {
                 insert(heuristic, openList, path);
             }
         }
     }
 
-    return SearchPath{};
+    return Path<NodeIdentifier>();
 }

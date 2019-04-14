@@ -42,7 +42,7 @@ add tests
 add documentation
 
 simplify dramatically
-    -> more 'classic' style
+    -> try to get rid off some of the typename
     -> anything else that could be deemed 'difficult'
 
 move to STL style

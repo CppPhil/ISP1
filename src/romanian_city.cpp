@@ -2,7 +2,7 @@
 
 string toString(RomanianCity city)
 {
-    string result{};
+    string result;
 
     switch (city) {
 #define X(CityName) \
