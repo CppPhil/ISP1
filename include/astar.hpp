@@ -1,29 +1,28 @@
 #ifndef INCG_ISP1_ASTAR_HPP
 #define INCG_ISP1_ASTAR_HPP
 #include <ciso646>                       // not
-#include <graph.hpp>                     // graph_undirected
 #include <iterator>                      // std::begin, std::end
 #include <path.hpp>                      // isp1::Path
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
+#include <undirected_graph.hpp>          // isp1::UndirectedGraph
 #include <utility>                       // std::move
 #include <vector>                        // std::vector
 
 namespace isp1 {
 template<typename NodeIdentifier>
 std::vector<IdentifierWithCost<NodeIdentifier>> expand(
-    NodeIdentifier                                     nodeToExpand,
-    const graph_undirected<NodeIdentifier, int, Cost>& graph)
+    NodeIdentifier                         nodeToExpand,
+    const UndirectedGraph<NodeIdentifier>& graph)
 {
-    std::vector<
-        typename graph_undirected<NodeIdentifier, int, Cost>::node::edge>
-        edges{graph.get_edges(nodeToExpand)};
+    std::vector<typename UndirectedGraph<NodeIdentifier>::node::edge> edges{
+        graph.get_edges(nodeToExpand)};
 
     std::vector<IdentifierWithCost<NodeIdentifier>> result{};
 
-    for (const typename graph_undirected<NodeIdentifier, int, Cost>::node::edge&
-             edge : edges) {
-        typename graph_undirected<NodeIdentifier, int, Cost>::const_iterator
-                              target{edge.target()};
+    for (const typename UndirectedGraph<NodeIdentifier>::node::edge& edge :
+         edges) {
+        typename UndirectedGraph<NodeIdentifier>::const_iterator target{
+            edge.target()};
         const NodeIdentifier& targetNodeIdentifier{target->first};
 
         result.emplace_back(targetNodeIdentifier, edge.cost());
@@ -70,10 +69,10 @@ void insert(
 
 template<typename NodeIdentifier, typename IsGoal, typename Heuristic>
 Path<NodeIdentifier> aStar(
-    const graph_undirected<NodeIdentifier, int, Cost>& graph,
-    NodeIdentifier                                     start,
-    IsGoal                                             isGoal,
-    Heuristic                                          heuristic)
+    const UndirectedGraph<NodeIdentifier>& graph,
+    NodeIdentifier                         start,
+    IsGoal                                 isGoal,
+    Heuristic                              heuristic)
 {
     using SearchPath = Path<NodeIdentifier>;
 

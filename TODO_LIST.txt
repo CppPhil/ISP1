@@ -19,7 +19,6 @@ http://mat.uab.cat/~alseda/MasterOpt/AStar-Algorithm.pdf
 https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
-- add a global type alias for the actual graph type used
 - increase safety
 - use an enumerator for the node identifier
 - see in source TODOs

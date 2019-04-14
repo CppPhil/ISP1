@@ -1,9 +1,9 @@
 #include <astar.hpp>
-#include <graph.hpp>
 #include <iomanip>
 #include <iostream>
 #include <iterator>
 #include <limits>
+#include <undirected_graph.hpp>
 #include <unordered_map>
 
 /**
@@ -13,7 +13,7 @@
 
 int main()
 {
-    using Map = graph_undirected<std::string, int, std::uint64_t>;
+    using Map = isp1::UndirectedGraph<std::string>;
     Map romaniaMap;
     romaniaMap("Oradea", "Zerind")          = 71;
     romaniaMap("Zerind", "Arad")            = 75;
