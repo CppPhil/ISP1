@@ -29,13 +29,7 @@ export graph to .dot file and try to display it with graphviz
 export path to .dot file and try to display it with graphviz maybe perhaps
 
 README.md
--> general description
--> Prerequisites: git, CMake, g++-7, doxygen, clang-format etc. and how to install them
--> add instructions as to how to clone the repo (--recursive)
--> add instructions as to how to build
--> GNU/Linux only!
 -> how to generate documentation
--> where to find documentation of the dependencies
 -> descriptions for the files / directories
 
 consider enabling compiler optmiziations if shit gets slow or something
