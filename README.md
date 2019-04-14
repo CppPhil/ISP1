@@ -32,6 +32,11 @@ Alternatively you can build and run the application at once using
 `bash ./buildAndRun.sh`  
 from the project's root directory.  
 
+## Running
+The application can be run after it has been built using  
+`./build/isp1`  
+from the project's root directory.  
+
 ## Dependencies
 The project's dependencies are managed through git submodules.  
 Their files are placed in the `deps` subdirectory.  
