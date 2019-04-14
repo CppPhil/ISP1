@@ -4,6 +4,7 @@
 #include <cstddef>          // std::size_t
 #include <initializer_list> // std::initializer_list
 #include <iterator>         // std::begin, std::end
+#include <stdexcept>        // std::out_of_range
 #include <utility>          // std::move
 #include <vector>           // std::vector
 
@@ -80,6 +81,11 @@ public:
 
     IdentifierWithCost<NodeIdentifier>& front() noexcept
     {
+        if (isEmpty()) {
+            throw std::out_of_range{
+                "front may not be called on an empty path."};
+        }
+
         return m_vector.front();
     }
 
@@ -90,6 +96,10 @@ public:
 
     IdentifierWithCost<NodeIdentifier>& back() noexcept
     {
+        if (isEmpty()) {
+            throw std::out_of_range{"back may not be called on an empty path."};
+        }
+
         return m_vector.back();
     }
 
