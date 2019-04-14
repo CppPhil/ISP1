@@ -121,3 +121,6 @@ build
 
 ### docs directory
 docs
+
+### doxygen generated documentation for philslib
+doc

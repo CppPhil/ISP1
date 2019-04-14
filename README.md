@@ -57,6 +57,7 @@ Documentation: <https://nlohmann.github.io/json/>
 ### "philslib" dependency
 Repository: <https://github.com/CppPhil/philslib/>  
 Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root directory to generate the HTML documentation for this library.  
+The documentation can then be viewed using something like `firefox ./doc/html/index.html`  
 
 ## Generating the documentation
 To generate the documentation run  
