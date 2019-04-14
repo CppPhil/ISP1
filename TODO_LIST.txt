@@ -35,6 +35,7 @@ get rid off iterator-edness
 - add a global type alias for the actual graph type used
 - increase safety
 - use an enumerator for the node identifier
+- see in source TODOs
 
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
