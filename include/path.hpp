@@ -1,15 +1,13 @@
 #ifndef INCG_ISP1_PATH_HPP
 #define INCG_ISP1_PATH_HPP
+#include <cost.hpp>         // isp1::Cost
 #include <cstddef>          // std::size_t
-#include <cstdint>          // std::uint64_t
 #include <initializer_list> // std::initializer_list
 #include <iterator>         // std::begin, std::end
 #include <utility>          // std::move
 #include <vector>           // std::vector
 
 namespace isp1 {
-using Cost = std::uint64_t;
-
 template<typename NodeIdentifier>
 struct IdentifierWithCost {
     IdentifierWithCost(NodeIdentifier p_nodeIdentifier, Cost p_g)

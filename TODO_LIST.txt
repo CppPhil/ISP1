@@ -19,11 +19,11 @@ http://mat.uab.cat/~alseda/MasterOpt/AStar-Algorithm.pdf
 https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
-- put the Cost global type alias into its own file
 - add a global type alias for the actual graph type used
 - increase safety
 - use an enumerator for the node identifier
 - see in source TODOs
+- Don't use STL algorithms
 
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
