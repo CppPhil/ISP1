@@ -53,12 +53,20 @@ Documentation: <https://nlohmann.github.io/json/>
 Repository: <https://github.com/CppPhil/philslib/>  
 Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root directory to generate the HTML documentation for this library.  
 
+## Generating the documentation
+To generate the documentation run  
+`doxygen ./Doxyfile `  
+in the project's root directory.  
+The `docs` subdirectory will then contain the HTML documentation.  
+Using something like `firefox ./docs/html/index.html ` the documentation can be viewed.  
+
 ## Overview of the files / directories
 `build`: Automatically generated directory containing the build artifacts generated, including the executable.  
 `buildAndRun.sh`: Shell script to build and then run the application.  
 `build.sh`: Shell script to build the application.  
 `CMakeLists.txt`: Configuration file of the CMake build system generator.  
 `deps`: Directory containing the git submodule dependencies.  
+`docs`: Directory containing the doxygen generated documentation.  
 `format.sh`: Shell script to format the source code of the project.  
 `.git`: Directory of the git software configuration management software.  
 `.gitignore`: File containing information as to which sort of files shall be ignored by git.  
