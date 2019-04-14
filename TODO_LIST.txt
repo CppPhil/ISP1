@@ -19,8 +19,6 @@ http://mat.uab.cat/~alseda/MasterOpt/AStar-Algorithm.pdf
 https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
-- use an enumerator for the node identifier
-
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
 

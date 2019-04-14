@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iterator>
 #include <limits>
+#include <romanian_city.hpp>
 #include <undirected_graph.hpp>
 #include <unordered_map>
 
@@ -13,68 +14,85 @@
 
 int main()
 {
-    using Map = isp1::UndirectedGraph<std::string>;
+    using Map = isp1::UndirectedGraph<isp1::RomanianCity>;
     Map romaniaMap;
-    romaniaMap("Oradea", "Zerind")          = 71;
-    romaniaMap("Zerind", "Arad")            = 75;
-    romaniaMap("Oradea", "Sibiu")           = 151;
-    romaniaMap("Arad", "Sibiu")             = 140;
-    romaniaMap("Arad", "Timisoara")         = 118;
-    romaniaMap("Timisoara", "Lugoj")        = 111;
-    romaniaMap("Lugoj", "Mehadia")          = 70;
-    romaniaMap("Mehadia", "Drobeta")        = 75;
-    romaniaMap("Drobeta", "Craiova")        = 120;
-    romaniaMap("Rimnicu Vilcea", "Craiova") = 146;
-    romaniaMap("Craiova", "Pitesti")        = 138;
-    romaniaMap("Rimnicu Vilcea", "Sibiu")   = 80;
-    romaniaMap("Sibiu", "Fagaras")          = 99;
-    romaniaMap("Rimnicu Vilcea", "Pitesti") = 97;
-    romaniaMap("Pitesti", "Bucharest")      = 101;
-    romaniaMap("Fagaras", "Bucharest")      = 211;
-    romaniaMap("Bucharest", "Giurgiu")      = 90;
-    romaniaMap("Bucharest", "Urziceni")     = 85;
-    romaniaMap("Urziceni", "Hirsova")       = 98;
-    romaniaMap("Hirsova", "Eforie")         = 86;
-    romaniaMap("Urziceni", "Vaslui")        = 142;
-    romaniaMap("Vaslui", "Iasi")            = 92;
-    romaniaMap("Iasi", "Neamt")             = 87;
+    romaniaMap(isp1::RomanianCity::Oradea, isp1::RomanianCity::Zerind)   = 71;
+    romaniaMap(isp1::RomanianCity::Zerind, isp1::RomanianCity::Arad)     = 75;
+    romaniaMap(isp1::RomanianCity::Oradea, isp1::RomanianCity::Sibiu)    = 151;
+    romaniaMap(isp1::RomanianCity::Arad, isp1::RomanianCity::Sibiu)      = 140;
+    romaniaMap(isp1::RomanianCity::Arad, isp1::RomanianCity::Timisoara)  = 118;
+    romaniaMap(isp1::RomanianCity::Timisoara, isp1::RomanianCity::Lugoj) = 111;
+    romaniaMap(isp1::RomanianCity::Lugoj, isp1::RomanianCity::Mehadia)   = 70;
+    romaniaMap(isp1::RomanianCity::Mehadia, isp1::RomanianCity::Dobreta) = 75;
+    romaniaMap(isp1::RomanianCity::Dobreta, isp1::RomanianCity::Craiova) = 120;
+    romaniaMap(isp1::RomanianCity::RimnicuVilcea, isp1::RomanianCity::Craiova)
+        = 146;
+    romaniaMap(isp1::RomanianCity::Craiova, isp1::RomanianCity::Pitesti) = 138;
+    romaniaMap(isp1::RomanianCity::RimnicuVilcea, isp1::RomanianCity::Sibiu)
+        = 80;
+    romaniaMap(isp1::RomanianCity::Sibiu, isp1::RomanianCity::Fagaras) = 99;
+    romaniaMap(isp1::RomanianCity::RimnicuVilcea, isp1::RomanianCity::Pitesti)
+        = 97;
+    romaniaMap(isp1::RomanianCity::Pitesti, isp1::RomanianCity::Bucharest)
+        = 101;
+    romaniaMap(isp1::RomanianCity::Fagaras, isp1::RomanianCity::Bucharest)
+        = 211;
+    romaniaMap(isp1::RomanianCity::Bucharest, isp1::RomanianCity::Giurgiu) = 90;
+    romaniaMap(isp1::RomanianCity::Bucharest, isp1::RomanianCity::Urziceni)
+        = 85;
+    romaniaMap(isp1::RomanianCity::Urziceni, isp1::RomanianCity::Hirsova) = 98;
+    romaniaMap(isp1::RomanianCity::Hirsova, isp1::RomanianCity::Eforie)   = 86;
+    romaniaMap(isp1::RomanianCity::Urziceni, isp1::RomanianCity::Vaslui)  = 142;
+    romaniaMap(isp1::RomanianCity::Vaslui, isp1::RomanianCity::Iasi)      = 92;
+    romaniaMap(isp1::RomanianCity::Iasi, isp1::RomanianCity::Neamt)       = 87;
 
-    const std::unordered_map<std::string, int> straightLineToBucharestMap(
-        {{"Arad", 366},    {"Bucharest", 0},   {"Craiova", 160},
-         {"Drobeta", 242}, {"Eforie", 161},    {"Fagaras", 176},
-         {"Giurgiu", 77},  {"Hirsova", 151},   {"Iasi", 226},
-         {"Lugoj", 244},   {"Mehadia", 241},   {"Neamt", 234},
-         {"Oradea", 380},  {"Pitesti", 100},   {"Rimnicu Vilcea", 193},
-         {"Sibiu", 253},   {"Timisoara", 329}, {"Urziceni", 80},
-         {"Vaslui", 199},  {"Zerind", 374}});
+    const std::unordered_map<isp1::RomanianCity, int>
+        straightLineToBucharestMap({{isp1::RomanianCity::Arad, 366},
+                                    {isp1::RomanianCity::Bucharest, 0},
+                                    {isp1::RomanianCity::Craiova, 160},
+                                    {isp1::RomanianCity::Dobreta, 242},
+                                    {isp1::RomanianCity::Eforie, 161},
+                                    {isp1::RomanianCity::Fagaras, 176},
+                                    {isp1::RomanianCity::Giurgiu, 77},
+                                    {isp1::RomanianCity::Hirsova, 151},
+                                    {isp1::RomanianCity::Iasi, 226},
+                                    {isp1::RomanianCity::Lugoj, 244},
+                                    {isp1::RomanianCity::Mehadia, 241},
+                                    {isp1::RomanianCity::Neamt, 234},
+                                    {isp1::RomanianCity::Oradea, 380},
+                                    {isp1::RomanianCity::Pitesti, 100},
+                                    {isp1::RomanianCity::RimnicuVilcea, 193},
+                                    {isp1::RomanianCity::Sibiu, 253},
+                                    {isp1::RomanianCity::Timisoara, 329},
+                                    {isp1::RomanianCity::Urziceni, 80},
+                                    {isp1::RomanianCity::Vaslui, 199},
+                                    {isp1::RomanianCity::Zerind, 374}});
 
     std::cout
         << "\nSee "
            "https://csunplugged.files.wordpress.com/2012/09/romania-graph1.png "
            "for a visual representation of the Romania Graph.\n";
 
-    const std::string startCity{"Arad"};
-    const std::string goalCity{"Bucharest"};
+    const isp1::RomanianCity startCity{isp1::RomanianCity::Arad};
+    const isp1::RomanianCity goalCity{isp1::RomanianCity::Bucharest};
 
-    const auto heuristic = [&straightLineToBucharestMap,
-                            goalCity](const std::string& nodeIdentifier) {
-        const auto iter = straightLineToBucharestMap.find(nodeIdentifier);
+    const auto heuristic
+        = [&straightLineToBucharestMap, goalCity](isp1::RomanianCity city) {
+              const auto iter = straightLineToBucharestMap.find(city);
 
-        if (iter == std::end(straightLineToBucharestMap)) {
-            return std::numeric_limits<std::uint64_t>::max();
-        }
+              if (iter == std::end(straightLineToBucharestMap)) {
+                  return std::numeric_limits<std::uint64_t>::max();
+              }
 
-        const std::uint64_t heuristicCost = iter->second;
-        return heuristicCost;
-    };
+              const std::uint64_t heuristicCost = iter->second;
+              return heuristicCost;
+          };
 
-    isp1::Path<std::string> aStarPath = isp1::aStar(
+    isp1::Path<isp1::RomanianCity> aStarPath{isp1::aStar(
         romaniaMap,
         startCity,
-        [&goalCity](const std::string& nodeIdentifier) {
-            return nodeIdentifier == goalCity;
-        },
-        heuristic);
+        [&goalCity](isp1::RomanianCity city) { return city == goalCity; },
+        heuristic)};
 
     std::cout << "\nCalculation of the shortest path from '" << startCity
               << "' to '" << goalCity << "':\n"
@@ -82,19 +100,16 @@ int main()
 
     int step{1};
     int curAStarCumulativeGCost{0};
-    for (const isp1::IdentifierWithCost<std::string>& e : aStarPath) {
-        std::cout << std::left << std::setw(13)
-                  << ("Step " + std::to_string(step)) << " |" << std::right;
+    for (const isp1::IdentifierWithCost<isp1::RomanianCity>& e : aStarPath) {
+        std::cout << "Step " << step << " | ";
 
-        const std::string& cityNameKey{e.nodeIdentifier()};
-        const auto         gCost = e.g();
+        const isp1::RomanianCity& cityNameKey{e.nodeIdentifier()};
+        const auto                gCost = e.g();
 
         curAStarCumulativeGCost += gCost;
 
-        std::cout << std::setw(21)
-                  << (cityNameKey + " ("
-                      + std::to_string(curAStarCumulativeGCost) + ")")
-                  << '\n';
+        std::cout << cityNameKey << " (" << curAStarCumulativeGCost << ")\n";
+
         ++step;
     }
 }
