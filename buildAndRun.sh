@@ -1,5 +1,7 @@
 #!/bin/bash
 
+### This script build the project and then runs the generated executable
+
 # Directory containing this bash script.
 readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
@@ -17,4 +19,3 @@ cd $DIR
 
 # Exit this bash script
 exit 0
-

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+### This script builds the project
+
 # The C compiler to use
 readonly C_COMPILER="gcc-7"
 
@@ -32,4 +34,3 @@ cd $DIR
 
 # Exit this bash script
 exit 0
-
