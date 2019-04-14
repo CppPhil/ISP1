@@ -27,9 +27,12 @@ To build run
 `bash ./build.sh`  
 from the project's root directory.  
 The `isp1` executable will be placed in the `build` subdirectory.  
+Alternatively you can build and run the application at once using  
+`bash ./buildAndRun.sh`  
+from the project's root directory.  
 
 ## Dependencies
-The projects dependencies are managed throug git submodules.  
+The projects dependencies are managed through git submodules.  
 Their files are placed in the `deps` subdirectory.  
 
 ### "clang-format" dependency
@@ -59,9 +62,14 @@ Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root di
 `.git`: Directory of the git software configuration management software.  
 `.gitignore`: File containing information as to which sort of files shall be ignored by git.  
 `.gitmodules`: git submodule configuration file.  
-`include`:Directory containing the header files of the project.  
+`include`: Directory containing the header files of the project.  
 `IS-02-2 Informierte Suche.pdf`: PDF file regarding informed search algorithms.  
 `README.md`: This file.
 `src`: Directory containing the source (*.cpp) files of the project.  
 `TODO_LIST.txt`: This project's todo-list.  
 `UNLICENSE.md`: The license of this project.  
+
+## Recommended markdown editor
+To edit this file I use `Remarkable` which can be obtained from `https://remarkableapp.github.io/index.html`  
+GitHub uses its own variant of markdown, called `GitHub Flavored Markdown`, see: `https://github.github.com/gfm/`  
+Therefore it is imperative to double check if GitHub renders the markdown within this file as you'd expect it.  
