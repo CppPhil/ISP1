@@ -10,7 +10,7 @@ void insert(
     vector<Path<NodeIdentifier>>& openList,
     Path<NodeIdentifier>          pathToInsert)
 {
-    typename vector<Path<NodeIdentifier>>::iterator insertionPoint
+    const typename vector<Path<NodeIdentifier>>::const_iterator insertionPoint
         = lower_bound(
             openList,
             pathToInsert,

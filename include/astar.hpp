@@ -18,11 +18,12 @@ Path<NodeIdentifier> aStar(
         {IdentifierWithCost<NodeIdentifier>(start, Cost())})});
 
     while (not openList.empty()) {
-        Path<NodeIdentifier> currentPath = openList.front();
+        const Path<NodeIdentifier> currentPath = openList.front();
         openList.erase(openList.begin());
 
         if (not contains(closedList, currentPath.back().nodeIdentifier())) {
-            NodeIdentifier lastNodeOfPath = currentPath.back().nodeIdentifier();
+            const NodeIdentifier lastNodeOfPath
+                = currentPath.back().nodeIdentifier();
 
             closedList.push_back(lastNodeOfPath);
 
