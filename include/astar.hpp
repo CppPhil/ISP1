@@ -1,5 +1,4 @@
-#ifndef INCG_ISP1_ASTAR_HPP
-#define INCG_ISP1_ASTAR_HPP
+#pragma once
 #include <contains.hpp>           // isp1::contains
 #include <expand.hpp>             // isp1::expand
 #include <generate_new_paths.hpp> // isp1::generateNewPaths
@@ -46,4 +45,3 @@ Path<NodeIdentifier> aStar(
     return SearchPath{};
 }
 } // namespace isp1
-#endif // INCG_ISP1_ASTAR_HPP

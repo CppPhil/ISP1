@@ -1,5 +1,4 @@
-#ifndef INCG_ISP1_INSERT_HPP
-#define INCG_ISP1_INSERT_HPP
+#pragma once
 #include <path.hpp>                      // isp1::Path
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::lower_bound
 #include <vector>                        // std::vector
@@ -25,4 +24,3 @@ void insert(
     openList.insert(insertionPoint, std::move(pathToInsert));
 }
 } // namespace isp1
-#endif // INCG_ISP1_INSERT_HPP

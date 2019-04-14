@@ -1,5 +1,4 @@
-#ifndef INCG_ISP1_EXPAND_HPP
-#define INCG_ISP1_EXPAND_HPP
+#pragma once
 #include <identifier_with_cost.hpp> // isp1::IdentifierWithCost
 #include <undirected_graph.hpp>     // isp1::UndirectedGraph
 #include <vector>                   // std::vector
@@ -27,4 +26,3 @@ std::vector<IdentifierWithCost<NodeIdentifier>> expand(
     return result;
 }
 } // namespace isp1
-#endif // INCG_ISP1_EXPAND_HPP

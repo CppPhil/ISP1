@@ -1,5 +1,4 @@
-#ifndef INCG_ISP1_UNDIRECTED_GRAPH_HPP
-#define INCG_ISP1_UNDIRECTED_GRAPH_HPP
+#pragma once
 #include <cost.hpp>  // isp1::Cost
 #include <graph.hpp> // graph_undirected
 
@@ -12,4 +11,3 @@ using UndirectedGraph = graph_undirected<
     int,
     /* cost_type */ CostType>;
 } // namespace isp1
-#endif // INCG_ISP1_UNDIRECTED_GRAPH_HPP

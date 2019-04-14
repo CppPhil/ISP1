@@ -1,5 +1,4 @@
-#ifndef INCG_ISP1_IDENTIFIER_WITH_COST_HPP
-#define INCG_ISP1_IDENTIFIER_WITH_COST_HPP
+#pragma once
 #include <cost.hpp> // isp1::Cost
 #include <utility>  // std::move
 
@@ -21,4 +20,3 @@ private:
     Cost           m_g;
 };
 } // namespace isp1
-#endif // INCG_ISP1_IDENTIFIER_WITH_COST_HPP

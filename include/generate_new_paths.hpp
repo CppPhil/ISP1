@@ -1,5 +1,4 @@
-#ifndef INCG_ISP1_GENERATE_NEW_PATHS_HPP
-#define INCG_ISP1_GENERATE_NEW_PATHS_HPP
+#pragma once
 #include <path.hpp> // isp1::Path
 #include <vector>   // std::vector
 
@@ -20,4 +19,3 @@ std::vector<Path<NodeIdentifier>> generateNewPaths(
     return result;
 }
 } // namespace isp1
-#endif // INCG_ISP1_GENERATE_NEW_PATHS_HPP

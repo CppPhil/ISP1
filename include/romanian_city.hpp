@@ -1,5 +1,4 @@
-#ifndef INCG_ISP1_ROMANIAN_CITY_HPP
-#define INCG_ISP1_ROMANIAN_CITY_HPP
+#pragma once
 #include <iosfwd>             // std::ostream
 #include <pl/string_view.hpp> // pl::string_view
 
@@ -52,4 +51,3 @@ constexpr pl::string_view toString(RomanianCity city)
 
 std::ostream& operator<<(std::ostream& os, RomanianCity city);
 } // namespace isp1
-#endif // INCG_ISP1_ROMANIAN_CITY_HPP

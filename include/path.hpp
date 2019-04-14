@@ -1,5 +1,4 @@
-#ifndef INCG_ISP1_PATH_HPP
-#define INCG_ISP1_PATH_HPP
+#pragma once
 #include <cost.hpp>                 // isp1::Cost
 #include <cstddef>                  // std::size_t
 #include <identifier_with_cost.hpp> // isp1::IdentifierWithCost
@@ -114,4 +113,3 @@ private:
     std::vector<IdentifierWithCost<NodeIdentifier>> m_vector;
 };
 } // namespace isp1
-#endif // INCG_ISP1_PATH_HPP
