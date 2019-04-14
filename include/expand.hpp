@@ -1,17 +1,18 @@
 #pragma once
 #include <identifier_with_cost.hpp> // IdentifierWithCost
-#include <undirected_graph.hpp>     // UndirectedGraph
-#include <vector>                   // std::vector
+#include <namespaces.hpp>
+#include <undirected_graph.hpp> // UndirectedGraph
+#include <vector>               // vector
 
 template<typename NodeIdentifier>
-std::vector<IdentifierWithCost<NodeIdentifier>> expand(
+vector<IdentifierWithCost<NodeIdentifier>> expand(
     NodeIdentifier                         nodeToExpand,
     const UndirectedGraph<NodeIdentifier>& graph)
 {
-    std::vector<typename UndirectedGraph<NodeIdentifier>::node::edge> edges{
+    vector<typename UndirectedGraph<NodeIdentifier>::node::edge> edges{
         graph.get_edges(nodeToExpand)};
 
-    std::vector<IdentifierWithCost<NodeIdentifier>> result{};
+    vector<IdentifierWithCost<NodeIdentifier>> result{};
 
     for (const typename UndirectedGraph<NodeIdentifier>::node::edge& edge :
          edges) {

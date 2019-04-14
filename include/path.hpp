@@ -1,18 +1,18 @@
 #pragma once
 #include <cost.hpp>                 // Cost
-#include <cstddef>                  // std::size_t
+#include <cstddef>                  // size_t
 #include <identifier_with_cost.hpp> // IdentifierWithCost
-#include <initializer_list>         // std::initializer_list
-#include <iterator>                 // std::begin, std::end
-#include <stdexcept>                // std::out_of_range
-#include <utility>                  // std::move
-#include <vector>                   // std::vector
+#include <initializer_list>         // initializer_list
+#include <namespaces.hpp>
+#include <stdexcept> // out_of_range
+#include <utility>   // move
+#include <vector>    // vector
 
 template<typename NodeIdentifier>
 class Path {
 public:
     using this_type        = Path;
-    using container_type   = std::vector<IdentifierWithCost<NodeIdentifier>>;
+    using container_type   = vector<IdentifierWithCost<NodeIdentifier>>;
     using iterator         = typename container_type::iterator;
     using const_iterator   = typename container_type::const_iterator;
     using reverse_iterator = typename container_type::reverse_iterator;
@@ -21,8 +21,8 @@ public:
 
     Path() = default;
 
-    Path(std::initializer_list<IdentifierWithCost<NodeIdentifier>> initL)
-        : m_vector(std::begin(initL), std::end(initL))
+    Path(initializer_list<IdentifierWithCost<NodeIdentifier>> initL)
+        : m_vector(initL.begin(), initL.end())
     {
     }
 
@@ -55,23 +55,22 @@ public:
 
     void append(NodeIdentifier nodeIdentifier, Cost g)
     {
-        m_vector.emplace_back(std::move(nodeIdentifier), g);
+        m_vector.emplace_back(move(nodeIdentifier), g);
     }
 
     void append(IdentifierWithCost<NodeIdentifier> identifierWithCost)
     {
-        m_vector.push_back(std::move(identifierWithCost));
+        m_vector.push_back(move(identifierWithCost));
     }
 
-    std::size_t size() const noexcept { return m_vector.size(); }
+    size_t size() const noexcept { return m_vector.size(); }
 
     bool isEmpty() const noexcept { return m_vector.empty(); }
 
     IdentifierWithCost<NodeIdentifier>& front()
     {
         if (isEmpty()) {
-            throw std::out_of_range{
-                "front may not be called on an empty path."};
+            throw out_of_range{"front may not be called on an empty path."};
         }
 
         return m_vector.front();
@@ -85,7 +84,7 @@ public:
     IdentifierWithCost<NodeIdentifier>& back()
     {
         if (isEmpty()) {
-            throw std::out_of_range{"back may not be called on an empty path."};
+            throw out_of_range{"back may not be called on an empty path."};
         }
 
         return m_vector.back();
@@ -109,5 +108,5 @@ public:
     }
 
 private:
-    std::vector<IdentifierWithCost<NodeIdentifier>> m_vector;
+    vector<IdentifierWithCost<NodeIdentifier>> m_vector;
 };

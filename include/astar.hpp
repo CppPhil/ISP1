@@ -3,6 +3,7 @@
 #include <expand.hpp>             // expand
 #include <generate_new_paths.hpp> // generateNewPaths
 #include <insert.hpp>             // insert
+#include <namespaces.hpp>
 
 template<typename NodeIdentifier, typename IsGoal, typename Heuristic>
 Path<NodeIdentifier> aStar(
@@ -13,14 +14,14 @@ Path<NodeIdentifier> aStar(
 {
     using SearchPath = Path<NodeIdentifier>;
 
-    std::vector<NodeIdentifier> closedList{};
+    vector<NodeIdentifier> closedList{};
 
-    std::vector<SearchPath> openList{
+    vector<SearchPath> openList{
         SearchPath{IdentifierWithCost<NodeIdentifier>{start, Cost{}}}};
 
     while (not openList.empty()) {
         SearchPath p{openList.front()};
-        openList.erase(std::begin(openList));
+        openList.erase(begin(openList));
 
         if (not contains(closedList, p.back().nodeIdentifier())) {
             NodeIdentifier last{p.back().nodeIdentifier()};
@@ -29,11 +30,10 @@ Path<NodeIdentifier> aStar(
 
             if (isGoal(last)) { return p; }
 
-            const std::vector<IdentifierWithCost<NodeIdentifier>> children{
+            const vector<IdentifierWithCost<NodeIdentifier>> children{
                 expand(last, graph)};
 
-            const std::vector<SearchPath> newPaths{
-                generateNewPaths(p, children)};
+            const vector<SearchPath> newPaths{generateNewPaths(p, children)};
 
             for (const SearchPath& path : newPaths) {
                 insert(heuristic, openList, path);

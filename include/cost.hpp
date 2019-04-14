@@ -1,4 +1,5 @@
 #pragma once
-#include <cstdint> // std::uint64_t
+#include <cstdint> // uint64_t
+#include <namespaces.hpp>
 
-using Cost = std::uint64_t;
+using Cost = uint64_t;

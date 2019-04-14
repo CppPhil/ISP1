@@ -1,9 +1,10 @@
 #pragma once
-#include <iterator>                      // std::end
-#include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
+#include <iterator> // end
+#include <namespaces.hpp>
+#include <pl/algo/ranged_algorithms.hpp> // find
 
 template<typename Container, typename Type>
 bool contains(const Container& container, const Type& value)
 {
-    return pl::algo::find(container, value) != std::end(container);
+    return find(container, value) != end(container);
 }

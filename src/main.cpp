@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iterator>
 #include <limits>
+#include <namespaces.hpp>
 #include <romanian_city.hpp>
 #include <undirected_graph.hpp>
 #include <unordered_map>
@@ -40,7 +41,7 @@ int main()
     romaniaMap(RomanianCity::Vaslui, RomanianCity::Iasi)           = 92;
     romaniaMap(RomanianCity::Iasi, RomanianCity::Neamt)            = 87;
 
-    const std::unordered_map<RomanianCity, int> straightLineToBucharestMap(
+    const unordered_map<RomanianCity, int> straightLineToBucharestMap(
         {{RomanianCity::Arad, 366},          {RomanianCity::Bucharest, 0},
          {RomanianCity::Craiova, 160},       {RomanianCity::Dobreta, 242},
          {RomanianCity::Eforie, 161},        {RomanianCity::Fagaras, 176},
@@ -52,7 +53,7 @@ int main()
          {RomanianCity::Timisoara, 329},     {RomanianCity::Urziceni, 80},
          {RomanianCity::Vaslui, 199},        {RomanianCity::Zerind, 374}});
 
-    std::cout
+    cout
         << "\nSee "
            "https://csunplugged.files.wordpress.com/2012/09/romania-graph1.png "
            "for a visual representation of the Romania Graph.\n";
@@ -64,11 +65,11 @@ int main()
         = [&straightLineToBucharestMap, goalCity](RomanianCity city) {
               const auto iter = straightLineToBucharestMap.find(city);
 
-              if (iter == std::end(straightLineToBucharestMap)) {
-                  return std::numeric_limits<std::uint64_t>::max();
+              if (iter == end(straightLineToBucharestMap)) {
+                  return numeric_limits<uint64_t>::max();
               }
 
-              const std::uint64_t heuristicCost = iter->second;
+              const uint64_t heuristicCost = iter->second;
               return heuristicCost;
           };
 
@@ -78,21 +79,21 @@ int main()
         [&goalCity](RomanianCity city) { return city == goalCity; },
         heuristic)};
 
-    std::cout << "\nCalculation of the shortest path from '" << startCity
-              << "' to '" << goalCity << "':\n"
-              << "A* total cost: " << aStarPath.g() << "\n\n";
+    cout << "\nCalculation of the shortest path from '" << startCity << "' to '"
+         << goalCity << "':\n"
+         << "A* total cost: " << aStarPath.g() << "\n\n";
 
     int step{1};
     int curAStarCumulativeGCost{0};
     for (const IdentifierWithCost<RomanianCity>& e : aStarPath) {
-        std::cout << "Step " << step << " | ";
+        cout << "Step " << step << " | ";
 
         const RomanianCity& cityNameKey{e.nodeIdentifier()};
         const auto          gCost = e.g();
 
         curAStarCumulativeGCost += gCost;
 
-        std::cout << cityNameKey << " (" << curAStarCumulativeGCost << ")\n";
+        cout << cityNameKey << " (" << curAStarCumulativeGCost << ")\n";
 
         ++step;
     }
