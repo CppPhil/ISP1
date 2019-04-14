@@ -1,12 +1,12 @@
 #include <romanian_city.hpp>
 
-string toString(RomanianCity city)
+string to_string(romanian_city city)
 {
     string result;
 
     switch (city) {
-#define X(CityName) \
-    case RomanianCity::CityName: result = #CityName; break;
+#define X(city_name) \
+    case romanian_city::city_name: result = #city_name; break;
         ROMANIAN_CITY_X_MACRO
 #undef X
     }
@@ -16,7 +16,7 @@ string toString(RomanianCity city)
     return result;
 }
 
-ostream& operator<<(ostream& os, RomanianCity city)
+ostream& operator<<(ostream& os, romanian_city city)
 {
-    return os << toString(city);
+    return os << to_string(city);
 }

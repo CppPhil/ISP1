@@ -41,11 +41,7 @@ add tests
 
 add documentation
 
-simplify dramatically
-    -> try to get rid off some of the typename
-    -> anything else that could be deemed 'difficult'
-
-move to STL style
+simplify
 
 make sure to always catch all exceptions somewhere.
     -> consider using pl::handle_exceptions()

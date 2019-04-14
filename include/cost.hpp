@@ -2,4 +2,4 @@
 #include <cstdint> // uint64_t
 #include <namespaces.hpp>
 
-typedef uint64_t Cost;
+typedef uint64_t cost;

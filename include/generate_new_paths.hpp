@@ -1,17 +1,17 @@
 #pragma once
 #include <namespaces.hpp>
-#include <path.hpp> // Path
+#include <path.hpp> // path
 #include <vector>   // vector
 
 template<typename NodeIdentifier>
-vector<Path<NodeIdentifier>> generateNewPaths(
-    const Path<NodeIdentifier>&                       oldPath,
-    const vector<IdentifierWithCost<NodeIdentifier>>& children)
+vector<path<NodeIdentifier>> generate_new_paths(
+    const path<NodeIdentifier>&                         old_path,
+    const vector<identifier_with_cost<NodeIdentifier>>& children)
 {
-    vector<Path<NodeIdentifier>> result;
+    vector<path<NodeIdentifier>> result;
 
-    for (const IdentifierWithCost<NodeIdentifier>& child : children) {
-        Path<NodeIdentifier> copy = oldPath;
+    for (const identifier_with_cost<NodeIdentifier>& child : children) {
+        path<NodeIdentifier> copy = old_path;
         copy.append(child);
         result.push_back(copy);
     }

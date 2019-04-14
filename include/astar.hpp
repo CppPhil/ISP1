@@ -1,45 +1,45 @@
 #pragma once
 #include <contains.hpp>           // contains
 #include <expand.hpp>             // expand
-#include <generate_new_paths.hpp> // generateNewPaths
+#include <generate_new_paths.hpp> // generate_new_paths
 #include <insert.hpp>             // insert
 #include <namespaces.hpp>
 
 template<typename NodeIdentifier, typename IsGoal, typename Heuristic>
-Path<NodeIdentifier> aStar(
-    const UndirectedGraph<NodeIdentifier>& graph,
-    NodeIdentifier                         start,
-    IsGoal                                 isGoal,
-    Heuristic                              heuristic)
+path<NodeIdentifier> a_star(
+    const undirected_graph<NodeIdentifier>& graph,
+    NodeIdentifier                          start,
+    IsGoal                                  is_goal,
+    Heuristic                               heuristic)
 {
-    vector<NodeIdentifier> closedList;
+    vector<NodeIdentifier> closed_list;
 
-    vector<Path<NodeIdentifier>> openList({Path<NodeIdentifier>(
-        {IdentifierWithCost<NodeIdentifier>(start, Cost())})});
+    vector<path<NodeIdentifier>> open_list({path<NodeIdentifier>(
+        {identifier_with_cost<NodeIdentifier>(start, cost())})});
 
-    while (not openList.empty()) {
-        const Path<NodeIdentifier> currentPath = openList.front();
-        openList.erase(openList.begin());
+    while (not open_list.empty()) {
+        const path<NodeIdentifier> current_path = open_list.front();
+        open_list.erase(open_list.begin());
 
-        if (not contains(closedList, currentPath.back().nodeIdentifier())) {
-            const NodeIdentifier lastNodeOfPath
-                = currentPath.back().nodeIdentifier();
+        if (not contains(closed_list, current_path.back().node_identifier())) {
+            const NodeIdentifier last_node_of_path
+                = current_path.back().node_identifier();
 
-            closedList.push_back(lastNodeOfPath);
+            closed_list.push_back(last_node_of_path);
 
-            if (isGoal(lastNodeOfPath)) { return currentPath; }
+            if (is_goal(last_node_of_path)) { return current_path; }
 
-            const vector<IdentifierWithCost<NodeIdentifier>> children
-                = expand(lastNodeOfPath, graph);
+            const vector<identifier_with_cost<NodeIdentifier>> children
+                = expand(last_node_of_path, graph);
 
-            const vector<Path<NodeIdentifier>> newPaths
-                = generateNewPaths(currentPath, children);
+            const vector<path<NodeIdentifier>> new_paths
+                = generate_new_paths(current_path, children);
 
-            for (const Path<NodeIdentifier>& path : newPaths) {
-                insert(heuristic, openList, path);
+            for (const path<NodeIdentifier>& path : new_paths) {
+                insert(heuristic, open_list, path);
             }
         }
     }
 
-    return Path<NodeIdentifier>();
+    return path<NodeIdentifier>();
 }

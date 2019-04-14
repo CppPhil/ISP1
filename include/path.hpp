@@ -1,27 +1,27 @@
 #pragma once
-#include <cost.hpp>                 // Cost
+#include <cost.hpp>                 // cost
 #include <cstddef>                  // size_t
-#include <identifier_with_cost.hpp> // IdentifierWithCost
+#include <identifier_with_cost.hpp> // identifier_with_cost
 #include <initializer_list>         // initializer_list
 #include <namespaces.hpp>
 #include <stdexcept> // out_of_range
 #include <vector>    // vector
 
 template<typename NodeIdentifier>
-class Path {
+class path {
 public:
-    typedef Path                                       this_type;
-    typedef vector<IdentifierWithCost<NodeIdentifier>> container_type;
-    typedef typename container_type::iterator          iterator;
-    typedef typename container_type::const_iterator    const_iterator;
-    typedef typename container_type::reverse_iterator  reverse_iterator;
+    typedef path                                         this_type;
+    typedef vector<identifier_with_cost<NodeIdentifier>> container_type;
+    typedef typename container_type::iterator            iterator;
+    typedef typename container_type::const_iterator      const_iterator;
+    typedef typename container_type::reverse_iterator    reverse_iterator;
     typedef
         typename container_type::const_reverse_iterator const_reverse_iterator;
 
-    Path() = default;
+    path() = default;
 
-    Path(initializer_list<IdentifierWithCost<NodeIdentifier>> initL)
-        : m_vector(initL.begin(), initL.end())
+    path(initializer_list<identifier_with_cost<NodeIdentifier>> init_list)
+        : m_vector(init_list.begin(), init_list.end())
     {
     }
 
@@ -49,60 +49,60 @@ public:
 
     const_reverse_iterator crend() const { return m_vector.crend(); }
 
-    void append(NodeIdentifier nodeIdentifier, Cost g)
+    void append(NodeIdentifier identifier, cost g)
     {
-        m_vector.emplace_back(nodeIdentifier, g);
+        m_vector.emplace_back(identifier, g);
     }
 
-    void append(IdentifierWithCost<NodeIdentifier> identifierWithCost)
+    void append(identifier_with_cost<NodeIdentifier> identifier)
     {
-        m_vector.push_back(identifierWithCost);
+        m_vector.push_back(identifier);
     }
 
     size_t size() const { return m_vector.size(); }
 
-    bool isEmpty() const { return m_vector.empty(); }
+    bool is_empty() const { return m_vector.empty(); }
 
-    IdentifierWithCost<NodeIdentifier>& front()
+    identifier_with_cost<NodeIdentifier>& front()
     {
-        if (isEmpty()) {
+        if (is_empty()) {
             throw out_of_range("front may not be called on an empty path.");
         }
 
         return m_vector.front();
     }
 
-    const IdentifierWithCost<NodeIdentifier>& front() const
+    const identifier_with_cost<NodeIdentifier>& front() const
     {
         return const_cast<this_type*>(this)->front();
     }
 
-    IdentifierWithCost<NodeIdentifier>& back()
+    identifier_with_cost<NodeIdentifier>& back()
     {
-        if (isEmpty()) {
+        if (is_empty()) {
             throw out_of_range("back may not be called on an empty path.");
         }
 
         return m_vector.back();
     }
 
-    const IdentifierWithCost<NodeIdentifier>& back() const
+    const identifier_with_cost<NodeIdentifier>& back() const
     {
         return const_cast<this_type*>(this)->back();
     }
 
-    Cost g() const
+    cost g() const
     {
-        Cost cost = Cost();
+        cost the_cost = 0;
 
-        for (const IdentifierWithCost<NodeIdentifier>& identifierWithCost :
+        for (const identifier_with_cost<NodeIdentifier>& identifier :
              m_vector) {
-            cost += identifierWithCost.g();
+            the_cost += identifier.g();
         }
 
-        return cost;
+        return the_cost;
     }
 
 private:
-    vector<IdentifierWithCost<NodeIdentifier>> m_vector;
+    vector<identifier_with_cost<NodeIdentifier>> m_vector;
 };

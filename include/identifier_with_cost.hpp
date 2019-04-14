@@ -1,19 +1,19 @@
 #pragma once
-#include <cost.hpp> // Cost
+#include <cost.hpp> // cost
 
 template<typename NodeIdentifier>
-class IdentifierWithCost {
+class identifier_with_cost {
 public:
-    IdentifierWithCost(NodeIdentifier nodeIdentifier, Cost g)
-        : m_nodeIdentifier(nodeIdentifier), m_g(g)
+    identifier_with_cost(NodeIdentifier node_identifier, cost g)
+        : m_node_identifier(node_identifier), m_g(g)
     {
     }
 
-    NodeIdentifier nodeIdentifier() const { return m_nodeIdentifier; }
+    NodeIdentifier node_identifier() const { return m_node_identifier; }
 
-    Cost g() const { return m_g; }
+    cost g() const { return m_g; }
 
 private:
-    NodeIdentifier m_nodeIdentifier;
-    Cost           m_g;
+    NodeIdentifier m_node_identifier;
+    cost           m_g;
 };

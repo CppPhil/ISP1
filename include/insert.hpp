@@ -1,25 +1,25 @@
 #pragma once
 #include <namespaces.hpp>
-#include <path.hpp>                      // Path
+#include <path.hpp>                      // path
 #include <pl/algo/ranged_algorithms.hpp> // lower_bound
 #include <vector>                        // vector
 
 template<typename Heuristic, typename NodeIdentifier>
 void insert(
     Heuristic                     heuristic,
-    vector<Path<NodeIdentifier>>& openList,
-    Path<NodeIdentifier>          pathToInsert)
+    vector<path<NodeIdentifier>>& open_list,
+    path<NodeIdentifier>          path_to_insert)
 {
-    const typename vector<Path<NodeIdentifier>>::const_iterator insertionPoint
+    const typename vector<path<NodeIdentifier>>::const_iterator insertion_point
         = lower_bound(
-            openList,
-            pathToInsert,
+            open_list,
+            path_to_insert,
             [&heuristic](
-                const Path<NodeIdentifier>& lhs,
-                const Path<NodeIdentifier>& rhs) {
-                return (lhs.g() + heuristic(lhs.back().nodeIdentifier()))
-                       < (rhs.g() + heuristic(rhs.back().nodeIdentifier()));
+                const path<NodeIdentifier>& lhs,
+                const path<NodeIdentifier>& rhs) {
+                return (lhs.g() + heuristic(lhs.back().node_identifier()))
+                       < (rhs.g() + heuristic(rhs.back().node_identifier()));
             });
 
-    openList.insert(insertionPoint, pathToInsert);
+    open_list.insert(insertion_point, path_to_insert);
 }

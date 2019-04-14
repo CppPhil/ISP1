@@ -25,12 +25,12 @@
     X(Vaslui)                 \
     X(Zerind)
 
-enum class RomanianCity {
+enum class romanian_city {
 #define X(CityName) CityName,
     ROMANIAN_CITY_X_MACRO
 #undef X
 };
 
-string toString(RomanianCity city);
+string toString(romanian_city city);
 
-ostream& operator<<(ostream& os, RomanianCity city);
+ostream& operator<<(ostream& os, romanian_city city);

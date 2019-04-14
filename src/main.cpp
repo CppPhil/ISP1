@@ -14,85 +14,84 @@
 
 int main()
 {
-    using Map = UndirectedGraph<RomanianCity>;
-    Map romaniaMap;
-    romaniaMap(RomanianCity::Oradea, RomanianCity::Zerind)         = 71;
-    romaniaMap(RomanianCity::Zerind, RomanianCity::Arad)           = 75;
-    romaniaMap(RomanianCity::Oradea, RomanianCity::Sibiu)          = 151;
-    romaniaMap(RomanianCity::Arad, RomanianCity::Sibiu)            = 140;
-    romaniaMap(RomanianCity::Arad, RomanianCity::Timisoara)        = 118;
-    romaniaMap(RomanianCity::Timisoara, RomanianCity::Lugoj)       = 111;
-    romaniaMap(RomanianCity::Lugoj, RomanianCity::Mehadia)         = 70;
-    romaniaMap(RomanianCity::Mehadia, RomanianCity::Dobreta)       = 75;
-    romaniaMap(RomanianCity::Dobreta, RomanianCity::Craiova)       = 120;
-    romaniaMap(RomanianCity::RimnicuVilcea, RomanianCity::Craiova) = 146;
-    romaniaMap(RomanianCity::Craiova, RomanianCity::Pitesti)       = 138;
-    romaniaMap(RomanianCity::RimnicuVilcea, RomanianCity::Sibiu)   = 80;
-    romaniaMap(RomanianCity::Sibiu, RomanianCity::Fagaras)         = 99;
-    romaniaMap(RomanianCity::RimnicuVilcea, RomanianCity::Pitesti) = 97;
-    romaniaMap(RomanianCity::Pitesti, RomanianCity::Bucharest)     = 101;
-    romaniaMap(RomanianCity::Fagaras, RomanianCity::Bucharest)     = 211;
-    romaniaMap(RomanianCity::Bucharest, RomanianCity::Giurgiu)     = 90;
-    romaniaMap(RomanianCity::Bucharest, RomanianCity::Urziceni)    = 85;
-    romaniaMap(RomanianCity::Urziceni, RomanianCity::Hirsova)      = 98;
-    romaniaMap(RomanianCity::Hirsova, RomanianCity::Eforie)        = 86;
-    romaniaMap(RomanianCity::Urziceni, RomanianCity::Vaslui)       = 142;
-    romaniaMap(RomanianCity::Vaslui, RomanianCity::Iasi)           = 92;
-    romaniaMap(RomanianCity::Iasi, RomanianCity::Neamt)            = 87;
+    undirected_graph<romanian_city> romania_map;
+    romania_map(romanian_city::Oradea, romanian_city::Zerind)         = 71;
+    romania_map(romanian_city::Zerind, romanian_city::Arad)           = 75;
+    romania_map(romanian_city::Oradea, romanian_city::Sibiu)          = 151;
+    romania_map(romanian_city::Arad, romanian_city::Sibiu)            = 140;
+    romania_map(romanian_city::Arad, romanian_city::Timisoara)        = 118;
+    romania_map(romanian_city::Timisoara, romanian_city::Lugoj)       = 111;
+    romania_map(romanian_city::Lugoj, romanian_city::Mehadia)         = 70;
+    romania_map(romanian_city::Mehadia, romanian_city::Dobreta)       = 75;
+    romania_map(romanian_city::Dobreta, romanian_city::Craiova)       = 120;
+    romania_map(romanian_city::RimnicuVilcea, romanian_city::Craiova) = 146;
+    romania_map(romanian_city::Craiova, romanian_city::Pitesti)       = 138;
+    romania_map(romanian_city::RimnicuVilcea, romanian_city::Sibiu)   = 80;
+    romania_map(romanian_city::Sibiu, romanian_city::Fagaras)         = 99;
+    romania_map(romanian_city::RimnicuVilcea, romanian_city::Pitesti) = 97;
+    romania_map(romanian_city::Pitesti, romanian_city::Bucharest)     = 101;
+    romania_map(romanian_city::Fagaras, romanian_city::Bucharest)     = 211;
+    romania_map(romanian_city::Bucharest, romanian_city::Giurgiu)     = 90;
+    romania_map(romanian_city::Bucharest, romanian_city::Urziceni)    = 85;
+    romania_map(romanian_city::Urziceni, romanian_city::Hirsova)      = 98;
+    romania_map(romanian_city::Hirsova, romanian_city::Eforie)        = 86;
+    romania_map(romanian_city::Urziceni, romanian_city::Vaslui)       = 142;
+    romania_map(romanian_city::Vaslui, romanian_city::Iasi)           = 92;
+    romania_map(romanian_city::Iasi, romanian_city::Neamt)            = 87;
 
-    const unordered_map<RomanianCity, int> straightLineToBucharestMap(
-        {{RomanianCity::Arad, 366},          {RomanianCity::Bucharest, 0},
-         {RomanianCity::Craiova, 160},       {RomanianCity::Dobreta, 242},
-         {RomanianCity::Eforie, 161},        {RomanianCity::Fagaras, 176},
-         {RomanianCity::Giurgiu, 77},        {RomanianCity::Hirsova, 151},
-         {RomanianCity::Iasi, 226},          {RomanianCity::Lugoj, 244},
-         {RomanianCity::Mehadia, 241},       {RomanianCity::Neamt, 234},
-         {RomanianCity::Oradea, 380},        {RomanianCity::Pitesti, 100},
-         {RomanianCity::RimnicuVilcea, 193}, {RomanianCity::Sibiu, 253},
-         {RomanianCity::Timisoara, 329},     {RomanianCity::Urziceni, 80},
-         {RomanianCity::Vaslui, 199},        {RomanianCity::Zerind, 374}});
+    const unordered_map<romanian_city, int> straight_line_to_bucharest_map(
+        {{romanian_city::Arad, 366},          {romanian_city::Bucharest, 0},
+         {romanian_city::Craiova, 160},       {romanian_city::Dobreta, 242},
+         {romanian_city::Eforie, 161},        {romanian_city::Fagaras, 176},
+         {romanian_city::Giurgiu, 77},        {romanian_city::Hirsova, 151},
+         {romanian_city::Iasi, 226},          {romanian_city::Lugoj, 244},
+         {romanian_city::Mehadia, 241},       {romanian_city::Neamt, 234},
+         {romanian_city::Oradea, 380},        {romanian_city::Pitesti, 100},
+         {romanian_city::RimnicuVilcea, 193}, {romanian_city::Sibiu, 253},
+         {romanian_city::Timisoara, 329},     {romanian_city::Urziceni, 80},
+         {romanian_city::Vaslui, 199},        {romanian_city::Zerind, 374}});
 
     cout
         << "\nSee "
            "https://csunplugged.files.wordpress.com/2012/09/romania-graph1.png "
            "for a visual representation of the Romania Graph.\n";
 
-    const RomanianCity startCity{RomanianCity::Arad};
-    const RomanianCity goalCity{RomanianCity::Bucharest};
+    const romanian_city start_city{romanian_city::Arad};
+    const romanian_city goal_city{romanian_city::Bucharest};
 
     const auto heuristic
-        = [&straightLineToBucharestMap, goalCity](RomanianCity city) {
-              const auto iter = straightLineToBucharestMap.find(city);
+        = [&straight_line_to_bucharest_map, goal_city](romanian_city city) {
+              const auto iter = straight_line_to_bucharest_map.find(city);
 
-              if (iter == straightLineToBucharestMap.end()) {
+              if (iter == straight_line_to_bucharest_map.end()) {
                   return numeric_limits<uint64_t>::max();
               }
 
-              const uint64_t heuristicCost = iter->second;
-              return heuristicCost;
+              const uint64_t heuristic_cost = iter->second;
+              return heuristic_cost;
           };
 
-    Path<RomanianCity> aStarPath{aStar(
-        romaniaMap,
-        startCity,
-        [&goalCity](RomanianCity city) { return city == goalCity; },
+    path<romanian_city> a_star_path{a_star(
+        romania_map,
+        start_city,
+        [&goal_city](romanian_city city) { return city == goal_city; },
         heuristic)};
 
-    cout << "\nCalculation of the shortest path from '" << startCity << "' to '"
-         << goalCity << "':\n"
-         << "A* total cost: " << aStarPath.g() << "\n\n";
+    cout << "\nCalculation of the shortest path from '" << start_city
+         << "' to '" << goal_city << "':\n"
+         << "A* total cost: " << a_star_path.g() << "\n\n";
 
     int step{1};
-    int curAStarCumulativeGCost{0};
-    for (const IdentifierWithCost<RomanianCity>& e : aStarPath) {
+    int current_a_star_cumulative_g_cost{0};
+    for (const identifier_with_cost<romanian_city>& e : a_star_path) {
         cout << "Step " << step << " | ";
 
-        const RomanianCity& cityNameKey{e.nodeIdentifier()};
-        const auto          gCost = e.g();
+        const romanian_city& city_name{e.node_identifier()};
+        const auto           g_cost = e.g();
 
-        curAStarCumulativeGCost += gCost;
+        current_a_star_cumulative_g_cost += g_cost;
 
-        cout << cityNameKey << " (" << curAStarCumulativeGCost << ")\n";
+        cout << city_name << " (" << current_a_star_cumulative_g_cost << ")\n";
 
         ++step;
     }

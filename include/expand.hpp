@@ -1,26 +1,26 @@
 #pragma once
-#include <identifier_with_cost.hpp> // IdentifierWithCost
+#include <identifier_with_cost.hpp> // identifier_with_cost
 #include <namespaces.hpp>
-#include <undirected_graph.hpp> // UndirectedGraph
+#include <undirected_graph.hpp> // undirected_graph
 #include <vector>               // vector
 
 template<typename NodeIdentifier>
-vector<IdentifierWithCost<NodeIdentifier>> expand(
-    NodeIdentifier                         nodeToExpand,
-    const UndirectedGraph<NodeIdentifier>& graph)
+vector<identifier_with_cost<NodeIdentifier>> expand(
+    NodeIdentifier                          node_to_expand,
+    const undirected_graph<NodeIdentifier>& graph)
 {
-    const vector<typename UndirectedGraph<NodeIdentifier>::node::edge> edges
-        = graph.get_edges(nodeToExpand);
+    const vector<typename undirected_graph<NodeIdentifier>::node::edge> edges
+        = graph.get_edges(node_to_expand);
 
-    vector<IdentifierWithCost<NodeIdentifier>> result;
+    vector<identifier_with_cost<NodeIdentifier>> result;
 
-    for (const typename UndirectedGraph<NodeIdentifier>::node::edge& edge :
+    for (const typename undirected_graph<NodeIdentifier>::node::edge& edge :
          edges) {
-        const typename UndirectedGraph<NodeIdentifier>::const_iterator target
+        const typename undirected_graph<NodeIdentifier>::const_iterator target
             = edge.target();
-        const NodeIdentifier targetNodeIdentifier = target->first;
+        const NodeIdentifier target_node_identifier = target->first;
 
-        result.emplace_back(targetNodeIdentifier, edge.cost());
+        result.emplace_back(target_node_identifier, edge.cost());
     }
 
     return result;
