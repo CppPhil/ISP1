@@ -48,3 +48,20 @@ Documentation: `https://nlohmann.github.io/json/`
 ### "philslib" dependency
 Repository: `https://github.com/CppPhil/philslib/`  
 Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root directory to generate the HTML documentation for this library.  
+
+## Overview
+`build`: Automatically generated directory containing the build artifacts generated, including the executable.  
+`buildAndRun.sh`: Shell script to build and then run the application.  
+`build.sh`: Shell script to build the application.  
+`CMakeLists.txt`: Configuration file of the CMake build system generator.  
+`deps`: Directory containing the git submodule dependencies.  
+`format.sh`: Shell script to format the source code of the project.  
+`.git`: Directory of the git software configuration management software.  
+`.gitignore`: File containing information as to which sort of files shall be ignored by git.  
+`.gitmodules`: git submodule configuration file.  
+`include`:Directory containing the header files of the project.  
+`IS-02-2 Informierte Suche.pdf`: PDF file regarding informed search algorithms.  
+`README.md`: This file.
+`src`: Directory containing the source (*.cpp) files of the project.  
+`TODO_LIST.txt`: This project's todo-list.  
+`UNLICENSE.md`: The license of this project.  

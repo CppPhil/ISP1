@@ -30,7 +30,6 @@ export path to .dot file and try to display it with graphviz maybe perhaps
 
 README.md
 -> how to generate documentation
--> descriptions for the files / directories
 
 consider enabling compiler optmiziations if shit gets slow or something
 -> debug mode (with debugging symbols)
