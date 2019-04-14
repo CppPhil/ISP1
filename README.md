@@ -20,7 +20,7 @@ Use
 `git clone https://github.com/CppPhil/ISP1.git --recursive`  
 to clone the repository.  
 The `--recursive` flag is important!  
-
+This will take a few minutes!  
 
 ## Building
 To build run  

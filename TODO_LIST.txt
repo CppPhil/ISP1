@@ -29,6 +29,7 @@ export graph to .dot file and try to display it with graphviz
 export path to .dot file and try to display it with graphviz maybe perhaps
 
 README.md
+-> Try to make links clickable
 -> how to generate documentation
 
 consider enabling compiler optmiziations if shit gets slow or something
