@@ -56,7 +56,8 @@ int main()
     const std::string startCity{"Arad"};
     const std::string goalCity{"Bucharest"};
 
-    const auto heuristic = [&straightLineToBucharestMap, goalCity](const std::string& nodeIdentifier) {
+    const auto heuristic = [&straightLineToBucharestMap,
+                            goalCity](const std::string& nodeIdentifier) {
         const auto iter = straightLineToBucharestMap.find(nodeIdentifier);
 
         if (iter == std::end(straightLineToBucharestMap)) {
@@ -67,11 +68,13 @@ int main()
         return heuristicCost;
     };
 
-    isp1::Path<std::string> aStarPath = isp1::aStar(romaniaMap, startCity, [&goalCity](const std::string& nodeIdentifier) {
-        return nodeIdentifier == goalCity;
-    },
-        heuristic    
-    );
+    isp1::Path<std::string> aStarPath = isp1::aStar(
+        romaniaMap,
+        startCity,
+        [&goalCity](const std::string& nodeIdentifier) {
+            return nodeIdentifier == goalCity;
+        },
+        heuristic);
 
     std::cout << "\nCalculation of the shortest path from '" << startCity
               << "' to '" << goalCity << "':\n"
@@ -79,8 +82,7 @@ int main()
 
     int step{1};
     int curAStarCumulativeGCost{0};
-    for (const isp1::IdentifierWithCost<std::string>& e : aStarPath) 
-    {
+    for (const isp1::IdentifierWithCost<std::string>& e : aStarPath) {
         std::cout << std::left << std::setw(13)
                   << ("Step " + std::to_string(step)) << " |" << std::right;
 
