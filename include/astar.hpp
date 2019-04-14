@@ -1,9 +1,10 @@
 #ifndef INCG_ISP1_ASTAR_HPP
 #define INCG_ISP1_ASTAR_HPP
 #include <ciso646>                       // not
+#include <contains.hpp>                  // isp1::contains
 #include <iterator>                      // std::begin, std::end
 #include <path.hpp>                      // isp1::Path
-#include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
+#include <pl/algo/ranged_algorithms.hpp> // pl::algo::lower_bound
 #include <undirected_graph.hpp>          // isp1::UndirectedGraph
 #include <utility>                       // std::move
 #include <vector>                        // std::vector
@@ -85,10 +86,7 @@ Path<NodeIdentifier> aStar(
         SearchPath p{openList.front()};
         openList.erase(std::begin(openList));
 
-        // TODO: prettify
-        // If it's not in the closed list.
-        if (pl::algo::find(closedList, p.back().nodeIdentifier())
-            == std::end(closedList)) {
+        if (not contains(closedList, p.back().nodeIdentifier())) {
             NodeIdentifier last{p.back().nodeIdentifier()};
 
             closedList.push_back(last);
