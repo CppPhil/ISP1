@@ -74,6 +74,9 @@ Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root di
 `https://isocpp.org/faq` C++ FAQ  
 `http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines` C++ Core Guidelines  
 `http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4713.pdf` C++17 standard working draft  
+`https://wandbox.org/` online compiler  
+`https://gcc.godbolt.org/` Compiler Explorer - Interactive Online Disassembler  
+`http://quick-bench.com/` Online C++ Microbenchmarking  
 
 ## Git
 `https://gist.github.com/hofmannsven/6814451` Git Cheatsheet  
