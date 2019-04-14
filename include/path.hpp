@@ -5,7 +5,6 @@
 #include <initializer_list>         // initializer_list
 #include <namespaces.hpp>
 #include <stdexcept> // out_of_range
-#include <utility>   // move
 #include <vector>    // vector
 
 template<typename NodeIdentifier>
@@ -55,12 +54,12 @@ public:
 
     void append(NodeIdentifier nodeIdentifier, Cost g)
     {
-        m_vector.emplace_back(move(nodeIdentifier), g);
+        m_vector.emplace_back(nodeIdentifier, g);
     }
 
     void append(IdentifierWithCost<NodeIdentifier> identifierWithCost)
     {
-        m_vector.push_back(move(identifierWithCost));
+        m_vector.push_back(identifierWithCost);
     }
 
     size_t size() const noexcept { return m_vector.size(); }

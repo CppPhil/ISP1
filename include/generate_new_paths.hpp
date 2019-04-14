@@ -13,7 +13,7 @@ vector<Path<NodeIdentifier>> generateNewPaths(
     for (const IdentifierWithCost<NodeIdentifier>& child : children) {
         Path<NodeIdentifier> copy{oldPath};
         copy.append(child);
-        result.push_back(move(copy));
+        result.push_back(copy);
     }
 
     return result;

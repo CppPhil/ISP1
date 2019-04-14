@@ -42,7 +42,6 @@ add tests
 add documentation
 
 simplify dramatically
-    -> remove move semantics
     -> remove references / pointers where possible
     -> remove noexcept
     -> more 'classic' style

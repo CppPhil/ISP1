@@ -19,5 +19,5 @@ void insert(
                    < (rhs.g() + heuristic(rhs.back().nodeIdentifier()));
         })};
 
-    openList.insert(insertionPoint, move(pathToInsert));
+    openList.insert(insertionPoint, pathToInsert);
 }
