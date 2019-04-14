@@ -1,7 +1,6 @@
 #include <astar.hpp>
 #include <iomanip>
 #include <iostream>
-#include <iterator>
 #include <limits>
 #include <namespaces.hpp>
 #include <romanian_city.hpp>
@@ -65,7 +64,7 @@ int main()
         = [&straightLineToBucharestMap, goalCity](RomanianCity city) {
               const auto iter = straightLineToBucharestMap.find(city);
 
-              if (iter == end(straightLineToBucharestMap)) {
+              if (iter == straightLineToBucharestMap.end()) {
                   return numeric_limits<uint64_t>::max();
               }
 

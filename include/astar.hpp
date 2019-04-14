@@ -21,7 +21,7 @@ Path<NodeIdentifier> aStar(
 
     while (not openList.empty()) {
         SearchPath p{openList.front()};
-        openList.erase(begin(openList));
+        openList.erase(openList.begin());
 
         if (not contains(closedList, p.back().nodeIdentifier())) {
             NodeIdentifier last{p.back().nodeIdentifier()};
