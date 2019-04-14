@@ -42,8 +42,6 @@ README.md
 -> where to find documentation of the dependencies
 -> descriptions for the files / directories
 
-add nodiscard
-
 consider enabling compiler optmiziations if shit gets slow or something
 -> debug mode (with debugging symbols)
 -> release mode (with optimizations)
@@ -53,6 +51,8 @@ try the shit on laptop
 add tests
 
 add documentation
+
+simplify dramatically
 
 migrate to windows
 

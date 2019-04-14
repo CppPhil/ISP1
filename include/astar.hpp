@@ -60,8 +60,8 @@ void insert(
             [&heuristic](
                 const Path<NodeIdentifier>& lhs,
                 const Path<NodeIdentifier>& rhs) {
-                return (lhs.g() + heuristic(lhs.back().nodeIdentifier))
-                       < (rhs.g() + heuristic(rhs.back().nodeIdentifier));
+                return (lhs.g() + heuristic(lhs.back().nodeIdentifier()))
+                       < (rhs.g() + heuristic(rhs.back().nodeIdentifier()));
             })};
 
     openList.insert(insertionPoint, std::move(pathToInsert));
@@ -87,9 +87,9 @@ Path<NodeIdentifier> aStar(
 
         // TODO: prettify
         // If it's not in the closed list.
-        if (pl::algo::find(closedList, p.back().nodeIdentifier)
+        if (pl::algo::find(closedList, p.back().nodeIdentifier())
             == std::end(closedList)) {
-            NodeIdentifier last{p.back().nodeIdentifier};
+            NodeIdentifier last{p.back().nodeIdentifier()};
 
             closedList.push_back(last);
 

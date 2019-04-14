@@ -1,25 +1,15 @@
 #ifndef INCG_ISP1_PATH_HPP
 #define INCG_ISP1_PATH_HPP
-#include <cost.hpp>         // isp1::Cost
-#include <cstddef>          // std::size_t
-#include <initializer_list> // std::initializer_list
-#include <iterator>         // std::begin, std::end
-#include <stdexcept>        // std::out_of_range
-#include <utility>          // std::move
-#include <vector>           // std::vector
+#include <cost.hpp>                 // isp1::Cost
+#include <cstddef>                  // std::size_t
+#include <identifier_with_cost.hpp> // isp1::IdentifierWithCost
+#include <initializer_list>         // std::initializer_list
+#include <iterator>                 // std::begin, std::end
+#include <stdexcept>                // std::out_of_range
+#include <utility>                  // std::move
+#include <vector>                   // std::vector
 
 namespace isp1 {
-template<typename NodeIdentifier>
-struct IdentifierWithCost {
-    IdentifierWithCost(NodeIdentifier p_nodeIdentifier, Cost p_g)
-        : nodeIdentifier{std::move(p_nodeIdentifier)}, g{p_g}
-    {
-    }
-
-    NodeIdentifier nodeIdentifier;
-    Cost           g;
-};
-
 template<typename NodeIdentifier>
 class Path {
 public:
@@ -79,7 +69,7 @@ public:
 
     bool isEmpty() const noexcept { return m_vector.empty(); }
 
-    IdentifierWithCost<NodeIdentifier>& front() noexcept
+    IdentifierWithCost<NodeIdentifier>& front()
     {
         if (isEmpty()) {
             throw std::out_of_range{
@@ -89,12 +79,12 @@ public:
         return m_vector.front();
     }
 
-    const IdentifierWithCost<NodeIdentifier>& front() const noexcept
+    const IdentifierWithCost<NodeIdentifier>& front() const
     {
         return const_cast<this_type*>(this)->front();
     }
 
-    IdentifierWithCost<NodeIdentifier>& back() noexcept
+    IdentifierWithCost<NodeIdentifier>& back()
     {
         if (isEmpty()) {
             throw std::out_of_range{"back may not be called on an empty path."};
@@ -103,7 +93,7 @@ public:
         return m_vector.back();
     }
 
-    const IdentifierWithCost<NodeIdentifier>& back() const noexcept
+    const IdentifierWithCost<NodeIdentifier>& back() const
     {
         return const_cast<this_type*>(this)->back();
     }
@@ -114,7 +104,7 @@ public:
 
         for (const IdentifierWithCost<NodeIdentifier>& identifierWithCost :
              m_vector) {
-            cost += identifierWithCost.g;
+            cost += identifierWithCost.g();
         }
 
         return cost;

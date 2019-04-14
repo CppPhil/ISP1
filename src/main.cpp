@@ -86,8 +86,8 @@ int main()
         std::cout << std::left << std::setw(13)
                   << ("Step " + std::to_string(step)) << " |" << std::right;
 
-        const std::string& cityNameKey{e.nodeIdentifier};
-        const auto         gCost = e.g;
+        const std::string& cityNameKey{e.nodeIdentifier()};
+        const auto         gCost = e.g();
 
         curAStarCumulativeGCost += gCost;
 
