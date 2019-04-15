@@ -20,12 +20,13 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
 make it work with directed graphs as well
-   -> out_edgel thing
+   -> out_edge thing
 
 put in some example stuff that actually works
 akin to the map of cities in romania used in the text book
 
 try to make shit work with permissable but non-monotonic heuristic.
+    -> possibly just remove the closed list thing entirely
 
 import graph from file.
 export graph to .dot file and try to display it with graphviz
