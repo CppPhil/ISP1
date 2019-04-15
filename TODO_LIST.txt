@@ -44,8 +44,7 @@ add documentation
     -- A* documentation
        -> Add links to the internet
        -> Add explanation as to the heuristic having to be permissable / monotonic.
-    -- continue at path.hpp file
-       -> Don't forget to check how it looks after running the formatting script.
+  -> Don't forget to check how it looks after running the formatting script.
 
 simplify
 

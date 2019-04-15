@@ -84,9 +84,15 @@ Using something like `firefox ./docs/html/index.html ` the documentation can be 
 `TODO_LIST.txt`: This project's todo-list.  
 `UNLICENSE.md`: The license of this project.  
 
-##  C++
+## C++
 <https://en.cppreference.com/w/cpp/header> C++ standard library documentation by header files.  
 <https://isocpp.org/faq> C++ FAQ  
+<https://de.wikibooks.org/wiki/C%2B%2B-Programmierung/_Die_STL/_Iteratoren> C++ iterators  
+<https://en.cppreference.com/w/cpp/language/ub> Undefined behavior  
+<https://en.cppreference.com/w/cpp/preprocessor> C++ preprocessor  
+<https://en.cppreference.com/w/cpp/language/templates> C++ templates  
+<https://en.cppreference.com/w/cpp/language/cv> C++ type qualifiers (const and volatile)  
+<https://en.cppreference.com/w/cpp/language/history> History of C++  
 <http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines> C++ Core Guidelines  
 <http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4713.pdf> C++17 standard working draft  
 <https://wandbox.org/> online compiler  

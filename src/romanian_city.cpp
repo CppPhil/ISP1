@@ -4,6 +4,7 @@ string to_string(romanian_city city)
 {
     string result;
 
+    // The # preprocessor operator 'stringifies' its input
     switch (city) {
 #define X(city_name) \
     case romanian_city::city_name: result = #city_name; break;
@@ -11,6 +12,7 @@ string to_string(romanian_city city)
 #undef X
     }
 
+    // Special casing for Rimnicu Vilcea ...
     if (result == "RimnicuVilcea") { return "Rimnicu Vilcea"; }
 
     return result;
@@ -18,5 +20,6 @@ string to_string(romanian_city city)
 
 ostream& operator<<(ostream& os, romanian_city city)
 {
-    return os << to_string(city);
+    os << to_string(city);
+    return os;
 }
