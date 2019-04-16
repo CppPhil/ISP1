@@ -36,6 +36,9 @@ consider enabling compiler optmiziations if shit gets slow or something
 -> debug mode (with debugging symbols)
 -> release mode (with optimizations)
 
+allow some sort of customization of the start / end nodes etc.
+   -> load all the stuff from files perhaps?
+
 add tests
 
 add documentation
