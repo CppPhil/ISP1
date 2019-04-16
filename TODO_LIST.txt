@@ -36,8 +36,6 @@ consider enabling compiler optmiziations if shit gets slow or something
 -> debug mode (with debugging symbols)
 -> release mode (with optimizations)
 
-try the shit on laptop
-
 add tests
 
 add documentation
@@ -51,9 +49,17 @@ simplify
 make sure to always catch all exceptions somewhere.
     -> consider using pl::handle_exceptions()
 
+add runtime tests
+    -> how long does it take.
+    -> compare with crappy heuristic (all 0, essentially Dijkstra etc.)
+
 list of stuff used from libraries (including the standard library) with links to their documenation
 
 migrate to windows
 
-migrate to Java
+create presentation
+
+
+
+
 
