@@ -1,10 +1,10 @@
 #include <a_star.hpp>
+#include <graph_t.hpp>
 #include <iomanip>
 #include <iostream>
 #include <limits>
 #include <namespaces.hpp>
 #include <romanian_city.hpp>
-#include <undirected_graph.hpp>
 #include <unordered_map>
 
 /**
@@ -14,7 +14,7 @@
 
 int main()
 {
-    undirected_graph<romanian_city> romania_map;
+    graph_t<romanian_city, cost, UNDIRECTED> romania_map;
     romania_map(romanian_city::Oradea, romanian_city::Zerind)         = 71;
     romania_map(romanian_city::Zerind, romanian_city::Arad)           = 75;
     romania_map(romanian_city::Oradea, romanian_city::Sibiu)          = 151;

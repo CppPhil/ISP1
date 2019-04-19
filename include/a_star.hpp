@@ -20,6 +20,8 @@
  * \tparam NodeIdentifier The type of the kind of object
  *                        that identifies a node, e.g.
  *                        a string or an enum.
+ * \tparam CostType The type used to represent the g cost values in the graph.
+ * \tparam Nat The nature of the graph (directed / undirected)
  * \tparam IsGoal The type of the is_goal callable.
  * \tparam Heuristic The type of the heuristic callable.
  * \return The shortest path from the start node to the goal
@@ -29,12 +31,17 @@
  * Finds the shortest path from a start node to a goal node in a graph.
  * The search is guided by the heuristic supplied.
  **/
-template<typename NodeIdentifier, typename IsGoal, typename Heuristic>
+template<
+    typename NodeIdentifier,
+    typename CostType,
+    Nature Nat,
+    typename IsGoal,
+    typename Heuristic>
 path<NodeIdentifier> a_star(
-    const undirected_graph<NodeIdentifier>& graph,
-    NodeIdentifier                          start,
-    IsGoal                                  is_goal,
-    Heuristic                               heuristic)
+    const graph_t<NodeIdentifier, CostType, Nat>& graph,
+    NodeIdentifier                                start,
+    IsGoal                                        is_goal,
+    Heuristic                                     heuristic)
 {
     // The closed list. Contains the nodes already visited.
     vector<NodeIdentifier> closed_list;
