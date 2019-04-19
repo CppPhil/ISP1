@@ -51,6 +51,14 @@ enum class romanian_city {
 string to_string(romanian_city city);
 
 /*!
+ * \brief Converts a string to a romanian_city.
+ * \param string The string to convert.
+ * \return The resulting enumerator.
+ * \throws logic_error If the string given is not valid.
+ **/
+romanian_city from_string(const string& string);
+
+/*!
  * \brief Prints a romanian_city to an ostream.
  * \param os The ostream to print to.
  * \param city The romanian_city to print.
