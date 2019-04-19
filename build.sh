@@ -14,23 +14,34 @@ readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # Build directory
 readonly BUILD_DIR=$DIR/build
 
-# Delete build directory
-rm -rf $BUILD_DIR
+if [ "$#" -ne 1 ]; then
+    echo "Illegal number of command line arguments. Enter Debug or Release as the first command line argument."
+    exit 1
+fi
 
-# Create build directory
-mkdir $BUILD_DIR
+if [ "$1" == "Debug" ] || [ "$1" == "Release" ]; then
+    # Delete build directory
+    rm -rf $BUILD_DIR
 
-# Change working directory to the build directory
-cd $BUILD_DIR
+    # Create build directory
+    mkdir $BUILD_DIR
 
-# Generate native build scripts
-CC=$C_COMPILER CXX=$CXX_COMPILER cmake -G "Unix Makefiles" $DIR
+    # Change working directory to the build directory
+    cd $BUILD_DIR
 
-# Build
-cmake --build $BUILD_DIR -- -j2
+    # Generate native build scripts
+    CC=$C_COMPILER CXX=$CXX_COMPILER cmake -DCMAKE_BUILD_TYPE=$1 -G "Unix Makefiles" $DIR
 
-# Change working directory to the directory containing this bash script.
-cd $DIR
+    # Build
+    cmake --build $BUILD_DIR -- -j2 VERBOSE=1
 
-# Exit this bash script
-exit 0
+    # Change working directory to the directory containing this bash script.
+    cd $DIR
+
+    # Exit this bash script
+    exit 0
+fi
+
+# Exit with error
+echo "The first command line argument was neither Debug nor Release."
+exit 1
