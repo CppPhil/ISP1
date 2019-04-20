@@ -1,5 +1,4 @@
 migrate to windows
-    -> get rid of anything but GCC in the CMakeLists.txt
     -> steady_clock fubar'd ?????
 
     
