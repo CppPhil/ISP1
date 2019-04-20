@@ -71,6 +71,7 @@ Using something like `firefox ./docs/html/index.html ` the documentation can be 
 `buildAndRun.sh`: Shell script to build and then run the application.  
 `build.sh`: Shell script to build the application.  
 `CMakeLists.txt`: Configuration file of the CMake build system generator.  
+`data`: Directory containing data for the project.  
 `deps`: Directory containing the git submodule dependencies.  
 `docs`: Directory containing the doxygen generated documentation.  
 `format.sh`: Shell script to format the source code of the project.  
