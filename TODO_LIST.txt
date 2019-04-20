@@ -1,24 +1,3 @@
-
-graph library:
-https://github.com/Terae/Graph
-
-OpenList & ClosedList stuff 4 the realz ????????????????????????????????????????
-OpenList beginnt mit allen Start-Nodes sortiert nach ihrem f-Wert (g + h).
-Immer das Vorderste aus der OpenList herausnehmen.
-Diese Node dann expandieren.
-Die expandierte Node dann hinten an die ClosedList anfuegen.
-Die children dann in die OpenList einsortieren sortiert nach ihrem f-Wert (g + h).
-Am Ende sollte dann der "Pfad" in der ClosedList sein.
-- Notizen aus Vorlesung beachten.
-
-????????
-https://de.wikipedia.org/wiki/A*-Algorithmus
-https://www.youtube.com/watch?v=M9AS81mHCAc
-https://www.youtube.com/watch?v=ySN5Wnu88nE
-http://mat.uab.cat/~alseda/MasterOpt/AStar-Algorithm.pdf
-https://www.redblobgames.com/pathfinding/a-star/introduction.html
-https://www.redblobgames.com/pathfinding/a-star/implementation.html
-
 list of stuff used from libraries (including the standard library) with links to their documenation
 
 migrate to windows
