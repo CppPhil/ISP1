@@ -19,11 +19,7 @@ http://mat.uab.cat/~alseda/MasterOpt/AStar-Algorithm.pdf
 https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
-get rid of misguided crappy warnings.
-
 list of stuff used from libraries (including the standard library) with links to their documenation
-
-general cleanup
 
 migrate to windows
 
