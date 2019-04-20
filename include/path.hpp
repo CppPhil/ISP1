@@ -8,6 +8,7 @@
 #include <identifier_with_cost.hpp> // identifier_with_cost
 #include <initializer_list>         // initializer_list
 #include <namespaces.hpp>
+#include <ostream>   // ostream
 #include <stdexcept> // out_of_range
 #include <vector>    // vector
 
@@ -285,3 +286,28 @@ private:
     vector<identifier_with_cost<NodeIdentifier>>
         m_vector; /*!< The underlying container */
 };
+
+/*!
+ * \brief Prints a path.
+ * \param os The ostream to print to.
+ * \param the_path The path to print.
+ * \tparam NodeIdentifier The type used to identify a node.
+ * \return A reference to os.
+ **/
+template<typename NodeIdentifier>
+ostream& operator<<(ostream& os, const path<NodeIdentifier>& the_path)
+{
+    os << '[';
+
+    for (typename path<NodeIdentifier>::const_iterator it  = the_path.begin(),
+                                                       end = the_path.end();
+         it != end;
+         ++it) {
+        os << *it;
+
+        if (it != end - 1) { os << ",\n"; }
+    }
+
+    os << ']';
+    return os;
+}

@@ -4,6 +4,8 @@
  **/
 #pragma once
 #include <cost.hpp> // cost
+#include <ostream>  // ostream
+#include <sstream>  // ostringstream
 
 /*!
  * \brief A node identifier along with its associated g value.
@@ -38,3 +40,19 @@ private:
     NodeIdentifier m_node_identifier; /*!< The node identifier */
     cost           m_g;               /*!< The g value */
 };
+
+/*!
+ * \brief Writes an identifier_with_cost to an ostream.
+ * \param os The ostream to write to.
+ * \param id_w_cost The identifier_with_cost to print.
+ * \tparam NodeIdentifier type used to identify a node.
+ * \return A reference to os.
+ **/
+template<typename NodeIdentifier>
+ostream& operator<<(ostream& os, identifier_with_cost<NodeIdentifier> id_w_cost)
+{
+    os << "{\"node_identifier\": \"" << id_w_cost.node_identifier() << "\", "
+       << "\"g\": " << id_w_cost.g() << '}';
+
+    return os;
+}
