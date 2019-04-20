@@ -88,8 +88,6 @@ include_directories(${CMAKE_BINARY_DIR}/../deps/Graph/single_include)
 # Avoid msvc problems
 if(WIN32)
     if(MSVC)
-        target_compile_definitions(${LIBRARY_NAME} PRIVATE _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS NOMINMAX)
         target_compile_definitions(${PROJECT_NAME} PRIVATE _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS NOMINMAX)
-        target_compile_definitions(${UNIT_TEST_NAME} PRIVATE _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS NOMINMAX)
     endif()
 endif()
