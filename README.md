@@ -94,10 +94,24 @@ Using something like `firefox ./docs/html/index.html ` the documentation can be 
 <https://en.cppreference.com/w/cpp/header> C++ standard library documentation by header files.  
 <https://isocpp.org/faq> C++ FAQ  
 <https://de.wikibooks.org/wiki/C%2B%2B-Programmierung/_Die_STL/_Iteratoren> C++ iterators  
+<https://isocpp.org/wiki/faq/const-correctness> Const Correctness  
 <https://en.cppreference.com/w/cpp/language/ub> Undefined behavior  
 <https://en.cppreference.com/w/cpp/preprocessor> C++ preprocessor  
 <https://en.cppreference.com/w/cpp/language/templates> C++ templates  
 <https://en.cppreference.com/w/cpp/language/cv> C++ type qualifiers (const and volatile)  
+<https://en.cppreference.com/w/cpp/container/vector> vector documentation  
+<https://en.cppreference.com/w/cpp/types/integer> Fixed width integer types  
+<https://en.cppreference.com/w/cpp/utility/pair> pair documentation  
+<https://en.cppreference.com/w/cpp/language/typedef> typedef specifier  
+<https://en.cppreference.com/w/cpp/language/type_alias> Type alias, alias template  
+<https://en.cppreference.com/w/cpp/language/operators> operator overloading  
+<https://docs.microsoft.com/en-us/cpp/standard-library/overloading-the-output-operator-for-your-own-classes?view=vs-2019> operator<<  
+<https://en.cppreference.com/w/cpp/header/algorithm> STL algorithms  
+<https://en.cppreference.com/w/cpp/language/lambda> Lambda expressions  
+<https://en.cppreference.com/w/cpp/header/string> string header  
+<https://isocpp.org/wiki/faq/exceptions> C++ exceptions  
+<https://de.wikibooks.org/wiki/C%2B%2B-Programmierung/_N%C3%BCtzliches/_Casts> C++ casts  
+
 <https://en.cppreference.com/w/cpp/language/history> History of C++  
 <http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines> C++ Core Guidelines  
 <http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4713.pdf> C++17 standard working draft  

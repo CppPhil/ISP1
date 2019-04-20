@@ -1,5 +1,3 @@
-list of stuff used from libraries (including the standard library) with links to their documenation
-
 migrate to windows
 
 possibly implement extended A* algorithms if time permits it
