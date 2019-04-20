@@ -1,4 +1,5 @@
-#include <a_star.hpp>    // a_star
+#include <a_star.hpp> // a_star
+#include <non_monotonic.hpp> // make_non_monotonic_graph, non_monotonic_goal_node, non_monotonic_heuristic
 #include <pl/except.hpp> // handle_exceptions
 #include <pl/timer.hpp>  // timer
 #include <romania.hpp>   // create_romania_map, romania_heuristic
@@ -50,42 +51,15 @@ int main()
              << "ns\n";
 
         // non monotonic heuristic
-        graph_t<string, cost, DIRECTED> g;
-        g("START", "B") = 5;
-        g("START", "C") = 5;
-        g("B", "D")     = 6;
-        g("C", "D")     = 5;
-        g("D", "E")     = 5;
-        g("E", "GOAL")  = 5;
-
-        const auto heuristic = [](string node) -> cost {
-            if (node == "START") { return 9; }
-            else if (node == "B") {
-                return 7;
-            }
-            else if (node == "C") {
-                return 8;
-            }
-            else if (node == "D") {
-                return 1;
-            }
-            else if (node == "E") {
-                return 1;
-            }
-            else if (node == "GOAL") {
-                return 0;
-            }
-
-            return numeric_limits<cost>::max();
-        };
+        const graph_t<string, cost, DIRECTED> g = make_non_monotonic_graph();
 
         const string start_node = "START";
 
         const path<string> p = a_star(
             g,
             vector<string>({start_node}),
-            [](string str) { return str == "GOAL"; },
-            heuristic);
+            [](string str) { return str == non_monotonic_goal_node; },
+            &non_monotonic_heuristic);
 
         cout << "\ntotal cost: " << p.g();
         cout << "\np: " << p << '\n';

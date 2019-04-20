@@ -19,8 +19,6 @@ http://mat.uab.cat/~alseda/MasterOpt/AStar-Algorithm.pdf
 https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
-prettify non-monotonic heuristic thing.
-
 add runtime tests
    -> factor the stuff out so that it handles all the crap the same
    -> printing the relevant crap
