@@ -23,8 +23,9 @@ prettify non-monotonic heuristic thing.
  -> grab picture of the example from the Folien.
 
 add runtime tests
-    -> how long does it take. (pl::timer)
-    -> compare with crappy heuristic (all 0, essentially Dijkstra etc.)
+   -> factor the stuff out so that it handles all the crap the same
+   -> printing the relevant crap
+   -> doing the timing stuff.
 
 list of stuff used from libraries (including the standard library) with links to their documenation
 
