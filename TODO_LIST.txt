@@ -22,6 +22,11 @@ https://www.redblobgames.com/pathfinding/a-star/implementation.html
 prettify non-monotonic heuristic thing.
  -> grab picture of the example from the Folien.
 
+make it so that it can be used with multiple start nodes
+    -> have them be inserted into the open_list in the proper fashion
+       by which the open_list remains sorted by the paths f values
+       in ascending order
+
 add runtime tests
    -> factor the stuff out so that it handles all the crap the same
    -> printing the relevant crap
