@@ -7,11 +7,12 @@
 #include <generate_new_paths.hpp> // generate_new_paths
 #include <insert.hpp>             // insert
 #include <namespaces.hpp>
+#include <vector> // vector
 
 /*!
  * \brief The A* algorithm.
  * \param graph The graph to search in.
- * \param start The identifier of the node to start at.
+ * \param start_nodes The start nodes.
  * \param is_goal A callable that determines whether a given NodeIdentifier
  *                identifies a goal node.
  * \param heuristic A callable that supplies a heuristic
@@ -38,15 +39,22 @@ template<
     typename Heuristic>
 path<NodeIdentifier> a_star(
     const graph_t<NodeIdentifier, CostType, Nat>& graph,
-    NodeIdentifier                                start,
+    vector<NodeIdentifier>                        start_nodes,
     IsGoal                                        is_goal,
     Heuristic                                     heuristic)
 {
     // The open list. Contains paths of which the last node isn't yet expanded.
     // This list must always remain sorted by the f values of the paths (f = g +
     // h) in ascending order.
-    vector<path<NodeIdentifier>> open_list({path<NodeIdentifier>(
-        {identifier_with_cost<NodeIdentifier>(start, cost())})});
+    vector<path<NodeIdentifier>> open_list;
+
+    for (NodeIdentifier node : start_nodes) {
+        insert(
+            heuristic,
+            open_list,
+            path<NodeIdentifier>(
+                {identifier_with_cost<NodeIdentifier>(node, cost())}));
+    }
 
     // As long as we have paths to explore
     while (not open_list.empty()) {

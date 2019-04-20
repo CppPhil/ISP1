@@ -17,8 +17,11 @@ int main()
             = [](romanian_city city) { return city == goal_city; };
 
         timer.reset();
-        const path<romanian_city> a_star_path
-            = a_star(romania_map, start_city, is_goal_city, &romania_heuristic);
+        const path<romanian_city> a_star_path = a_star(
+            romania_map,
+            vector<romanian_city>({start_city}),
+            is_goal_city,
+            &romania_heuristic);
         const chrono::steady_clock::duration a_star_romania_time_taken
             = timer.elapsed_time();
 
@@ -33,9 +36,11 @@ int main()
              << "ns\n";
 
         timer.reset();
-        a_star(romania_map, start_city, is_goal_city, [](romanian_city) {
-            return 0;
-        });
+        a_star(
+            romania_map,
+            vector<romanian_city>({start_city}),
+            is_goal_city,
+            [](romanian_city) { return 0; });
         const chrono::steady_clock::duration a_star_romania_dijkstra_time_taken
             = timer.elapsed_time();
         cout << "dijkstra time taken: "
@@ -77,7 +82,10 @@ int main()
         const string start_node = "START";
 
         const path<string> p = a_star(
-            g, start_node, [](string str) { return str == "GOAL"; }, heuristic);
+            g,
+            vector<string>({start_node}),
+            [](string str) { return str == "GOAL"; },
+            heuristic);
 
         cout << "\ntotal cost: " << p.g();
         cout << "\np: " << p << '\n';
