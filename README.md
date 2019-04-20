@@ -37,6 +37,11 @@ The application can be run after it has been built using
 `./build/isp1`  
 from the project's root directory.  
 
+## Formatting
+To format the source code use  
+`bash ./format.sh`  
+from the project's root directory.  
+
 ## Dependencies
 The project's dependencies are managed through git submodules.  
 Their files are placed in the `deps` subdirectory.  
