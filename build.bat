@@ -38,7 +38,7 @@ REM Label to handle valid input.
     REM Create the native build scripts
     cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%1 %~dp0
     REM Invoke the native build scripts
-    mingw32-make
+    mingw32-make VERBOSE=1
     REM Go back to the directory containing this script
     cd %~dp0
     REM Exit with success.
