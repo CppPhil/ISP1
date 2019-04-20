@@ -16,20 +16,6 @@ int main()
 
     cout << "\nCalculation of the shortest path from '" << start_city
          << "' to '" << goal_city << "':\n"
-         << "A* total cost: " << a_star_path.g() << "\n\n";
-
-    int step                             = 1;
-    int current_a_star_cumulative_g_cost = 0;
-    for (const identifier_with_cost<romanian_city>& e : a_star_path) {
-        cout << "Step " << step << " | ";
-
-        const romanian_city& city_name = e.node_identifier();
-        const auto           g_cost    = e.g();
-
-        current_a_star_cumulative_g_cost += g_cost;
-
-        cout << city_name << " (" << current_a_star_cumulative_g_cost << ")\n";
-
-        ++step;
-    }
+         << "A* total cost: " << a_star_path.g() << "\n\n"
+         << "path: " << a_star_path << '\n';
 }
