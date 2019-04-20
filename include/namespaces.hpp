@@ -4,9 +4,10 @@
  *        to 'simplity' C++.
  **/
 #pragma once
-#include <cstddef>
+#include <chrono>
 
 using namespace std;
+using namespace chrono;
 
 namespace pl {
 namespace algo {
