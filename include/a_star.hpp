@@ -3,7 +3,6 @@
  * \brief Exports the a_star function template.
  **/
 #pragma once
-#include <contains.hpp>           // contains
 #include <expand.hpp>             // expand
 #include <generate_new_paths.hpp> // generate_new_paths
 #include <insert.hpp>             // insert
@@ -43,9 +42,6 @@ path<NodeIdentifier> a_star(
     IsGoal                                        is_goal,
     Heuristic                                     heuristic)
 {
-    // The closed list. Contains the nodes already visited.
-    vector<NodeIdentifier> closed_list;
-
     // The open list. Contains paths of which the last node isn't yet expanded.
     // This list must always remain sorted by the f values of the paths (f = g +
     // h) in ascending order.
@@ -60,34 +56,27 @@ path<NodeIdentifier> a_star(
         // Delete it from the open list.
         open_list.erase(open_list.begin());
 
-        // If the closed list doesn't contain the last node in the current path
-        // we want to expand it.
-        if (not contains(closed_list, current_path.back().node_identifier())) {
-            const NodeIdentifier last_node_of_path
-                = current_path.back().node_identifier();
+        const NodeIdentifier last_node_of_path
+            = current_path.back().node_identifier();
 
-            // Add it to the closed list (we're visiting it right now)
-            closed_list.push_back(last_node_of_path);
+        // If the goal is reached -> we have the path to the goal.
+        if (is_goal(last_node_of_path)) { return current_path; }
 
-            // If the goal is reached -> we have the path to the goal.
-            if (is_goal(last_node_of_path)) { return current_path; }
+        // Get all the children of the node with their associated g values
+        const vector<identifier_with_cost<NodeIdentifier>> children
+            = expand(last_node_of_path, graph);
 
-            // Get all the children of the node with their associated g values
-            const vector<identifier_with_cost<NodeIdentifier>> children
-                = expand(last_node_of_path, graph);
+        // Generate new paths with the children.
+        // For each child the current path is taken and the current child is
+        // appended to it.
+        const vector<path<NodeIdentifier>> new_paths
+            = generate_new_paths(current_path, children);
 
-            // Generate new paths with the children.
-            // For each child the current path is taken and the current child is
-            // appended to it.
-            const vector<path<NodeIdentifier>> new_paths
-                = generate_new_paths(current_path, children);
-
-            // Insert the paths just generated into the open list in such a
-            // manner so that it remains sorted by the f values of the paths (in
-            // ascending order)
-            for (const path<NodeIdentifier>& path : new_paths) {
-                insert(heuristic, open_list, path);
-            }
+        // Insert the paths just generated into the open list in such a
+        // manner so that it remains sorted by the f values of the paths (in
+        // ascending order)
+        for (const path<NodeIdentifier>& path : new_paths) {
+            insert(heuristic, open_list, path);
         }
     }
 
