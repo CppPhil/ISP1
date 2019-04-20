@@ -29,6 +29,8 @@ add runtime tests
 
 list of stuff used from libraries (including the standard library) with links to their documenation
 
+general cleanup
+
 migrate to windows
 
 possibly implement extended A* algorithms if time permits it
