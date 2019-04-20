@@ -20,20 +20,10 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html
 https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
 prettify non-monotonic heuristic thing.
-
-add documentation
-    -- A* documentation
-       -> Add links to the internet
-       -> Add explanation as to the heuristic having to be permissable / monotonic.
-  -> Don't forget to check how it looks after running the formatting script.
-
-simplify
-
-make sure to always catch all exceptions somewhere.
-    -> consider using pl::handle_exceptions()
+ -> grab picture of the example from the Folien.
 
 add runtime tests
-    -> how long does it take.
+    -> how long does it take. (pl::timer)
     -> compare with crappy heuristic (all 0, essentially Dijkstra etc.)
 
 list of stuff used from libraries (including the standard library) with links to their documenation
