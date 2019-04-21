@@ -2,8 +2,8 @@
 ## General description
 This repository serves as an implementation of the A* algorithm.  
 
-## Warning
-Currently only GNU/Linux operating systems are supported!  
+## Regarding Microsoft Windows
+For Microsoft Windows installation instructions see `data\windows_installation\windows_installation.pdf`  
 
 ## Prerequisites
 * Git
@@ -25,11 +25,13 @@ This will take a few minutes!
 
 ## Building
 To build run  
-`bash ./build.sh`  
+`bash ./build.sh Debug` 
+or `bash ./build.sh Release`   
 from the project's root directory.  
 The `isp1` executable will be placed in the `build` subdirectory.  
 Alternatively you can build and run the application at once using  
-`bash ./buildAndRun.sh`  
+`bash ./buildAndRun.sh Debug`  
+or `bash ./buildAndRun.sh Release`  
 from the project's root directory.  
 
 ## Running
@@ -73,7 +75,9 @@ Using something like `firefox ./docs/html/index.html ` the documentation can be 
 
 ## Overview of the files / directories
 `build`: Automatically generated directory containing the build artifacts generated, including the executable.  
+`buildAndRun.bat`: Windows batch script to build and run the application.  
 `buildAndRun.sh`: Shell script to build and then run the application.  
+`build.bat`: Windows batch script to build the application.  
 `build.sh`: Shell script to build the application.  
 `CMakeLists.txt`: Configuration file of the CMake build system generator.  
 `data`: Directory containing data for the project.  
@@ -111,7 +115,6 @@ Using something like `firefox ./docs/html/index.html ` the documentation can be 
 <https://en.cppreference.com/w/cpp/header/string> string header  
 <https://isocpp.org/wiki/faq/exceptions> C++ exceptions  
 <https://de.wikibooks.org/wiki/C%2B%2B-Programmierung/_N%C3%BCtzliches/_Casts> C++ casts  
-
 <https://en.cppreference.com/w/cpp/language/history> History of C++  
 <http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines> C++ Core Guidelines  
 <http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4713.pdf> C++17 standard working draft  
