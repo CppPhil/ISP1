@@ -3,12 +3,12 @@
  * \brief Exports the graph_t alias template.
  **/
 #pragma once
-#include <cost.hpp>  // cost
+#include <cost.hpp>        // cost
 #include <pl/compiler.hpp> // PL_COMPILER, PL_COMPILER_GCC
 #if PL_COMPILER == PL_COMPILER_GCC
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wreturn-type"
-#endif // PL_COMPILER == PL_COMPILER_GCC
+#endif               // PL_COMPILER == PL_COMPILER_GCC
 #include <graph.hpp> // graph, Nature
 #if PL_COMPILER == PL_COMPILER_GCC
 #pragma GCC diagnostic pop

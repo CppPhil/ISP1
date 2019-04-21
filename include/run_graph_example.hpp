@@ -7,12 +7,12 @@
 #include <iostream>   // cout
 #include <namespaces.hpp>
 #include <path.hpp>     // path
+#include <pl/os.hpp>    // PL_OS, PL_OS_WINDOWS, PL_OS_LINUX
 #include <pl/timer.hpp> // timer
 #include <vector>       // vector
-#include <pl/os.hpp> // PL_OS, PL_OS_WINDOWS, PL_OS_LINUX
 #if PL_OS == PL_OS_WINDOWS
 #include <Windows.h> // LARGE_INTEGER, QueryPerformanceFrequency, QueryPerformanceCounter
-#endif // PL_OS == PL_OS_WINDOWS
+#endif               // PL_OS == PL_OS_WINDOWS
 
 /*!
  * \brief Runs a graph example using the A* algorithm.
@@ -40,16 +40,17 @@ void run_graph_example(
     Heuristic              heuristic,
     ostream&               output_stream = cout)
 {
-// For Windows see: https://docs.microsoft.com/en-gb/windows/desktop/SysInfo/acquiring-high-resolution-time-stamps#using-qpc-in-native-code
+    // For Windows see:
+    // https://docs.microsoft.com/en-gb/windows/desktop/SysInfo/acquiring-high-resolution-time-stamps#using-qpc-in-native-code
 
 #if PL_OS == PL_OS_LINUX
     timer timer;
 #elif PL_OS == PL_OS_WINDOWS
     LARGE_INTEGER starting_time;
-    LARGE_INTEGER ending_time; 
+    LARGE_INTEGER ending_time;
     LARGE_INTEGER elapsed_microseconds;
     LARGE_INTEGER frequency;
-    QueryPerformanceFrequency(&frequency); 
+    QueryPerformanceFrequency(&frequency);
     QueryPerformanceCounter(&starting_time);
 #else
 #error "Unsupported operating system"
@@ -62,14 +63,15 @@ void run_graph_example(
     const steady_clock::duration a_star_time_taken = timer.elapsed_time();
 #elif PL_OS == PL_OS_WINDOWS
     QueryPerformanceCounter(&ending_time);
-    elapsed_microseconds.QuadPart = ending_time.QuadPart - starting_time.QuadPart;
+    elapsed_microseconds.QuadPart
+        = ending_time.QuadPart - starting_time.QuadPart;
 
     // We now have the elapsed number of ticks, along with the
     // number of ticks-per-second. We use these values
     // to convert to the number of elapsed microseconds.
     // To guard against loss-of-precision, we convert
     // to microseconds *before* dividing by ticks-per-second.
-    
+
     elapsed_microseconds.QuadPart *= 1000000;
     elapsed_microseconds.QuadPart /= frequency.QuadPart;
 #endif
