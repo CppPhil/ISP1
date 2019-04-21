@@ -9,6 +9,10 @@
 #include <path.hpp>     // path
 #include <pl/timer.hpp> // timer
 #include <vector>       // vector
+#include <pl/os.hpp> // PL_OS, PL_OS_WINDOWS, PL_OS_LINUX
+#if PL_OS == PL_OS_WINDOWS
+#include <Windows.h> // LARGE_INTEGER, QueryPerformanceFrequency, QueryPerformanceCounter
+#endif // PL_OS == PL_OS_WINDOWS
 
 /*!
  * \brief Runs a graph example using the A* algorithm.
@@ -36,17 +40,48 @@ void run_graph_example(
     Heuristic              heuristic,
     ostream&               output_stream = cout)
 {
-    timer timer;
+// For Windows see: https://docs.microsoft.com/en-gb/windows/desktop/SysInfo/acquiring-high-resolution-time-stamps#using-qpc-in-native-code
 
-    timer.reset();
+#if PL_OS == PL_OS_LINUX
+    timer timer;
+#elif PL_OS == PL_OS_WINDOWS
+    LARGE_INTEGER starting_time;
+    LARGE_INTEGER ending_time; 
+    LARGE_INTEGER elapsed_microseconds;
+    LARGE_INTEGER frequency;
+    QueryPerformanceFrequency(&frequency); 
+    QueryPerformanceCounter(&starting_time);
+#else
+#error "Unsupported operating system"
+#endif
+
     const path<NodeIdentifier> a_star_path
         = a_star(graph, start_nodes, is_goal, heuristic);
+
+#if PL_OS == PL_OS_LINUX
     const steady_clock::duration a_star_time_taken = timer.elapsed_time();
+#elif PL_OS == PL_OS_WINDOWS
+    QueryPerformanceCounter(&ending_time);
+    elapsed_microseconds.QuadPart = ending_time.QuadPart - starting_time.QuadPart;
+
+    // We now have the elapsed number of ticks, along with the
+    // number of ticks-per-second. We use these values
+    // to convert to the number of elapsed microseconds.
+    // To guard against loss-of-precision, we convert
+    // to microseconds *before* dividing by ticks-per-second.
+    
+    elapsed_microseconds.QuadPart *= 1000000;
+    elapsed_microseconds.QuadPart /= frequency.QuadPart;
+#endif
 
     output_stream << "A* total cost: " << a_star_path.g() << '\n'
                   << "path:\n"
                   << a_star_path << '\n'
                   << "time taken: "
-                  << duration_cast<nanoseconds>(a_star_time_taken).count()
-                  << "ns\n\n";
+#if PL_OS == PL_OS_LINUX
+                  << duration_cast<microseconds>(a_star_time_taken).count()
+#elif PL_OS == PL_OS_WINDOWS
+                  << elapsed_microseconds.QuadPart
+#endif
+                  << " microseconds\n\n";
 }

@@ -57,6 +57,10 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
 
+if(WIN32)
+    target_link_libraries(${PROJECT_NAME} PRIVATE -lKernel32)
+endif()
+
 # Include path for the include subdirectory
 include_directories(${CMAKE_BINARY_DIR}/../include)
 
