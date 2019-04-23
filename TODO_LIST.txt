@@ -1,3 +1,5 @@
+A* grid world 
+
 possibly implement extended A* algorithms if time permits it
 
 create presentation
