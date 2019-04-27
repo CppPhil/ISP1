@@ -7,6 +7,7 @@
 #include <position.hpp>      // isp1::position
 #include <position_kind.hpp> // isp1::position_kind
 #include <row.hpp>           // isp1::row
+#include <string>            // std::string
 #include <tl/optional.hpp>   // tl::optional
 #include <vector>            // std::vector
 
@@ -39,6 +40,8 @@ public:
     bool has_start() const;
 
     tl::optional<position> start() const;
+
+    std::string to_string() const;
 
     friend std::ostream& operator<<(std::ostream& os, const grid& grid);
 

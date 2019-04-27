@@ -3,9 +3,8 @@
  * \brief Exports the column type.
  **/
 #pragma once
-#include <cstddef> // std::size_t
-
-// TODO: Make shit be totally ordered
+#include <cstddef>         // std::size_t
+#include <total_order.hpp> // TOTAL_ORDER
 
 // See https://en.cppreference.com/w/cpp/language/explicit for reference of the
 // explicit keyword
@@ -35,18 +34,12 @@ private:
 };
 
 /*!
- * \brief Compares two columns for equality.
+ * \brief Less than comparison for column object.
  * \param lhs The left hand side operand.
  * \param rhs The right hand side operand.
- * \return true if the two columns are equal; otherwise false.
+ * \return true if lhs is deemed less than rhs; otherwise false.
  **/
-bool operator==(column lhs, column rhs);
+bool operator<(column lhs, column rhs);
 
-/*!
- * \brief Compares two for inequality.
- * \param lhs The left hand side operand.
- * \param rhs The right hand side operand.
- * \return true if the two columns are not equal; otherwise false.
- **/
-bool operator!=(column lhs, column rhs);
+TOTAL_ORDER(column)
 } // namespace isp1

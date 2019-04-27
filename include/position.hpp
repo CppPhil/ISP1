@@ -3,10 +3,9 @@
  * \brief Exports the position type.
  **/
 #pragma once
-#include <column.hpp> // isp1::column
-#include <row.hpp>    // isp1::row
-
-// TODO: Make shit be totally ordered
+#include <column.hpp>      // isp1::column
+#include <row.hpp>         // isp1::row
+#include <total_order.hpp> // TOTAL_ORDER
 
 // Here the class keyword is used as a disambiguator so that (member) functions
 // may be declared using the same identifier.
@@ -42,18 +41,14 @@ private:
 };
 
 /*!
- * \brief Compares two positions for equality.
+ * \brief Less than comparison of positions.
  * \param lhs The left hand side operand.
  * \param rhs The right hand side operand.
- * \return true if the two positions are equal; otherwise false.
+ * \return true if lhs is deemed less than rhs; false otherwise.
+ * \note The columns are compared first and if they're the same
+ *       then the rows are compared.
  **/
-bool operator==(position lhs, position rhs);
+bool operator<(position lhs, position rhs);
 
-/*!
- * \brief Compares two positions for inequality.
- * \param lhs The left hand side operand.
- * \param rhs The right hand side operand.
- * \return true if the two positions are not equal; otherwise false.
- **/
-bool operator!=(position lhs, position rhs);
+TOTAL_ORDER(position)
 } // namespace isp1

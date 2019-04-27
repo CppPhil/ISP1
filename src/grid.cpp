@@ -1,14 +1,26 @@
+#include <ciso646> // not
 #include <cstddef> // std::size_t
 #include <grid.hpp>
 #include <iterator>                      // std::distance
-#include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
+#include <pl/algo/erase.hpp>             // pl::algo::erase_if
+#include <pl/algo/ranged_algorithms.hpp> // pl::algo::find, pl::algo::transform
+#include <sstream>                       // std::ostringstream
+#include <stdexcept>                     // std::out_of_range
 
 namespace isp1 {
-grid::grid(column column_count, row row_count)
-    : m_data(
-        column_count.value(),
-        std::vector<position_kind>(row_count.value(), position_kind::empty))
+grid::grid(column column_count, row row_count) : m_data()
 {
+    if (column_count.value() == 0) {
+        throw std::out_of_range("column_count was 0 in grid constructor!");
+    }
+
+    if (row_count.value() == 0) {
+        throw std::out_of_range("row_count was 0 in grid constructor!");
+    }
+
+    m_data = std::vector<std::vector<position_kind>>(
+        column_count.value(),
+        std::vector<position_kind>(row_count.value(), position_kind::empty));
 }
 
 column grid::column_count() const { return column(m_data.size()); }
@@ -74,17 +86,48 @@ tl::optional<position> grid::start() const
     return find(position_kind::start);
 }
 
+std::string grid::to_string() const
+{
+    const std::size_t columns = column_count().value();
+    const std::size_t rows    = row_count().value();
+
+    std::vector<std::string> column_wise_strings;
+
+    std::ostringstream oss;
+
+    for (std::size_t cur_col_idx = 0; cur_col_idx < columns; ++cur_col_idx) {
+        for (std::size_t cur_row_idx = 0; cur_row_idx < rows; ++cur_row_idx) {
+            const column cur_column(cur_col_idx);
+            const row    cur_row(cur_row_idx);
+
+            oss << at(position(cur_column, cur_row));
+        }
+
+        column_wise_strings.push_back(oss.str());
+        oss.str("");
+    }
+
+    std::string buf;
+
+    for (std::size_t cur_row_idx = 0; cur_row_idx < rows; ++cur_row_idx) {
+        for (std::size_t cur_col_idx = 0; cur_col_idx < columns;
+             ++cur_col_idx) {
+            const std::string& cur_string = column_wise_strings.at(cur_col_idx);
+
+            buf += cur_string.at(cur_row_idx);
+        }
+    }
+
+    return buf;
+}
+
 std::ostream& operator<<(std::ostream& os, const grid& grid)
 {
     grid.visualize(os);
     return os;
 }
 
-void grid::visualize(std::ostream& os)
-    const // TODO: have something to 'visualize' a single position_kind
-{
-    // TODO: Implement this.
-}
+void grid::visualize(std::ostream& os) const { os << to_string(); }
 
 std::vector<position_kind>& grid::get_column(column value)
 {
@@ -117,28 +160,66 @@ tl::optional<position> grid::find(position_kind kind) const
     return tl::nullopt;
 }
 
+const std::size_t neighbor_offset = 1;
+
 tl::optional<position> grid::top_neighbor(position pos) const
 {
-    // TODO: Implement this
+    if (pos.row().value() == 0) { return tl::nullopt; }
+
+    return tl::make_optional(
+        position(pos.column(), row(pos.row().value() - neighbor_offset)));
 }
 
 tl::optional<position> grid::bottom_neighbor(position pos) const
 {
-    // TODO: Implement this
+    const std::size_t max_row = row_count().value() - 1;
+
+    if (pos.row().value() >= max_row) { return tl::nullopt; }
+
+    return tl::make_optional(
+        position(pos.column(), row(pos.row().value() + neighbor_offset)));
 }
 
 tl::optional<position> grid::left_neighbor(position pos) const
 {
-    // TODO: Implement this
+    if (pos.column().value() == 0) { return tl::nullopt; }
+
+    return tl::make_optional(
+        position(column(pos.column().value() - neighbor_offset), pos.row()));
 }
 
 tl::optional<position> grid::right_neighbor(position pos) const
 {
-    // TODO: Implement this
+    const std::size_t max_column = column_count().value() - 1;
+
+    if (pos.column().value() >= max_column) { return tl::nullopt; }
+
+    return tl::make_optional(
+        position(column(pos.column().value() + neighbor_offset), pos.row()));
 }
 
 std::vector<position> grid::neighbors(position pos) const
 {
-    // TODO: Implement this
+    // Get all the optionals
+    std::vector<tl::optional<position>> optional_positions(
+        {top_neighbor(pos),
+         bottom_neighbor(pos),
+         left_neighbor(pos),
+         right_neighbor(pos)});
+
+    // Remove all those that don't have a value.
+    pl::algo::erase_if(
+        optional_positions,
+        [](const tl::optional<position>& opt) { return not opt.has_value(); });
+
+    // Unpack the optionals
+    std::vector<position> result(
+        optional_positions.size(), position(column(0), row(0)));
+    pl::algo::transform(
+        optional_positions,
+        result.begin(),
+        [](const tl::optional<position>& opt) { return *opt; });
+
+    return result;
 }
 } // namespace isp1

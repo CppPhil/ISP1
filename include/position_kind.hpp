@@ -3,6 +3,7 @@
  * \brief Exports the position_kind enum.
  **/
 #pragma once
+#include <ostream> // std::ostream
 
 // Regarding use of enum class see:
 // https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
@@ -23,4 +24,12 @@ enum class position_kind : int {
                  *   start to goal found by A*
                  **/
 };
+
+/*!
+ * \brief Visualizes a position_kind enumerator to an ostream.
+ * \param os The ostream to print to.
+ * \param kind The position_kind to print.
+ * \return A reference to os.
+ **/
+std::ostream& operator<<(std::ostream& os, position_kind kind);
 } // namespace isp1
