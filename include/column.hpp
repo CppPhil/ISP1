@@ -4,6 +4,7 @@
  **/
 #pragma once
 #include <cstddef>         // std::size_t
+#include <ostream>         // std::ostream
 #include <total_order.hpp> // TOTAL_ORDER
 
 // See https://en.cppreference.com/w/cpp/language/explicit for reference of the
@@ -32,6 +33,14 @@ public:
 private:
     value_type m_value; /*!< The underlying column value */
 };
+
+/*!
+ * \brief Prints a column.
+ * \param os The ostream to print to.
+ * \param col The column to print.
+ * \return A reference to os.
+ **/
+std::ostream& operator<<(std::ostream& os, column col);
 
 /*!
  * \brief Less than comparison for column object.

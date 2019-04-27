@@ -41,6 +41,14 @@ private:
 };
 
 /*!
+ * \brief Prints a position.
+ * \param os The ostream to print to.
+ * \param pos The position to print.
+ * \return A reference to os.
+ **/
+std::ostream& operator<<(std::ostream& os, position pos);
+
+/*!
  * \brief Less than comparison of positions.
  * \param lhs The left hand side operand.
  * \param rhs The right hand side operand.

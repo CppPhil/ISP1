@@ -12,6 +12,12 @@ column position::column() const { return m_column; }
 
 row position::row() const { return m_row; }
 
+std::ostream& operator<<(std::ostream& os, position pos)
+{
+    os << "{\"column\": " << pos.column() << ",\"row\": " << pos.row() << '}';
+    return os;
+}
+
 bool operator<(position lhs, position rhs)
 {
     // See: https://en.cppreference.com/w/cpp/utility/tuple/tie

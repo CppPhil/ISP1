@@ -14,7 +14,6 @@
 // TODO: DOCUMENTATION
 
 namespace isp1 {
-// TODO: TEST THIS STUFF
 class grid {
 public:
     typedef grid this_type;
