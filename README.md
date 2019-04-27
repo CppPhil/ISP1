@@ -61,6 +61,10 @@ The Graph library depends on this JSON library...
 Repository: <https://github.com/nlohmann/json>  
 Documentation: <https://nlohmann.github.io/json/>  
 
+### "optional" dependency
+Repository: <https://github.com/TartanLlama/optional/>  
+Documentation: <https://optional.tartanllama.xyz/>  
+
 ### "philslib" dependency
 Repository: <https://github.com/CppPhil/philslib/>  
 Documentation: Run `doxygen ./deps/philslib/Doxyfile` from the project's root directory to generate the HTML documentation for this library.  
