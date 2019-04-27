@@ -23,9 +23,9 @@ namespace isp1 {
  **/
 template<typename Heuristic, typename NodeIdentifier>
 void insert(
-    Heuristic                     heuristic,
+    Heuristic                          heuristic,
     std::vector<path<NodeIdentifier>>& open_list,
-    path<NodeIdentifier>          path_to_insert)
+    path<NodeIdentifier>               path_to_insert)
 {
     // Find the insertion point.
     // For documentation of lower_bound see:
@@ -45,7 +45,8 @@ void insert(
     // nastiness of C++ iterators.
     // Node that lower_bound requires the range to already be sorted
     // by the comparator otherwise the program is ill-formed!
-    const typename std::vector<path<NodeIdentifier>>::const_iterator insertion_point
+    const typename std::vector<path<NodeIdentifier>>::const_iterator
+        insertion_point
         = pl::algo::lower_bound(
             /* the range to search in */ open_list,
             /* the value to compare with */ path_to_insert,

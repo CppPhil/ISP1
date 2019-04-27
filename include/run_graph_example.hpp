@@ -3,8 +3,8 @@
  * \brief Exports a function template to run a graph example.
  **/
 #pragma once
-#include <a_star.hpp> // isp1::a_star
-#include <iostream>   // std::cout
+#include <a_star.hpp>   // isp1::a_star
+#include <iostream>     // std::cout
 #include <path.hpp>     // isp1::path
 #include <pl/os.hpp>    // PL_OS, PL_OS_WINDOWS, PL_OS_LINUX
 #include <pl/timer.hpp> // pl::timer
@@ -13,7 +13,7 @@
 #include <Windows.h> // LARGE_INTEGER, QueryPerformanceFrequency, QueryPerformanceCounter
 #endif               // PL_OS == PL_OS_WINDOWS
 
-namespace isp1{
+namespace isp1 {
 /*!
  * \brief Runs a graph example using the A* algorithm.
  *        Also prints timing information along with some other information.
@@ -34,10 +34,10 @@ template<
     typename IsGoal,
     typename Heuristic>
 void run_graph_example(
-    const Graph&           graph,
+    const Graph&                graph,
     std::vector<NodeIdentifier> start_nodes,
-    IsGoal                 is_goal,
-    Heuristic              heuristic,
+    IsGoal                      is_goal,
+    Heuristic                   heuristic,
     std::ostream&               output_stream = std::cout)
 {
     // For Windows see:
@@ -60,7 +60,8 @@ void run_graph_example(
         = a_star(graph, start_nodes, is_goal, heuristic);
 
 #if PL_OS == PL_OS_LINUX
-    const std::chrono::steady_clock::duration a_star_time_taken = timer.elapsed_time();
+    const std::chrono::steady_clock::duration a_star_time_taken
+        = timer.elapsed_time();
 #elif PL_OS == PL_OS_WINDOWS
     QueryPerformanceCounter(&ending_time);
     elapsed_microseconds.QuadPart
@@ -81,7 +82,9 @@ void run_graph_example(
                   << a_star_path << '\n'
                   << "time taken: "
 #if PL_OS == PL_OS_LINUX
-                  << std::chrono::duration_cast<std::chrono::microseconds>(a_star_time_taken).count()
+                  << std::chrono::duration_cast<std::chrono::microseconds>(
+                         a_star_time_taken)
+                         .count()
 #elif PL_OS == PL_OS_WINDOWS
                   << elapsed_microseconds.QuadPart
 #endif

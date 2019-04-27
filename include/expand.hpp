@@ -6,7 +6,7 @@
 #include <edges_of.hpp>             // isp1::edges_of
 #include <graph_t.hpp>              // isp1::graph_t
 #include <identifier_with_cost.hpp> // isp1::identifier_with_cost
-#include <vector> // std::vector
+#include <vector>                   // std::vector
 
 namespace isp1 {
 /*!
@@ -25,7 +25,8 @@ std::vector<identifier_with_cost<NodeIdentifier>> expand(
     const graph_t<NodeIdentifier, CostType, Nat>& graph)
 {
     // Get the edges. The edges hold the g values in the graph.
-    const std::vector<typename graph_t<NodeIdentifier, CostType, Nat>::node::edge>
+    const std::vector<
+        typename graph_t<NodeIdentifier, CostType, Nat>::node::edge>
         edges = edges_of(node_to_expand, graph);
 
     std::vector<identifier_with_cost<NodeIdentifier>> result;

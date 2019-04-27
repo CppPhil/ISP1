@@ -1,7 +1,7 @@
 #include <romanian_city.hpp>
 #include <stdexcept> // std::logic_error
 
-namespace isp1{
+namespace isp1 {
 std::string to_string(romanian_city city)
 {
     std::string result;

@@ -1,6 +1,6 @@
 #pragma once
 #include <graph_t.hpp> // isp1::graph_t
-#include <stdexcept> // std::logic_error
+#include <stdexcept>   // std::logic_error
 
 namespace isp1 {
 /*!
@@ -49,7 +49,8 @@ edges_of_impl(
  * \return A vector containing the edges of the node given.
  **/
 template<typename NodeIdentifier, typename CostType, Nature Nat>
-std::vector<typename graph_t<NodeIdentifier, CostType, Nat>::node::edge> edges_of(
+std::vector<typename graph_t<NodeIdentifier, CostType, Nat>::node::edge>
+edges_of(
     NodeIdentifier                                node,
     const graph_t<NodeIdentifier, CostType, Nat>& graph)
 {
