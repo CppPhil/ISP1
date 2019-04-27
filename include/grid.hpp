@@ -11,9 +11,16 @@
 #include <vector>            // std::vector
 
 namespace isp1 {
+// TODO: TEST THIS STUFF
 class grid {
 public:
-    grid(column column_count, row row_count);
+    typedef grid this_type;
+
+    grid(class column column_count, row row_count);
+
+    column column_count() const;
+
+    row row_count() const;
 
     position_kind& at(position position);
 
@@ -35,6 +42,12 @@ public:
 
 private:
     void visualize(std::ostream& os) const;
+
+    std::vector<position_kind>& column(class column value);
+
+    const std::vector<position_kind>& column(class column value) const;
+
+    tl::optional<position> find(position_kind kind) const;
 
     std::vector<std::vector<position_kind>> m_data;
 };
