@@ -5,6 +5,8 @@
 #pragma once
 #include <cstddef> // std::size_t
 
+// TODO: Make shit be totally ordered
+
 // See https://en.cppreference.com/w/cpp/language/explicit for reference of the
 // explicit keyword
 

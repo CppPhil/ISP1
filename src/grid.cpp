@@ -27,12 +27,40 @@ const position_kind& grid::at(position position) const
 
 graph_t<position, cost, UNDIRECTED> grid::as_graph() const
 {
-    // TODO: Implement this
+    graph_t<position, cost, UNDIRECTED> result_graph;
+
+    const cost cost_value = 1; // Cost is always 1 in a grid from one position
+                               // to a neighboring one
+
+    // Run over the entire grid
+    for (std::size_t current_column_idx = 0;
+         current_column_idx < column_count().value();
+         ++current_column_idx) {
+        for (std::size_t current_row_idx = 0;
+             current_row_idx < row_count().value();
+             ++current_row_idx) {
+            const position current_position = position(
+                column((current_column_idx)), row((current_row_idx)));
+
+            // Get the neighbors of the current position
+            const std::vector<position> current_neighbors
+                = neighbors(current_position);
+
+            // Run over all the neighbors of the current position
+            for (position current_neighbor : current_neighbors) {
+                // Put the current position connected to the current neighbor
+                // into the graph
+                result_graph(current_position, current_neighbor) = cost_value;
+            }
+        }
+    }
 }
 
 void grid::insert_path(const path<position>& result_path)
 {
-    // TODO: Implement this
+    for (identifier_with_cost<position> id_w_c : result_path) {
+        at(id_w_c.node_identifier()) = position_kind::on_path;
+    }
 }
 
 bool grid::has_goal() const { return goal().has_value(); }
@@ -52,7 +80,8 @@ std::ostream& operator<<(std::ostream& os, const grid& grid)
     return os;
 }
 
-void grid::visualize(std::ostream& os) const
+void grid::visualize(std::ostream& os)
+    const // TODO: have something to 'visualize' a single position_kind
 {
     // TODO: Implement this.
 }
@@ -86,5 +115,30 @@ tl::optional<position> grid::find(position_kind kind) const
     }
 
     return tl::nullopt;
+}
+
+tl::optional<position> grid::top_neighbor(position pos) const
+{
+    // TODO: Implement this
+}
+
+tl::optional<position> grid::bottom_neighbor(position pos) const
+{
+    // TODO: Implement this
+}
+
+tl::optional<position> grid::left_neighbor(position pos) const
+{
+    // TODO: Implement this
+}
+
+tl::optional<position> grid::right_neighbor(position pos) const
+{
+    // TODO: Implement this
+}
+
+std::vector<position> grid::neighbors(position pos) const
+{
+    // TODO: Implement this
 }
 } // namespace isp1
