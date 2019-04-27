@@ -1,3 +1,7 @@
+/*!
+ * \file non_monotonic.hpp
+ * \brief Exports functions regarding the non monotonic example.
+**/
 #pragma once
 #include <graph_t.hpp> // graph_t
 #include <string>      // string
