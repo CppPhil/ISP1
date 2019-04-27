@@ -3,9 +3,8 @@
  * \brief Exports the row type.
  **/
 #pragma once
-#include <cstddef> // std::size_t
-
-// TODO: Make shit be totally ordered
+#include <cstddef>         // std::size_t
+#include <total_order.hpp> // TOTAL_ORDER
 
 namespace isp1 {
 /*!
@@ -32,18 +31,12 @@ private:
 };
 
 /*!
- * \brief Compares two rows for equality.
+ * \brief Less than comparison of row object.
  * \param lhs The left hand side operand.
  * \param rhs The right hand side operand.
- * \return true if the two rows are equal; otherwise false.
+ * \return true if lhs is deemed less than rhs; otherwise false.
  **/
-bool operator==(row lhs, row rhs);
+bool operator<(row lhs, row rhs);
 
-/*!
- * \brief Compares two rows for inequality.
- * \param lhs The left hand side operand.
- * \param rhs The right hand side operand.
- * \return true if the two rows are not equal; otherwise false.
- **/
-bool operator!=(row lhs, row rhs);
+TOTAL_ORDER(row)
 } // namespace isp1
