@@ -7,12 +7,11 @@
 #include <cstddef>                  // std::size_t
 #include <identifier_with_cost.hpp> // isp1::identifier_with_cost
 #include <initializer_list>         // std::initializer_list
-#include <ostream>   // std::ostream
-#include <stdexcept> // std::out_of_range
-#include <vector>    // std::vector
+#include <ostream>                  // std::ostream
+#include <stdexcept>                // std::out_of_range
+#include <vector>                   // std::vector
 
-namespace isp1
-{
+namespace isp1 {
 /*!
  * \brief Type for a path of nodes through a graph.
  * \tparam NodeIdentifier the type of the kind of object used to identify a
@@ -24,11 +23,11 @@ public:
     // Type aliases
     // See https://www.youtube.com/watch?v=qGxuD9o4GDA for the usage of the
     // typename keyword in this context.
-    typedef path                                         this_type;
+    typedef path                                              this_type;
     typedef std::vector<identifier_with_cost<NodeIdentifier>> container_type;
-    typedef typename container_type::iterator            iterator;
-    typedef typename container_type::const_iterator      const_iterator;
-    typedef typename container_type::reverse_iterator    reverse_iterator;
+    typedef typename container_type::iterator                 iterator;
+    typedef typename container_type::const_iterator           const_iterator;
+    typedef typename container_type::reverse_iterator         reverse_iterator;
     typedef
         typename container_type::const_reverse_iterator const_reverse_iterator;
 
@@ -225,7 +224,8 @@ public:
     identifier_with_cost<NodeIdentifier>& front()
     {
         if (is_empty()) {
-            throw std::out_of_range("front may not be called on an empty path.");
+            throw std::out_of_range(
+                "front may not be called on an empty path.");
         }
 
         return m_vector.front();

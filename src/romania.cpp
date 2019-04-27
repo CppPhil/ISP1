@@ -2,7 +2,7 @@
 #include <romania.hpp>
 #include <unordered_map> // std::unordered_map
 
-namespace isp1{
+namespace isp1 {
 /*!
  * \brief Map that maps the cities of Romania to their heuristic (h) values,
  *        which represent the straight line distance to the goal city

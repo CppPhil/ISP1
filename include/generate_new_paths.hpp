@@ -20,7 +20,7 @@ namespace isp1 {
  **/
 template<typename NodeIdentifier>
 std::vector<path<NodeIdentifier>> generate_new_paths(
-    const path<NodeIdentifier>&                         old_path,
+    const path<NodeIdentifier>&                              old_path,
     const std::vector<identifier_with_cost<NodeIdentifier>>& children)
 {
     std::vector<path<NodeIdentifier>> result;

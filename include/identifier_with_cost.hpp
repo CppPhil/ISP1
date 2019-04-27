@@ -7,7 +7,7 @@
 #include <ostream>  // std::ostream
 #include <sstream>  // std::ostringstream
 
-namespace isp1{
+namespace isp1 {
 /*!
  * \brief A node identifier along with its associated g value.
  * \tparam The type of object that identifies a node.
@@ -50,7 +50,9 @@ private:
  * \return A reference to os.
  **/
 template<typename NodeIdentifier>
-std::ostream& operator<<(std::ostream& os, identifier_with_cost<NodeIdentifier> id_w_cost)
+std::ostream& operator<<(
+    std::ostream&                        os,
+    identifier_with_cost<NodeIdentifier> id_w_cost)
 {
     os << "{\"node_identifier\": \"" << id_w_cost.node_identifier() << "\", "
        << "\"g\": " << id_w_cost.g() << '}';

@@ -3,11 +3,11 @@
  * \brief Exports utilities to work with the romania example.
  **/
 #pragma once
-#include <cstdint>     // std::uint64_t
-#include <graph_t.hpp> // isp1::graph_t
+#include <cstdint>           // std::uint64_t
+#include <graph_t.hpp>       // isp1::graph_t
 #include <romanian_city.hpp> // isp1::romanian_city
 
-namespace isp1{
+namespace isp1 {
 /*!
  * \brief Creates a graph of the map of Romania.
  * \return The resulting graph.

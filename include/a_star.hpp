@@ -6,7 +6,7 @@
 #include <expand.hpp>             // isp1::expand
 #include <generate_new_paths.hpp> // isp1::generate_new_paths
 #include <insert.hpp>             // isp1::insert
-#include <vector> // std::vector
+#include <vector>                 // std::vector
 
 namespace isp1 {
 /*!
@@ -39,7 +39,7 @@ template<
     typename Heuristic>
 path<NodeIdentifier> a_star(
     const graph_t<NodeIdentifier, CostType, Nat>& graph,
-    std::vector<NodeIdentifier>                        start_nodes,
+    std::vector<NodeIdentifier>                   start_nodes,
     IsGoal                                        is_goal,
     Heuristic                                     heuristic)
 {

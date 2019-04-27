@@ -1,7 +1,7 @@
 #include <ciso646> // and, not
 #include <position.hpp>
 
-namespace isp1{
+namespace isp1 {
 position::position(class column column, class row row)
     : m_column(column), m_row(row)
 {

@@ -1,7 +1,7 @@
 #include <ciso646> // not
 #include <row.hpp>
 
-namespace isp1{
+namespace isp1 {
 row::row(value_type value) : m_value(value) {}
 
 row::value_type row::value() const { return m_value; }

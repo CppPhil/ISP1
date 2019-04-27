@@ -1,13 +1,13 @@
 #pragma once
-#include <column.hpp>  // isp1::column
-#include <cost.hpp>    // isp1::cost
-#include <graph_t.hpp> // isp1::graph_t
-#include <tl/optional.hpp> // tl::optional
+#include <column.hpp>        // isp1::column
+#include <cost.hpp>          // isp1::cost
+#include <graph_t.hpp>       // isp1::graph_t
 #include <ostream>           // std::ostream
 #include <path.hpp>          // isp1::path
 #include <position.hpp>      // isp1::position
 #include <position_kind.hpp> // isp1::position_kind
 #include <row.hpp>           // isp1::row
+#include <tl/optional.hpp>   // tl::optional
 #include <vector>            // std::vector
 
 namespace isp1 {

@@ -6,7 +6,7 @@
 #include <graph_t.hpp> // isp1::graph_t
 #include <string>      // std::string
 
-namespace isp1{
+namespace isp1 {
 /*!
  * \brief Creates the graph for the non monotonic heuristic example.
  **/

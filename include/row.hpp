@@ -5,7 +5,7 @@
 #pragma once
 #include <cstddef> // std::size_t
 
-namespace isp1{
+namespace isp1 {
 /*!
  * \brief Type used for the rows in a grid.
  **/

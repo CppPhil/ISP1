@@ -14,7 +14,7 @@
 #pragma GCC diagnostic pop
 #endif // PL_COMPILER == PL_COMPILER_GCC
 
-namespace isp1{
+namespace isp1 {
 /*!
  * \brief Type used to represent a graph.
  * \tparam NodeIdentifier The type that is used to uniquely identify the nodes
