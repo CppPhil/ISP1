@@ -1,8 +1,8 @@
-#include <ciso646> // not
-#include <cstddef> // std::size_t
+#include <algorithm> // std::remove_if
+#include <ciso646>   // not, and
+#include <cstddef>   // std::size_t
 #include <grid.hpp>
 #include <iterator>                      // std::distance
-#include <pl/algo/erase.hpp>             // pl::algo::erase_if
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::find, pl::algo::transform
 #include <sstream>                       // std::ostringstream
 #include <stdexcept>                     // std::out_of_range
@@ -58,26 +58,30 @@ graph_t<position, cost, UNDIRECTED> grid::as_graph() const
             std::vector<position> current_neighbors
                 = neighbors(current_position);
 
-            // Remove all the walls.
-            pl::algo::erase_if(
-                current_neighbors, [this](const position& cur_pos) {
-                    return at(cur_pos) == position_kind::wall;
-                });
-
             // Run over all the neighbors of the current position
             for (position current_neighbor : current_neighbors) {
                 // Put the current position connected to the current neighbor
-                // into the graph
-                result_graph(current_position, current_neighbor) = cost_value;
+                // into the graph, if it isn't a wall
+                if ((at(current_position) != position_kind::wall)
+                    and (at(current_neighbor) != position_kind::wall)) {
+                    result_graph(current_position, current_neighbor)
+                        = cost_value;
+                }
             }
         }
     }
+
+    return result_graph;
 }
 
 void grid::insert_path(const path<position>& result_path)
 {
     for (identifier_with_cost<position> id_w_c : result_path) {
-        at(id_w_c.node_identifier()) = position_kind::on_path;
+        position_kind& cur_position_kind = at(id_w_c.node_identifier());
+
+        if (cur_position_kind == position_kind::empty) {
+            at(id_w_c.node_identifier()) = position_kind::on_path;
+        }
     }
 }
 
@@ -122,7 +126,17 @@ std::string grid::to_string() const
 
             buf += cur_string.at(cur_row_idx);
         }
+
+        buf += '\n';
     }
+
+    oss << position_kind::start << ": start\n"
+        << position_kind::goal << ": goal\n"
+        << position_kind::empty << ": empty\n"
+        << position_kind::wall << ": wall\n"
+        << position_kind::on_path << ": on path";
+
+    buf += oss.str();
 
     return buf;
 }
@@ -214,9 +228,15 @@ std::vector<position> grid::neighbors(position pos) const
          right_neighbor(pos)});
 
     // Remove all those that don't have a value.
-    pl::algo::erase_if(
-        optional_positions,
-        [](const tl::optional<position>& opt) { return not opt.has_value(); });
+    // See: https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom
+    optional_positions.erase(
+        std::remove_if(
+            optional_positions.begin(),
+            optional_positions.end(),
+            [](const tl::optional<position>& opt) {
+                return not opt.has_value();
+            }),
+        optional_positions.end());
 
     // Unpack the optionals
     std::vector<position> result(

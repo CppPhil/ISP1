@@ -4,6 +4,7 @@
  **/
 #pragma once
 #include <cstddef>         // std::size_t
+#include <ostream>         // std::ostream
 #include <total_order.hpp> // TOTAL_ORDER
 
 namespace isp1 {
@@ -29,6 +30,14 @@ public:
 private:
     value_type m_value; /*!< The underlying row value */
 };
+
+/*!
+ * \brief Prints a row.
+ * \param os The ostream to print to.
+ * \param row The row to print.
+ * \return A reference to os.
+ **/
+std::ostream& operator<<(std::ostream& os, row row);
 
 /*!
  * \brief Less than comparison of row object.
