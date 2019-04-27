@@ -4,7 +4,7 @@
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
 
 namespace isp1 {
-grid::grid(class column column_count, row row_count)
+grid::grid(column column_count, row row_count)
     : m_data(
         column_count.value(),
         std::vector<position_kind>(row_count.value(), position_kind::empty))
@@ -20,7 +20,7 @@ position_kind& grid::at(position position)
     return m_data.at(position.column().value()).at(position.row().value());
 }
 
-const position_type& grid::at(position position) const
+const position_kind& grid::at(position position) const
 {
     return const_cast<this_type*>(this)->at(position);
 }
@@ -41,7 +41,10 @@ tl::optional<position> grid::goal() const { return find(position_kind::goal); }
 
 bool grid::has_start() const { return start().has_value(); }
 
-tl::optional<position> start() const { return find(position_kind::start); }
+tl::optional<position> grid::start() const
+{
+    return find(position_kind::start);
+}
 
 std::ostream& operator<<(std::ostream& os, const grid& grid)
 {
@@ -54,28 +57,30 @@ void grid::visualize(std::ostream& os) const
     // TODO: Implement this.
 }
 
-std::vector<position_kind>& column(class column value)
+std::vector<position_kind>& grid::get_column(column value)
 {
     return m_data.at(value.value());
 }
 
-const std::vector<position_kind>& column(class column value) const
+const std::vector<position_kind>& grid::get_column(column value) const
 {
-    return const_cast<this_type*>(this)->column();
+    return const_cast<this_type*>(this)->get_column(value);
 }
 
 tl::optional<position> grid::find(position_kind kind) const
 {
-    for (std::size_t column = 0; column < column_count.value(); ++column) {
+    for (std::size_t current_column_idx = 0;
+         current_column_idx < column_count().value();
+         ++current_column_idx) {
         const std::vector<position_kind>& current_column
-            = column(class column(column));
+            = get_column(column(current_column_idx));
 
-        const std::vector < position_kind::const_iterator it
+        const std::vector<position_kind>::const_iterator it
             = pl::algo::find(current_column, kind);
 
         if (it != current_column.end()) {
             return position(
-                class column(column),
+                column(current_column_idx),
                 row(std::distance(current_column.begin(), it)));
         }
     }

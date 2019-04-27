@@ -16,7 +16,7 @@ class grid {
 public:
     typedef grid this_type;
 
-    grid(class column column_count, row row_count);
+    grid(column column_count, row row_count);
 
     column column_count() const;
 
@@ -43,9 +43,9 @@ public:
 private:
     void visualize(std::ostream& os) const;
 
-    std::vector<position_kind>& column(class column value);
+    std::vector<position_kind>& get_column(column value);
 
-    const std::vector<position_kind>& column(class column value) const;
+    const std::vector<position_kind>& get_column(column value) const;
 
     tl::optional<position> find(position_kind kind) const;
 
