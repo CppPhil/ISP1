@@ -3,12 +3,12 @@
  * \brief Exports the a_star function template.
  **/
 #pragma once
-#include <expand.hpp>             // expand
-#include <generate_new_paths.hpp> // generate_new_paths
-#include <insert.hpp>             // insert
-#include <namespaces.hpp>
-#include <vector> // vector
+#include <expand.hpp>             // isp1::expand
+#include <generate_new_paths.hpp> // isp1::generate_new_paths
+#include <insert.hpp>             // isp1::insert
+#include <vector> // std::vector
 
+namespace isp1 {
 /*!
  * \brief The A* algorithm.
  * \param graph The graph to search in.
@@ -39,14 +39,14 @@ template<
     typename Heuristic>
 path<NodeIdentifier> a_star(
     const graph_t<NodeIdentifier, CostType, Nat>& graph,
-    vector<NodeIdentifier>                        start_nodes,
+    std::vector<NodeIdentifier>                        start_nodes,
     IsGoal                                        is_goal,
     Heuristic                                     heuristic)
 {
     // The open list. Contains paths of which the last node isn't yet expanded.
     // This list must always remain sorted by the f values of the paths (f = g +
     // h) in ascending order.
-    vector<path<NodeIdentifier>> open_list;
+    std::vector<path<NodeIdentifier>> open_list;
 
     for (NodeIdentifier node : start_nodes) {
         insert(
@@ -71,13 +71,13 @@ path<NodeIdentifier> a_star(
         if (is_goal(last_node_of_path)) { return current_path; }
 
         // Get all the children of the node with their associated g values
-        const vector<identifier_with_cost<NodeIdentifier>> children
+        const std::vector<identifier_with_cost<NodeIdentifier>> children
             = expand(last_node_of_path, graph);
 
         // Generate new paths with the children.
         // For each child the current path is taken and the current child is
         // appended to it.
-        const vector<path<NodeIdentifier>> new_paths
+        const std::vector<path<NodeIdentifier>> new_paths
             = generate_new_paths(current_path, children);
 
         // Insert the paths just generated into the open list in such a
@@ -93,3 +93,4 @@ path<NodeIdentifier> a_star(
     // -> return the empty path.
     return path<NodeIdentifier>();
 }
+} // namespace isp1

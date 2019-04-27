@@ -1,9 +1,10 @@
 #include <romanian_city.hpp>
-#include <stdexcept> // logic_error
+#include <stdexcept> // std::logic_error
 
-string to_string(romanian_city city)
+namespace isp1{
+std::string to_string(romanian_city city)
 {
-    string result;
+    std::string result;
 
     // The # preprocessor operator 'stringifies' its input
     switch (city) {
@@ -19,7 +20,7 @@ string to_string(romanian_city city)
     return result;
 }
 
-romanian_city from_string(const string& string)
+romanian_city from_string(const std::string& string)
 {
 #define X(city_name)                                     \
     if (to_string(romanian_city::city_name) == string) { \
@@ -28,12 +29,13 @@ romanian_city from_string(const string& string)
     ROMANIAN_CITY_X_MACRO
 #undef X
 
-    throw logic_error(
+    throw std::logic_error(
         "Invalid string passed to from_string in romanian_city.cpp");
 }
 
-ostream& operator<<(ostream& os, romanian_city city)
+std::ostream& operator<<(std::ostream& os, romanian_city city)
 {
     os << to_string(city);
     return os;
 }
+} // namespace isp1

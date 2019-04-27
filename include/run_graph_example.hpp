@@ -3,17 +3,17 @@
  * \brief Exports a function template to run a graph example.
  **/
 #pragma once
-#include <a_star.hpp> // a_star
-#include <iostream>   // cout
-#include <namespaces.hpp>
-#include <path.hpp>     // path
+#include <a_star.hpp> // isp1::a_star
+#include <iostream>   // std::cout
+#include <path.hpp>     // isp1::path
 #include <pl/os.hpp>    // PL_OS, PL_OS_WINDOWS, PL_OS_LINUX
-#include <pl/timer.hpp> // timer
-#include <vector>       // vector
+#include <pl/timer.hpp> // pl::timer
+#include <vector>       // std::vector
 #if PL_OS == PL_OS_WINDOWS
 #include <Windows.h> // LARGE_INTEGER, QueryPerformanceFrequency, QueryPerformanceCounter
 #endif               // PL_OS == PL_OS_WINDOWS
 
+namespace isp1{
 /*!
  * \brief Runs a graph example using the A* algorithm.
  *        Also prints timing information along with some other information.
@@ -35,16 +35,16 @@ template<
     typename Heuristic>
 void run_graph_example(
     const Graph&           graph,
-    vector<NodeIdentifier> start_nodes,
+    std::vector<NodeIdentifier> start_nodes,
     IsGoal                 is_goal,
     Heuristic              heuristic,
-    ostream&               output_stream = cout)
+    std::ostream&               output_stream = std::cout)
 {
     // For Windows see:
     // https://docs.microsoft.com/en-gb/windows/desktop/SysInfo/acquiring-high-resolution-time-stamps#using-qpc-in-native-code
 
 #if PL_OS == PL_OS_LINUX
-    timer timer;
+    pl::timer timer;
 #elif PL_OS == PL_OS_WINDOWS
     LARGE_INTEGER starting_time;
     LARGE_INTEGER ending_time;
@@ -60,7 +60,7 @@ void run_graph_example(
         = a_star(graph, start_nodes, is_goal, heuristic);
 
 #if PL_OS == PL_OS_LINUX
-    const steady_clock::duration a_star_time_taken = timer.elapsed_time();
+    const std::chrono::steady_clock::duration a_star_time_taken = timer.elapsed_time();
 #elif PL_OS == PL_OS_WINDOWS
     QueryPerformanceCounter(&ending_time);
     elapsed_microseconds.QuadPart
@@ -81,9 +81,10 @@ void run_graph_example(
                   << a_star_path << '\n'
                   << "time taken: "
 #if PL_OS == PL_OS_LINUX
-                  << duration_cast<microseconds>(a_star_time_taken).count()
+                  << std::chrono::duration_cast<std::chrono::microseconds>(a_star_time_taken).count()
 #elif PL_OS == PL_OS_WINDOWS
                   << elapsed_microseconds.QuadPart
 #endif
                   << " microseconds\n\n";
 }
+} // namespace isp1

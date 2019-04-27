@@ -3,10 +3,10 @@
  * \brief Exports a function template to generate new paths.
  **/
 #pragma once
-#include <namespaces.hpp>
-#include <path.hpp> // path
-#include <vector>   // vector
+#include <path.hpp> // isp1::path
+#include <vector>   // std::vector
 
+namespace isp1 {
 /*!
  * \brief Generates new paths.
  * \param old_path The old path to use.
@@ -19,11 +19,11 @@
  * individually.
  **/
 template<typename NodeIdentifier>
-vector<path<NodeIdentifier>> generate_new_paths(
+std::vector<path<NodeIdentifier>> generate_new_paths(
     const path<NodeIdentifier>&                         old_path,
-    const vector<identifier_with_cost<NodeIdentifier>>& children)
+    const std::vector<identifier_with_cost<NodeIdentifier>>& children)
 {
-    vector<path<NodeIdentifier>> result;
+    std::vector<path<NodeIdentifier>> result;
 
     // Iterate over the children
     for (const identifier_with_cost<NodeIdentifier>& child : children) {
@@ -39,3 +39,4 @@ vector<path<NodeIdentifier>> generate_new_paths(
 
     return result;
 }
+} // namespace isp1

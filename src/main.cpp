@@ -1,50 +1,54 @@
-#include <non_monotonic.hpp> // make_non_monotonic_graph, non_monotonic_goal_node, non_monotonic_heuristic
-#include <pl/except.hpp>         // handle_exceptions
-#include <romania.hpp>           // create_romania_map, romania_heuristic
-#include <run_graph_example.hpp> // run_graph_example
+#include <non_monotonic.hpp> // isp1::make_non_monotonic_graph, isp1::non_monotonic_goal_node, isp1::non_monotonic_heuristic
+#include <pl/except.hpp>         // pl::handle_exceptions
+#include <romania.hpp>           // isp1::create_romania_map, isp1::romania_heuristic
+#include <run_graph_example.hpp> // isp1::run_graph_example
+
+#include <grid.hpp>
 
 int main()
 {
+    isp1::grid grid(isp1::column(5), isp1::row(7));
+
     try {
-        cout << "\nAPPLICATION START\n\n";
+        std::cout << "\nAPPLICATION START\n\n";
 
-        const graph_t<romanian_city, cost, UNDIRECTED> romania_map
-            = create_romania_map();
+        const isp1::graph_t<isp1::romanian_city, isp1::cost, UNDIRECTED> romania_map
+            = isp1::create_romania_map();
 
-        const romanian_city start_city = romanian_city::Arad;
+        const isp1::romanian_city start_city = isp1::romanian_city::Arad;
 
         const auto is_goal_city
-            = [](romanian_city city) { return city == goal_city; };
+            = [](isp1::romanian_city city) { return city == isp1::goal_city; };
 
-        cout << "Calculation of the shortest path from '" << start_city
-             << "' to '" << goal_city << "':\n";
+        std::cout << "Calculation of the shortest path from '" << start_city
+             << "' to '" << isp1::goal_city << "':\n";
 
-        run_graph_example(
+        isp1::run_graph_example(
             romania_map,
-            vector<romanian_city>({start_city}),
+            std::vector<isp1::romanian_city>({start_city}),
             is_goal_city,
-            &romania_heuristic);
+            &isp1::romania_heuristic);
 
-        cout << "Dijkstra:\n";
-        run_graph_example(
+        std::cout << "Dijkstra:\n";
+        isp1::run_graph_example(
             romania_map,
-            vector<romanian_city>({start_city}),
+            std::vector<isp1::romanian_city>({start_city}),
             is_goal_city,
-            [](romanian_city) { return 0; });
+            [](isp1::romanian_city) { return 0; });
 
         // non monotonic heuristic
-        const graph_t<string, cost, DIRECTED> g = make_non_monotonic_graph();
+        const isp1::graph_t<std::string, isp1::cost, DIRECTED> g = isp1::make_non_monotonic_graph();
 
-        const string start_node = "START";
+        const std::string start_node = "START";
 
-        cout << "Non monotonic example:\n";
-        run_graph_example(
+        std::cout << "Non monotonic example:\n";
+        isp1::run_graph_example(
             g,
-            vector<string>({start_node}),
-            [](string str) { return str == non_monotonic_goal_node; },
-            &non_monotonic_heuristic);
+            std::vector<std::string>({start_node}),
+            [](std::string str) { return str == isp1::non_monotonic_goal_node; },
+            &isp1::non_monotonic_heuristic);
     }
     catch (...) {
-        handle_exceptions();
+        pl::handle_exceptions();
     }
 }

@@ -3,15 +3,16 @@
  * \brief Exports the path class template.
  **/
 #pragma once
-#include <cost.hpp>                 // cost
-#include <cstddef>                  // size_t
-#include <identifier_with_cost.hpp> // identifier_with_cost
-#include <initializer_list>         // initializer_list
-#include <namespaces.hpp>
-#include <ostream>   // ostream
-#include <stdexcept> // out_of_range
-#include <vector>    // vector
+#include <cost.hpp>                 // isp1::cost
+#include <cstddef>                  // std::size_t
+#include <identifier_with_cost.hpp> // isp1::identifier_with_cost
+#include <initializer_list>         // std::initializer_list
+#include <ostream>   // std::ostream
+#include <stdexcept> // std::out_of_range
+#include <vector>    // std::vector
 
+namespace isp1
+{
 /*!
  * \brief Type for a path of nodes through a graph.
  * \tparam NodeIdentifier the type of the kind of object used to identify a
@@ -24,7 +25,7 @@ public:
     // See https://www.youtube.com/watch?v=qGxuD9o4GDA for the usage of the
     // typename keyword in this context.
     typedef path                                         this_type;
-    typedef vector<identifier_with_cost<NodeIdentifier>> container_type;
+    typedef std::vector<identifier_with_cost<NodeIdentifier>> container_type;
     typedef typename container_type::iterator            iterator;
     typedef typename container_type::const_iterator      const_iterator;
     typedef typename container_type::reverse_iterator    reverse_iterator;
@@ -40,7 +41,7 @@ public:
      * \brief Initializer list constructor.
      * \param init_list The initializer_list to initialize with.
      **/
-    path(initializer_list<identifier_with_cost<NodeIdentifier>> init_list)
+    path(std::initializer_list<identifier_with_cost<NodeIdentifier>> init_list)
         : m_vector(init_list.begin(), init_list.end())
     {
     }
@@ -209,7 +210,7 @@ public:
      * \brief Queries for the size of this path.
      * \return The amount of nodes in this path.
      **/
-    size_t size() const { return m_vector.size(); }
+    std::size_t size() const { return m_vector.size(); }
 
     /*!
      * \brief Queries this path for emptiness.
@@ -224,7 +225,7 @@ public:
     identifier_with_cost<NodeIdentifier>& front()
     {
         if (is_empty()) {
-            throw out_of_range("front may not be called on an empty path.");
+            throw std::out_of_range("front may not be called on an empty path.");
         }
 
         return m_vector.front();
@@ -247,7 +248,7 @@ public:
     identifier_with_cost<NodeIdentifier>& back()
     {
         if (is_empty()) {
-            throw out_of_range("back may not be called on an empty path.");
+            throw std::out_of_range("back may not be called on an empty path.");
         }
 
         return m_vector.back();
@@ -283,7 +284,7 @@ public:
     }
 
 private:
-    vector<identifier_with_cost<NodeIdentifier>>
+    std::vector<identifier_with_cost<NodeIdentifier>>
         m_vector; /*!< The underlying container */
 };
 
@@ -295,7 +296,7 @@ private:
  * \return A reference to os.
  **/
 template<typename NodeIdentifier>
-ostream& operator<<(ostream& os, const path<NodeIdentifier>& the_path)
+std::ostream& operator<<(std::ostream& os, const path<NodeIdentifier>& the_path)
 {
     os << '[';
 
@@ -311,3 +312,4 @@ ostream& operator<<(ostream& os, const path<NodeIdentifier>& the_path)
     os << ']';
     return os;
 }
+} // namespace isp1

@@ -3,18 +3,18 @@
  * \brief Exports the column type.
  **/
 #pragma once
-#include <cstddef> // size_t
-#include <namespaces.hpp>
+#include <cstddef> // std::size_t
 
 // See https://en.cppreference.com/w/cpp/language/explicit for reference of the
 // explicit keyword
 
+namespace isp1 {
 /*!
  * \brief Type to represent a column in a grid.
  **/
 class column {
 public:
-    typedef size_t value_type;
+    typedef std::size_t value_type;
 
     /*!
      * \brief Creates a column object.
@@ -47,3 +47,4 @@ bool operator==(column lhs, column rhs);
  * \return true if the two columns are not equal; otherwise false.
  **/
 bool operator!=(column lhs, column rhs);
+} // namespace isp1

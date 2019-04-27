@@ -1,12 +1,14 @@
-#include <limits> // numeric_limits
+#include <limits> // std::numeric_limits
 #include <romania.hpp>
+#include <unordered_map> // std::unordered_map
 
+namespace isp1{
 /*!
  * \brief Map that maps the cities of Romania to their heuristic (h) values,
  *        which represent the straight line distance to the goal city
  *        (Bucharest).
  **/
-const unordered_map<romanian_city, int> straight_line_to_bucharest_map(
+const std::unordered_map<romanian_city, int> straight_line_to_bucharest_map(
     {{romanian_city::Arad, 366},          {romanian_city::Bucharest, 0},
      {romanian_city::Craiova, 160},       {romanian_city::Dobreta, 242},
      {romanian_city::Eforie, 161},        {romanian_city::Fagaras, 176},
@@ -50,14 +52,15 @@ graph_t<romanian_city, cost, UNDIRECTED> create_romania_map()
     return romania_map;
 }
 
-uint64_t romania_heuristic(romanian_city city)
+std::uint64_t romania_heuristic(romanian_city city)
 {
     const auto iter = straight_line_to_bucharest_map.find(city);
 
     if (iter == straight_line_to_bucharest_map.end()) {
-        return numeric_limits<uint64_t>::max();
+        return std::numeric_limits<std::uint64_t>::max();
     }
 
-    const uint64_t heuristic_cost = iter->second;
+    const std::uint64_t heuristic_cost = iter->second;
     return heuristic_cost;
 }
+} // namespace isp1

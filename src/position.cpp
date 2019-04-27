@@ -1,6 +1,7 @@
 #include <ciso646> // and, not
 #include <position.hpp>
 
+namespace isp1{
 position::position(class column column, class row row)
     : m_column(column), m_row(row)
 {
@@ -16,3 +17,4 @@ bool operator==(position lhs, position rhs)
 }
 
 bool operator!=(position lhs, position rhs) { return not(lhs == rhs); }
+} // namespace isp1

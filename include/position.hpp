@@ -3,12 +3,13 @@
  * \brief Exports the position type.
  **/
 #pragma once
-#include <column.hpp> // column
-#include <row.hpp>    // row
+#include <column.hpp> // isp1::column
+#include <row.hpp>    // isp1::row
 
 // Here the class keyword is used as a disambiguator so that (member) functions
 // may be declared using the same identifier.
 
+namespace isp1 {
 /*!
  * \brief Type used for the positions in a grid.
  **/
@@ -53,3 +54,4 @@ bool operator==(position lhs, position rhs);
  * \return true if the two positions are not equal; otherwise false.
  **/
 bool operator!=(position lhs, position rhs);
+} // namespace isp1

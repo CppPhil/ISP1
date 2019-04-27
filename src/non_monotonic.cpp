@@ -1,9 +1,10 @@
-#include <limits> // numeric_limits
+#include <limits> // std::numeric_limits
 #include <non_monotonic.hpp>
 
-graph_t<string, cost, DIRECTED> make_non_monotonic_graph()
+namespace isp1 {
+graph_t<std::string, cost, DIRECTED> make_non_monotonic_graph()
 {
-    graph_t<string, cost, DIRECTED> g;
+    graph_t<std::string, cost, DIRECTED> g;
 
     // begin,  target, g
     g("START", "B") = 5;
@@ -16,7 +17,7 @@ graph_t<string, cost, DIRECTED> make_non_monotonic_graph()
     return g;
 }
 
-cost non_monotonic_heuristic(string node_identifier)
+cost non_monotonic_heuristic(std::string node_identifier)
 {
     // Map the node identifiers (strings) to their h values.
     if (node_identifier == "START") { return 9; }
@@ -36,5 +37,6 @@ cost non_monotonic_heuristic(string node_identifier)
         return 0;
     }
 
-    return numeric_limits<cost>::max();
+    return std::numeric_limits<cost>::max();
 }
+} // namespace isp1

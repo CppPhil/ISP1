@@ -3,10 +3,10 @@
  * \brief Exports the romanian_city enum and its associated functions.
  **/
 #pragma once
-#include <namespaces.hpp>
-#include <ostream> // ostream
-#include <string>  // string
+#include <ostream> // std::ostream
+#include <string>  // std::string
 
+namespace isp1 {
 /*!
  * \def ROMANIAN_CITY_X_MACRO
  * \brief X-Macro for the romanian cities.
@@ -48,7 +48,7 @@ enum class romanian_city {
  * \param city The romanian_city to turn into a string.
  * \return The resulting string representation.
  **/
-string to_string(romanian_city city);
+std::string to_string(romanian_city city);
 
 /*!
  * \brief Converts a string to a romanian_city.
@@ -56,7 +56,7 @@ string to_string(romanian_city city);
  * \return The resulting enumerator.
  * \throws logic_error If the string given is not valid.
  **/
-romanian_city from_string(const string& string);
+romanian_city from_string(const std::string& string);
 
 /*!
  * \brief Prints a romanian_city to an ostream.
@@ -64,4 +64,5 @@ romanian_city from_string(const string& string);
  * \param city The romanian_city to print.
  * \return A reference to os.
  **/
-ostream& operator<<(ostream& os, romanian_city city);
+std::ostream& operator<<(std::ostream& os, romanian_city city);
+} // namespace isp1

@@ -10,3 +10,6 @@
 [submodule "deps/nlohmann_json"]
 	path = deps/nlohmann_json
 	url = https://github.com/nlohmann/json.git
+[submodule "deps/optional"]
+	path = deps/optional
+	url = https://github.com/TartanLlama/optional.git

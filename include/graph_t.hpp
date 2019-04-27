@@ -3,7 +3,7 @@
  * \brief Exports the graph_t alias template.
  **/
 #pragma once
-#include <cost.hpp>        // cost
+#include <cost.hpp>        // isp1::cost
 #include <pl/compiler.hpp> // PL_COMPILER, PL_COMPILER_GCC
 #if PL_COMPILER == PL_COMPILER_GCC
 #pragma GCC diagnostic push
@@ -14,6 +14,7 @@
 #pragma GCC diagnostic pop
 #endif // PL_COMPILER == PL_COMPILER_GCC
 
+namespace isp1{
 /*!
  * \brief Type used to represent a graph.
  * \tparam NodeIdentifier The type that is used to uniquely identify the nodes
@@ -37,3 +38,4 @@ using graph_t = graph<
     GraphedType,
     /* cost_type */ CostType,
     /* Nature */ Nat>;
+} // namespace isp1

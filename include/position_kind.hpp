@@ -7,6 +7,7 @@
 // Regarding use of enum class see:
 // https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
 
+namespace isp1 {
 /*!
  * \brief Enum for the kind of a position in a grid.
  * \note The underlying type used is int.
@@ -22,3 +23,4 @@ enum class position_kind : int {
                  *   start to goal found by A*
                  **/
 };
+} // namespace isp1
