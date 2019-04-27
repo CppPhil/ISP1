@@ -1,3 +1,5 @@
+look at in source TODOs
+
 A* grid world
     column type -- done
     row type -- done

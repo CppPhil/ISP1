@@ -5,6 +5,8 @@
 #pragma once
 #include <cstddef> // std::size_t
 
+// TODO: Make shit be totally ordered
+
 namespace isp1 {
 /*!
  * \brief Type used for the rows in a grid.

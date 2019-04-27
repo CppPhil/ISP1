@@ -10,6 +10,8 @@
 #include <tl/optional.hpp>   // tl::optional
 #include <vector>            // std::vector
 
+// TODO: DOCUMENTATION
+
 namespace isp1 {
 // TODO: TEST THIS STUFF
 class grid {
@@ -48,6 +50,16 @@ private:
     const std::vector<position_kind>& get_column(column value) const;
 
     tl::optional<position> find(position_kind kind) const;
+
+    tl::optional<position> top_neighbor(position pos) const;
+
+    tl::optional<position> bottom_neighbor(position pos) const;
+
+    tl::optional<position> left_neighbor(position pos) const;
+
+    tl::optional<position> right_neighbor(position pos) const;
+
+    std::vector<position> neighbors(position pos) const;
 
     std::vector<std::vector<position_kind>> m_data;
 };

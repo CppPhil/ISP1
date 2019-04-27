@@ -6,6 +6,8 @@
 #include <column.hpp> // isp1::column
 #include <row.hpp>    // isp1::row
 
+// TODO: Make shit be totally ordered
+
 // Here the class keyword is used as a disambiguator so that (member) functions
 // may be declared using the same identifier.
 
