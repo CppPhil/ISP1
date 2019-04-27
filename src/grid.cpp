@@ -55,8 +55,14 @@ graph_t<position, cost, UNDIRECTED> grid::as_graph() const
                 column((current_column_idx)), row((current_row_idx)));
 
             // Get the neighbors of the current position
-            const std::vector<position> current_neighbors
+            std::vector<position> current_neighbors
                 = neighbors(current_position);
+
+            // Remove all the walls.
+            pl::algo::erase_if(
+                current_neighbors, [this](const position& cur_pos) {
+                    return at(cur_pos) == position_kind::wall;
+                });
 
             // Run over all the neighbors of the current position
             for (position current_neighbor : current_neighbors) {
