@@ -1,5 +1,43 @@
-A* grid world 
-
+A* grid world
+    column type -- done
+    row type -- done
+    position type -- done
+    position kind enum { (have underlying type and be numbered)
+        start,
+        goal,
+        empty,
+        wall, 
+        on_path
+    } -- done
+    grid type
+        + ctors (column count, row count)
+        + at (position) -> position kind &
+        + as_graph (of position node identifiers)
+        + insert path (path)
+        + has_goal -- to check if it's valid
+        + goal -- optional<position>
+        + has_start -- to check if it's valid
+        + start -- optional<position>
+        + operator<<(ostream&) to print it
+        - vector<vector<position kind>> data
+        
+heuristic is the manhattan distance of the two positions
+    current postion to goal
+        Manhattandistance = abs(x1 - x2) + abs(y1 - y2)
+        
+Create the grid by hardcoding / randomly generating it
+You check if it has a goal -> if it doesn't it's shit.
+You check if it has a start -> if it doesn't it's shit.
+Create the graph from that
+Grab the goal -> it there ain't one -> it's shit.
+You define the heuristic callable by currying a base manhattandistance algorithm
+with the goal just grabbed.
+And you define the is_goal callable by capturing the goal just grabbed
+and equality comparing against within the actual callable.
+You grab the start.
+You dump the graph created, the start position, the heuristic created by currying
+and the is_goal callable into the A* algorithm.
+        
 possibly implement extended A* algorithms if time permits it
    MA* (Memory bounded A*)
    SMA* (Simplified memory bounded A*)
