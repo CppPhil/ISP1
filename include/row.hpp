@@ -3,15 +3,15 @@
  * \brief Exports the row type.
  **/
 #pragma once
-#include <cstddef> // size_t
-#include <namespaces.hpp>
+#include <cstddef> // std::size_t
 
+namespace isp1{
 /*!
  * \brief Type used for the rows in a grid.
  **/
 class row {
 public:
-    typedef size_t value_type;
+    typedef std::size_t value_type;
 
     /*!
      * \brief Creates a new row object.
@@ -44,3 +44,4 @@ bool operator==(row lhs, row rhs);
  * \return true if the two rows are not equal; otherwise false.
  **/
 bool operator!=(row lhs, row rhs);
+} // namespace isp1

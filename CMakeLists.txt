@@ -73,6 +73,9 @@ include_directories(${CMAKE_BINARY_DIR}/../deps/nlohmann_json/single_include)
 # Include path for Graph library
 include_directories(${CMAKE_BINARY_DIR}/../deps/Graph/single_include)
 
+# Include path for optional library
+include_directories(${CMAKE_BINARY_DIR}/../deps/optional)
+
 # Avoid windows problems
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS NOMINMAX)

@@ -3,11 +3,11 @@
  * \brief Exports the insert function template.
  **/
 #pragma once
-#include <namespaces.hpp>
-#include <path.hpp>                      // path
-#include <pl/algo/ranged_algorithms.hpp> // lower_bound
-#include <vector>                        // vector
+#include <path.hpp>                      // isp1::path
+#include <pl/algo/ranged_algorithms.hpp> // pl::algo::lower_bound
+#include <vector>                        // std::vector
 
+namespace isp1 {
 /*!
  * \brief Inserts a path into an open list in such a way that the open list
  *        remains sorted by the f values of the paths is ascending order.
@@ -24,7 +24,7 @@
 template<typename Heuristic, typename NodeIdentifier>
 void insert(
     Heuristic                     heuristic,
-    vector<path<NodeIdentifier>>& open_list,
+    std::vector<path<NodeIdentifier>>& open_list,
     path<NodeIdentifier>          path_to_insert)
 {
     // Find the insertion point.
@@ -45,8 +45,8 @@ void insert(
     // nastiness of C++ iterators.
     // Node that lower_bound requires the range to already be sorted
     // by the comparator otherwise the program is ill-formed!
-    const typename vector<path<NodeIdentifier>>::const_iterator insertion_point
-        = lower_bound(
+    const typename std::vector<path<NodeIdentifier>>::const_iterator insertion_point
+        = pl::algo::lower_bound(
             /* the range to search in */ open_list,
             /* the value to compare with */ path_to_insert,
             /* the comparator */
@@ -62,3 +62,4 @@ void insert(
     // Insert the path at the insertion point.
     open_list.insert(insertion_point, path_to_insert);
 }
+} // namespace isp1

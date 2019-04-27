@@ -1,8 +1,8 @@
 #pragma once
-#include <graph_t.hpp> // graph_t
-#include <namespaces.hpp>
-#include <stdexcept> // logic_error
+#include <graph_t.hpp> // isp1::graph_t
+#include <stdexcept> // std::logic_error
 
+namespace isp1 {
 /*!
  * \brief Implementation function template to get the edges of a node in
  *        a directed graph.
@@ -13,7 +13,7 @@
  * \return A vector containing the outgoing edges of the node given.
  **/
 template<typename NodeIdentifier, typename CostType>
-vector<typename graph_t<NodeIdentifier, CostType, DIRECTED>::node::edge>
+std::vector<typename graph_t<NodeIdentifier, CostType, DIRECTED>::node::edge>
 edges_of_impl(
     NodeIdentifier                                     node,
     const graph_t<NodeIdentifier, CostType, DIRECTED>& graph)
@@ -31,7 +31,7 @@ edges_of_impl(
  * \return A vector containing the edges of the node given.
  **/
 template<typename NodeIdentifier, typename CostType>
-vector<typename graph_t<NodeIdentifier, CostType, UNDIRECTED>::node::edge>
+std::vector<typename graph_t<NodeIdentifier, CostType, UNDIRECTED>::node::edge>
 edges_of_impl(
     NodeIdentifier                                       node,
     const graph_t<NodeIdentifier, CostType, UNDIRECTED>& graph)
@@ -49,9 +49,10 @@ edges_of_impl(
  * \return A vector containing the edges of the node given.
  **/
 template<typename NodeIdentifier, typename CostType, Nature Nat>
-vector<typename graph_t<NodeIdentifier, CostType, Nat>::node::edge> edges_of(
+std::vector<typename graph_t<NodeIdentifier, CostType, Nat>::node::edge> edges_of(
     NodeIdentifier                                node,
     const graph_t<NodeIdentifier, CostType, Nat>& graph)
 {
     return edges_of_impl(node, graph);
 }
+} // namespace isp1

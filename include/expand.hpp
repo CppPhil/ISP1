@@ -3,12 +3,12 @@
  * \brief Exports a function template to expand a node in a graph.
  **/
 #pragma once
-#include <edges_of.hpp>             // edges_of
-#include <graph_t.hpp>              // graph_t
-#include <identifier_with_cost.hpp> // identifier_with_cost
-#include <namespaces.hpp>
-#include <vector> // vector
+#include <edges_of.hpp>             // isp1::edges_of
+#include <graph_t.hpp>              // isp1::graph_t
+#include <identifier_with_cost.hpp> // isp1::identifier_with_cost
+#include <vector> // std::vector
 
+namespace isp1 {
 /*!
  * \brief Expands a given node.
  * \param node_to_expand The object that identifies the node to be expanded.
@@ -20,15 +20,15 @@
  * \return The child nodes of node_to_expand along with their g values.
  **/
 template<typename NodeIdentifier, typename CostType, Nature Nat>
-vector<identifier_with_cost<NodeIdentifier>> expand(
+std::vector<identifier_with_cost<NodeIdentifier>> expand(
     NodeIdentifier                                node_to_expand,
     const graph_t<NodeIdentifier, CostType, Nat>& graph)
 {
     // Get the edges. The edges hold the g values in the graph.
-    const vector<typename graph_t<NodeIdentifier, CostType, Nat>::node::edge>
+    const std::vector<typename graph_t<NodeIdentifier, CostType, Nat>::node::edge>
         edges = edges_of(node_to_expand, graph);
 
-    vector<identifier_with_cost<NodeIdentifier>> result;
+    std::vector<identifier_with_cost<NodeIdentifier>> result;
 
     // Iterate over the edges.
     for (const typename graph_t<NodeIdentifier, CostType, Nat>::node::edge&
@@ -55,3 +55,4 @@ vector<identifier_with_cost<NodeIdentifier>> expand(
 
     return result;
 }
+} // namespace isp1
