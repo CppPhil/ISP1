@@ -26,7 +26,7 @@ inline void grid_test()
 
     cout << g << '\n';
 
-    graph_t<position, cost, UNDIRECTED> graph = g.as_graph();
+    graph_t<position, cost, UNDIRECTED> graph = g.graph();
 
     const position       goal     = *g.goal();
     const path<position> path_res = isp1::a_star(

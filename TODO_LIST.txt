@@ -11,7 +11,7 @@ A* grid world
         wall, 
         on_path
     } -- done
-    grid type
+    grid type -- done
         + ctors (column count, row count)
         + at (position) -> position kind &
         + as_graph (of position node identifiers)

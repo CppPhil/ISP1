@@ -37,7 +37,7 @@ const position_kind& grid::at(position position) const
     return const_cast<this_type*>(this)->at(position);
 }
 
-graph_t<position, cost, UNDIRECTED> grid::as_graph() const
+graph_t<position, cost, UNDIRECTED> grid::graph() const
 {
     graph_t<position, cost, UNDIRECTED> result_graph;
 
@@ -61,7 +61,7 @@ graph_t<position, cost, UNDIRECTED> grid::as_graph() const
             // Run over all the neighbors of the current position
             for (position current_neighbor : current_neighbors) {
                 // Put the current position connected to the current neighbor
-                // into the graph, if it isn't a wall
+                // into the graph, if neither of them is a wall.
                 if ((at(current_position) != position_kind::wall)
                     and (at(current_neighbor) != position_kind::wall)) {
                     result_graph(current_position, current_neighbor)
@@ -79,6 +79,10 @@ void grid::insert_path(const path<position>& result_path)
     for (identifier_with_cost<position> id_w_c : result_path) {
         position_kind& cur_position_kind = at(id_w_c.node_identifier());
 
+        // Only overwrite if the position kind is empty.
+        // We don't want to override the start and goal so that we can
+        // still see 'em.
+        // Obviously they're always on the path regardless.
         if (cur_position_kind == position_kind::empty) {
             at(id_w_c.node_identifier()) = position_kind::on_path;
         }
@@ -103,6 +107,8 @@ std::string grid::to_string() const
 
     std::vector<std::string> column_wise_strings;
 
+    // An in memory text stream.
+    // See: https://en.cppreference.com/w/cpp/io/basic_ostringstream
     std::ostringstream oss;
 
     for (std::size_t cur_col_idx = 0; cur_col_idx < columns; ++cur_col_idx) {
@@ -117,19 +123,27 @@ std::string grid::to_string() const
         oss.str("");
     }
 
+    // Since a terminal is line oriented we actually have to print the stuff row
+    // wise.
     std::string buf;
 
     for (std::size_t cur_row_idx = 0; cur_row_idx < rows; ++cur_row_idx) {
         for (std::size_t cur_col_idx = 0; cur_col_idx < columns;
              ++cur_col_idx) {
+            // Grab the string at the current column.
+            // The strings actually contain column wise data rather than row
+            // wise data.
             const std::string& cur_string = column_wise_strings.at(cur_col_idx);
 
+            // Append the characters located at the current row of all the
+            // strings to the buffer. This way we make the buffer be row wise.
             buf += cur_string.at(cur_row_idx);
         }
 
         buf += '\n';
     }
 
+    // Explanation of the glyphs used for the visualization.
     oss << position_kind::start << ": start\n"
         << position_kind::goal << ": goal\n"
         << position_kind::empty << ": empty\n"
@@ -143,11 +157,9 @@ std::string grid::to_string() const
 
 std::ostream& operator<<(std::ostream& os, const grid& grid)
 {
-    grid.visualize(os);
+    os << grid.to_string();
     return os;
 }
-
-void grid::visualize(std::ostream& os) const { os << to_string(); }
 
 std::vector<position_kind>& grid::get_column(column value)
 {
@@ -167,9 +179,13 @@ tl::optional<position> grid::find(position_kind kind) const
         const std::vector<position_kind>& current_column
             = get_column(column(current_column_idx));
 
+        // Try to find it in the current column vector.
         const std::vector<position_kind>::const_iterator it
             = pl::algo::find(current_column, kind);
 
+        // If it was found -> exit early.
+        // We use std::distance from the begin iterator to the iterator
+        // at which the position kind was found to convert to an index.
         if (it != current_column.end()) {
             return position(
                 column(current_column_idx),
@@ -177,13 +193,19 @@ tl::optional<position> grid::find(position_kind kind) const
         }
     }
 
+    // Not found.
     return tl::nullopt;
 }
 
+/*!
+ * \brief Neighboring tiles are always one tile apart (they're next to each
+ *        other).
+ **/
 const std::size_t neighbor_offset = 1;
 
 tl::optional<position> grid::top_neighbor(position pos) const
 {
+    // There's nothing above row 0.
     if (pos.row().value() == 0) { return tl::nullopt; }
 
     return tl::make_optional(
@@ -194,6 +216,7 @@ tl::optional<position> grid::bottom_neighbor(position pos) const
 {
     const std::size_t max_row = row_count().value() - 1;
 
+    // There's nothing below the last row.
     if (pos.row().value() >= max_row) { return tl::nullopt; }
 
     return tl::make_optional(
@@ -202,6 +225,7 @@ tl::optional<position> grid::bottom_neighbor(position pos) const
 
 tl::optional<position> grid::left_neighbor(position pos) const
 {
+    // There's nothing to the left of column 0.
     if (pos.column().value() == 0) { return tl::nullopt; }
 
     return tl::make_optional(
@@ -212,6 +236,7 @@ tl::optional<position> grid::right_neighbor(position pos) const
 {
     const std::size_t max_column = column_count().value() - 1;
 
+    // There's nothing to the right of the last column.
     if (pos.column().value() >= max_column) { return tl::nullopt; }
 
     return tl::make_optional(
@@ -239,6 +264,10 @@ std::vector<position> grid::neighbors(position pos) const
         optional_positions.end());
 
     // Unpack the optionals
+    // Using operator* on an optional is actually undefined behavior if
+    // used on a nullopt optional.
+    // In this case it's actually safe to use as we got rid of all the
+    // nullopt ones just above.
     std::vector<position> result(
         optional_positions.size(), position(column(0), row(0)));
     pl::algo::transform(
