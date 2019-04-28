@@ -21,6 +21,7 @@ namespace isp1 {
  * \param start_nodes The start nodes in the graph.
  * \param is_goal Predicate to check whether some node is a goal node.
  * \param heuristic The heuristic to use for the A* algorithm.
+ * \param use_closed_list Whether to use a closed list or not.
  * \param output_stream The ostream to print the information to.
  * \tparam Graph Type of the graph to use.
  * \tparam NodeIdentifier The type used to identify nodes within the graph.
@@ -39,7 +40,8 @@ path<NodeIdentifier> run_graph_example(
     std::vector<NodeIdentifier> start_nodes,
     IsGoal                      is_goal,
     Heuristic                   heuristic,
-    std::ostream&               output_stream = std::cout)
+    bool                        use_closed_list = true,
+    std::ostream&               output_stream   = std::cout)
 {
     // For Windows see:
     // https://docs.microsoft.com/en-gb/windows/desktop/SysInfo/acquiring-high-resolution-time-stamps#using-qpc-in-native-code
@@ -58,7 +60,7 @@ path<NodeIdentifier> run_graph_example(
 #endif
 
     const path<NodeIdentifier> a_star_path
-        = a_star(graph, start_nodes, is_goal, heuristic);
+        = a_star(graph, start_nodes, is_goal, heuristic, use_closed_list);
 
 #if PL_OS == PL_OS_LINUX
     const std::chrono::steady_clock::duration a_star_time_taken

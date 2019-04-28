@@ -8,7 +8,7 @@ std::ostream& operator<<(std::ostream& os, position_kind kind)
     case position_kind::goal: os << 'G'; break;
     case position_kind::empty: os << 'E'; break;
     case position_kind::wall: os << 'W'; break;
-    case position_kind::on_path: os << 'X'; break;
+    case position_kind::on_path: os << 'P'; break;
     }
 
     return os;
