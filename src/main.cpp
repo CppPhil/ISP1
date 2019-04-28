@@ -1,10 +1,9 @@
+#include <grid_world.hpp>         // isp1::create_grid_world
+#include <manhattan_distance.hpp> // isp1::manhattan_distance
 #include <non_monotonic.hpp> // isp1::make_non_monotonic_graph, isp1::non_monotonic_goal_node, isp1::non_monotonic_heuristic
 #include <pl/except.hpp>     // pl::handle_exceptions
 #include <romania.hpp> // isp1::create_romania_map, isp1::romania_heuristic
 #include <run_graph_example.hpp> // isp1::run_graph_example
-
-#include <grid.hpp>
-#include <manhattan_distance.hpp>
 
 inline void grid_test()
 {
@@ -52,6 +51,7 @@ int main()
 
         grid_test();
 
+        // Romania
         const isp1::graph_t<isp1::romanian_city, isp1::cost, UNDIRECTED>
             romania_map = isp1::create_romania_map();
 
@@ -90,6 +90,29 @@ int main()
                 return str == isp1::non_monotonic_goal_node;
             },
             &isp1::non_monotonic_heuristic);
+
+        // Grid world
+        std::cout << "Grid world example:\n";
+        isp1::grid grid_world = isp1::create_grid_world();
+
+        const isp1::graph_t<isp1::position, isp1::cost, UNDIRECTED>
+                             grid_world_graph = grid_world.graph();
+        const isp1::position grid_start       = grid_world.start().value();
+        const isp1::position grid_goal        = grid_world.goal().value();
+        const auto           grid_heuristic = [grid_goal](isp1::position pos) {
+            return isp1::manhattan_distance(pos, grid_goal);
+        };
+        const isp1::path<isp1::position> grid_path = isp1::run_graph_example(
+            grid_world_graph,
+            std::vector<isp1::position>({grid_start}),
+            [grid_goal](isp1::position pos) { return pos == grid_goal; },
+            grid_heuristic);
+
+        std::cout << "grid without path:\n" << grid_world << '\n';
+
+        grid_world.insert_path(grid_path);
+
+        std::cout << "grid with path:\n" << grid_world << '\n';    
     }
     catch (...) {
         pl::handle_exceptions();
