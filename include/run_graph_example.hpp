@@ -27,13 +27,14 @@ namespace isp1 {
  * \tparam IsGoal The type of the predicate that checks if a node is a target
  *                node.
  * \tparam Heuristic The type of the heuristic callable.
+ * \return The path found by A*.
  **/
 template<
     typename Graph,
     typename NodeIdentifier,
     typename IsGoal,
     typename Heuristic>
-void run_graph_example(
+path<NodeIdentifier> run_graph_example(
     const Graph&                graph,
     std::vector<NodeIdentifier> start_nodes,
     IsGoal                      is_goal,
@@ -89,5 +90,7 @@ void run_graph_example(
                   << elapsed_microseconds.QuadPart
 #endif
                   << " microseconds\n\n";
+
+    return a_star_path;
 }
 } // namespace isp1
