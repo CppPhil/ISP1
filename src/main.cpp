@@ -4,6 +4,7 @@
 #include <run_graph_example.hpp> // isp1::run_graph_example
 
 #include <grid.hpp>
+#include <manhattan_distance.hpp>
 
 inline void grid_test()
 {
@@ -34,12 +35,7 @@ inline void grid_test()
         std::vector<position>{*g.start()},
         [&goal](const position& pos) { return pos == goal; },
         [&goal](const position& pos) {
-            return std::abs(
-                       static_cast<int>(goal.column().value())
-                       - static_cast<int>(pos.column().value()))
-                   + std::abs(
-                       static_cast<int>(goal.row().value())
-                       - static_cast<int>(pos.row().value()));
+            return isp1::manhattan_distance(pos, goal);
         });
 
     cout << "path:\n" << path_res << '\n';
