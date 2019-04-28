@@ -3,10 +3,15 @@
  * \brief Exports the a_star function template.
  **/
 #pragma once
-#include <expand.hpp>             // isp1::expand
-#include <generate_new_paths.hpp> // isp1::generate_new_paths
-#include <insert.hpp>             // isp1::insert
-#include <vector>                 // std::vector
+#include <ciso646>                       // not, or
+#include <expand.hpp>                    // isp1::expand
+#include <generate_new_paths.hpp>        // isp1::generate_new_paths
+#include <insert.hpp>                    // isp1::insert
+#include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
+#include <vector>                        // std::vector
+
+// TODO: WEBSITE:
+// https://www.redblobgames.com/pathfinding/a-star/introduction.html
 
 namespace isp1 {
 /*!
@@ -17,6 +22,7 @@ namespace isp1 {
  *                identifies a goal node.
  * \param heuristic A callable that supplies a heuristic
  *                  value (h) for a given NodeIdentifier.
+ * \param use_closed_list Whether to use a closed list or not.
  * \tparam NodeIdentifier The type of the kind of object
  *                        that identifies a node, e.g.
  *                        a string or an enum.
@@ -41,8 +47,12 @@ path<NodeIdentifier> a_star(
     const graph_t<NodeIdentifier, CostType, Nat>& graph,
     std::vector<NodeIdentifier>                   start_nodes,
     IsGoal                                        is_goal,
-    Heuristic                                     heuristic)
+    Heuristic                                     heuristic,
+    bool                                          use_closed_list = true)
 {
+    // Contains nodes already visited.
+    std::vector<NodeIdentifier> closed_list;
+
     // The open list. Contains paths of which the last node isn't yet expanded.
     // This list must always remain sorted by the f values of the paths (f = g +
     // h) in ascending order.
@@ -64,27 +74,33 @@ path<NodeIdentifier> a_star(
         // Delete it from the open list.
         open_list.erase(open_list.begin());
 
-        const NodeIdentifier last_node_of_path
-            = current_path.back().node_identifier();
+        // Only handle the node if it's not in the closed list
+        if ((pl::algo::find(closed_list, current_path.back().node_identifier())
+             == closed_list.end())
+            or not use_closed_list) {
+            const NodeIdentifier last_node_of_path
+                = current_path.back().node_identifier();
+            closed_list.push_back(last_node_of_path);
 
-        // If the goal is reached -> we have the path to the goal.
-        if (is_goal(last_node_of_path)) { return current_path; }
+            // If the goal is reached -> we have the path to the goal.
+            if (is_goal(last_node_of_path)) { return current_path; }
 
-        // Get all the children of the node with their associated g values
-        const std::vector<identifier_with_cost<NodeIdentifier>> children
-            = expand(last_node_of_path, graph);
+            // Get all the children of the node with their associated g values
+            const std::vector<identifier_with_cost<NodeIdentifier>> children
+                = expand(last_node_of_path, graph);
 
-        // Generate new paths with the children.
-        // For each child the current path is taken and the current child is
-        // appended to it.
-        const std::vector<path<NodeIdentifier>> new_paths
-            = generate_new_paths(current_path, children);
+            // Generate new paths with the children.
+            // For each child the current path is taken and the current child is
+            // appended to it.
+            const std::vector<path<NodeIdentifier>> new_paths
+                = generate_new_paths(current_path, children);
 
-        // Insert the paths just generated into the open list in such a
-        // manner so that it remains sorted by the f values of the paths (in
-        // ascending order)
-        for (const path<NodeIdentifier>& path : new_paths) {
-            insert(heuristic, open_list, path);
+            // Insert the paths just generated into the open list in such a
+            // manner so that it remains sorted by the f values of the paths (in
+            // ascending order)
+            for (const path<NodeIdentifier>& path : new_paths) {
+                insert(heuristic, open_list, path);
+            }
         }
     }
 
