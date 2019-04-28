@@ -42,6 +42,21 @@ private:
     cost           m_g;               /*!< The g value */
 };
 
+namespace detail {
+/*!
+ * \brief Meta function to only surround string node identifiers with quotes.
+ **/
+template<typename NodeIdentifier>
+struct prefix_postfix {
+    static constexpr const char* str = "";
+};
+
+template<>
+struct prefix_postfix<std::string> {
+    static constexpr const char* str = "\"";
+};
+} // namespace detail
+
 /*!
  * \brief Writes an identifier_with_cost to an ostream.
  * \param os The ostream to write to.
@@ -54,7 +69,10 @@ std::ostream& operator<<(
     std::ostream&                        os,
     identifier_with_cost<NodeIdentifier> id_w_cost)
 {
-    os << "{\"node_identifier\": \"" << id_w_cost.node_identifier() << "\", "
+    os << "{\"node_identifier\": "
+       << ::isp1::detail::prefix_postfix<NodeIdentifier>::str
+       << id_w_cost.node_identifier()
+       << ::isp1::detail::prefix_postfix<NodeIdentifier>::str << ", "
        << "\"g\": " << id_w_cost.g() << '}';
 
     return os;

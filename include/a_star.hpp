@@ -10,9 +10,6 @@
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
 #include <vector>                        // std::vector
 
-// TODO: WEBSITE:
-// https://www.redblobgames.com/pathfinding/a-star/introduction.html
-
 namespace isp1 {
 /*!
  * \brief The A* algorithm.

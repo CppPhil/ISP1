@@ -10,7 +10,7 @@ grid create_grid_world()
     };
 
     g.at(position(column(0), row(12))) = position_kind::start;
-    g.at(position(column(14), row(3))) = position_kind::goal;
+    g.at(position(column(13), row(2))) = position_kind::goal;
 
     // line from [5, 2] to [12, 2]
     for (std::size_t x = 5; x <= 12; ++x) { w(x, 2); }

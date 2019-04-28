@@ -35,7 +35,7 @@ romanian_city from_string(const std::string& string)
 
 std::ostream& operator<<(std::ostream& os, romanian_city city)
 {
-    os << to_string(city);
+    os << '"' << to_string(city) << '"';
     return os;
 }
 } // namespace isp1
