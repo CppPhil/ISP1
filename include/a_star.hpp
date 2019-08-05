@@ -7,8 +7,8 @@
 #include <expand.hpp>                    // isp1::expand
 #include <generate_new_paths.hpp>        // isp1::generate_new_paths
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
+#include <queue>                         // std::priority_queue
 #include <vector>                        // std::vector
-#include <queue> // std::priority_queue
 
 namespace isp1 {
 /*!
@@ -50,7 +50,9 @@ path<NodeIdentifier> a_star(
     // Contains nodes already visited.
     std::vector<NodeIdentifier> closed_list;
 
-    const auto comparator = [&heuristic](const path<NodeIdentifier>& lhs, const path<NodeIdentifier>& rhs) {
+    const auto comparator = [&heuristic](
+                                const path<NodeIdentifier>& lhs,
+                                const path<NodeIdentifier>& rhs) {
         return (lhs.g() + heuristic(lhs.back().node_identifier()))
                > (rhs.g() + heuristic(rhs.back().node_identifier()));
     };
@@ -58,13 +60,15 @@ path<NodeIdentifier> a_star(
     // The open list. Contains paths of which the last node isn't yet expanded.
     // This list must always remain sorted by the f values of the paths (f = g +
     // h) in ascending order.
-    std::priority_queue<path<NodeIdentifier>, std::vector<path<NodeIdentifier>>, decltype(comparator)> open_list(
-        comparator
-    );
+    std::priority_queue<
+        path<NodeIdentifier>,
+        std::vector<path<NodeIdentifier>>,
+        decltype(comparator)>
+        open_list(comparator);
 
     for (NodeIdentifier node : start_nodes) {
         open_list.push(path<NodeIdentifier>(
-                {identifier_with_cost<NodeIdentifier>(node, cost())}));
+            {identifier_with_cost<NodeIdentifier>(node, cost())}));
     }
 
     // As long as we have paths to explore
