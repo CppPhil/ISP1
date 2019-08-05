@@ -6,9 +6,9 @@
 #include <ciso646>                       // not, or
 #include <expand.hpp>                    // isp1::expand
 #include <generate_new_paths.hpp>        // isp1::generate_new_paths
-#include <insert.hpp>                    // isp1::insert
 #include <pl/algo/ranged_algorithms.hpp> // pl::algo::find
 #include <vector>                        // std::vector
+#include <queue> // std::priority_queue
 
 namespace isp1 {
 /*!
@@ -50,26 +50,30 @@ path<NodeIdentifier> a_star(
     // Contains nodes already visited.
     std::vector<NodeIdentifier> closed_list;
 
+    const auto comparator = [&heuristic](const path<NodeIdentifier>& lhs, const path<NodeIdentifier>& rhs) {
+        return (lhs.g() + heuristic(lhs.back().node_identifier()))
+               > (rhs.g() + heuristic(rhs.back().node_identifier()));
+    };
+
     // The open list. Contains paths of which the last node isn't yet expanded.
     // This list must always remain sorted by the f values of the paths (f = g +
     // h) in ascending order.
-    std::vector<path<NodeIdentifier>> open_list;
+    std::priority_queue<path<NodeIdentifier>, std::vector<path<NodeIdentifier>>, decltype(comparator)> open_list(
+        comparator
+    );
 
     for (NodeIdentifier node : start_nodes) {
-        insert(
-            heuristic,
-            open_list,
-            path<NodeIdentifier>(
+        open_list.push(path<NodeIdentifier>(
                 {identifier_with_cost<NodeIdentifier>(node, cost())}));
     }
 
     // As long as we have paths to explore
     while (not open_list.empty()) {
         // Grab the lowest f path.
-        const path<NodeIdentifier> current_path = open_list.front();
+        const path<NodeIdentifier> current_path = open_list.top();
 
         // Delete it from the open list.
-        open_list.erase(open_list.begin());
+        open_list.pop();
 
         // Only handle the node if it's not in the closed list
         if ((pl::algo::find(closed_list, current_path.back().node_identifier())
@@ -96,7 +100,7 @@ path<NodeIdentifier> a_star(
             // manner so that it remains sorted by the f values of the paths (in
             // ascending order)
             for (const path<NodeIdentifier>& path : new_paths) {
-                insert(heuristic, open_list, path);
+                open_list.push(path);
             }
         }
     }
